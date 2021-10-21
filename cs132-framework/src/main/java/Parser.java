@@ -3,30 +3,14 @@ import java.util.Scanner;
 public class Parser {
     private Scanner sc;
     private String token;
-    private boolean failed;
     public Parser() {
         sc = new Scanner(System.in);
         token = "";
-        failed = false;
     }
 
     public void parse() {
         goal();
-        if (!failed) {
-            System.out.println("Program parsed successfully");
-        }
-    }
-
-    public boolean parseSuccess() {
-        return !failed;
-    }
-
-    private void debug() {
-        if (!failed) {
-            // System.out.println("failed: " + token);
-            failed = true;
-            System.out.println("Parse error");
-        }
+        System.out.println("Program parsed successfully");
     }
 
     public void nextToken() {
@@ -36,7 +20,11 @@ public class Parser {
         if (sc.hasNext()) {
             token = sc.next();
         }
-        // System.out.println(token);
+    }
+
+    private void debug() {
+        System.out.println("Parse error");
+        System.exit(1);
     }
 
     private void eat(String t) {
@@ -51,7 +39,12 @@ public class Parser {
     }
 
     private void goal() {
-        nextToken();
+        if (sc.hasNext()) {
+            nextToken();
+        } else {
+            // Empty program is not part of the grammar
+            debug();
+        }
         S();
         if (sc.hasNext()) {
             debug();
@@ -59,42 +52,29 @@ public class Parser {
     }
 
     private void S() {
-        if (failed) {
-            return;
-        }
-        if (token.charAt(0) == '{') {
+        if (!token.isEmpty() && token.charAt(0) == '{') {
             eat("{");
-            // if (token.isEmpty()) {
-            //     nextToken();
-            // }
             L();
-            // if (token.isEmpty()) {
-            //     nextToken();
-            // }
             eat("}");
         } else if (token.length() >= 18 && token.substring(0, 18).equals("System.out.println")) {
-            eat("System.out.println(");
+            eat("System.out.println");
+            eat("(");
             E();
-            eat(");");
-        } else if (token.equals("if")) {
+            eat(")");
+            eat(";");
+        } else if (token.length() >= 2 && token.substring(0, 2).equals("if")) {
             eat("if");
-            // nextToken();
             eat("(");
             E();
             eat(")");
-            // nextToken();
             S();
-            // nextToken();
             eat("else");
-            // nextToken();
             S();
-        } else if (token.equals("while")) {
+        } else if (token.length() >= 5 && token.substring(0, 5).equals("while")) {
             eat("while");
-            // nextToken();
             eat("(");
             E();
             eat(")");
-            // nextToken();
             S();
         } else {
             debug();
@@ -102,28 +82,21 @@ public class Parser {
     }
 
     private void L() {
-        if (failed) {
-            return;
-        }
         if (token.charAt(0) == '{' || 
             (token.length() >= 18 && token.substring(0, 18).equals("System.out.println")) || 
-            token.equals("if") || 
-            token.equals("while")) {
+            (token.length() >= 2 && token.substring(0, 2).equals("if")) || 
+            (token.length() >= 5 && token.substring(0, 5).equals("while"))) {
             S();
-            // nextToken();
             L();
         }
     }
 
     private void E() {
-        if (failed) {
-            return;
-        }
         if (token.length() >= 4 && token.substring(0, 4).equals("true")) {
             eat("true");
         } else if (token.length() >= 5 && token.substring(0, 5).equals("false")) {
             eat("false");
-        } else if (token.charAt(0) == '!') {
+        } else if (!token.isEmpty() && token.charAt(0) == '!') {
             eat("!");
             E();
         } else {
