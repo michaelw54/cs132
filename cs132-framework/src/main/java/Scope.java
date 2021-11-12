@@ -75,8 +75,14 @@ public class Scope {
             if (methods.containsKey(className)) {
                 // Now add current class methods into its method table
                 for (String methodName : methods.get(className).keySet()) {
-                    addMethodTableEntry(className, methodName, className, methodTableBaseOffset * 4);
-                    methodTableBaseOffset++;
+                    // replace at same offset if override
+                    if (methodTable.get(parentClass).containsKey(methodName)) {
+                        int parentMethodOffset = Integer.valueOf(methodTable.get(parentClass).get(methodName).get(1));
+                        addMethodTableEntry(className, methodName, className, parentMethodOffset);
+                    } else {
+                        addMethodTableEntry(className, methodName, className, methodTableBaseOffset * 4);
+                        methodTableBaseOffset++;
+                    }
                 }
             }
 

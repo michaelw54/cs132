@@ -12,8 +12,9 @@ func Main()
     [w3 + 8] = w4
     w4 = @QS_Sort
     [w3 + 12] = w4
+    w1 = [w2 + 0]
+    w1 = [w1 + 8]
     w5 = 10
-    w1 = @QS_Start
     w0 = call w1(w2 w5)
     print(w0)
     ret_ = 0
@@ -22,12 +23,14 @@ func Main()
 func QS_Start(this sz)
     aux01 = 0
     w9 = this
+    w8 = [w9 + 0]
+    w8 = [w8 + 4]
     w10 = sz
-    w8 = @QS_Init
     w7 = call w8(w9 w10)
     aux01 = w7
     w15 = this
-    w14 = @QS_Print
+    w14 = [w15 + 0]
+    w14 = [w14 + 0]
     w13 = call w14(w15)
     aux01 = w13
     w18 = 9999
@@ -37,13 +40,15 @@ func QS_Start(this sz)
     w19 = w20 - w22
     aux01 = w19
     w27 = this
+    w26 = [w27 + 0]
+    w26 = [w26 + 12]
     w28 = 0
     w29 = aux01
-    w26 = @QS_Sort
     w25 = call w26(w27 w28 w29)
     aux01 = w25
     w34 = this
-    w33 = @QS_Print
+    w33 = [w34 + 0]
+    w33 = [w33 + 0]
     w32 = call w33(w34)
     aux01 = w32
     w37 = 0
@@ -290,19 +295,21 @@ func QS_Sort(this left right)
     w188 = w187 + w189
     [w188 + 0] = w192
     w196 = this
+    w195 = [w196 + 0]
+    w195 = [w195 + 12]
     w197 = left
     w199 = i
     w201 = 1
     w198 = w199 - w201
-    w195 = @QS_Sort
     w194 = call w195(w196 w197 w198)
     nt = w194
     w207 = this
+    w206 = [w207 + 0]
+    w206 = [w206 + 12]
     w209 = i
     w211 = 1
     w208 = w209 + w211
     w213 = right
-    w206 = @QS_Sort
     w205 = call w206(w207 w208 w213)
     nt = w205
     goto end_40

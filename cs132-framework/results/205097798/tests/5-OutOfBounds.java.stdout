@@ -6,7 +6,8 @@ func Main()
     [w2 + 0] = w3
     w4 = @A_run
     [w3 + 0] = w4
-    w1 = @A_run
+    w1 = [w2 + 0]
+    w1 = [w1 + 0]
     w0 = call w1(w2)
     print(w0)
     ret_ = 0

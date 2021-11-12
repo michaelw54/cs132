@@ -8,13 +8,14 @@ func Main()
     [w3 + 0] = w4
     w4 = @MT4_Change
     [w3 + 4] = w4
+    w1 = [w2 + 0]
+    w1 = [w1 + 0]
     w5 = 1
     w6 = 2
     w7 = 3
     w8 = 4
     w9 = 5
     w10 = 6
-    w1 = @MT4_Start
     w0 = call w1(w2 w5 w6 w7 w8 w9 w10)
     print(w0)
     ret_ = 0
@@ -35,13 +36,14 @@ func MT4_Start(this p1 p2 p3 p4 p5 p6)
     w17 = p6
     print(w17)
     w20 = this
+    w19 = [w20 + 0]
+    w19 = [w19 + 4]
     w21 = p6
     w22 = p5
     w23 = p4
     w24 = p3
     w25 = p2
     w26 = p1
-    w19 = @MT4_Change
     w18 = call w19(w20 w21 w22 w23 w24 w25 w26)
     aux = w18
     w29 = aux

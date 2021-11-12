@@ -12,8 +12,9 @@ func Main()
     [w3 + 8] = w4
     w4 = @BBS_Sort
     [w3 + 12] = w4
+    w1 = [w2 + 0]
+    w1 = [w1 + 8]
     w5 = 10
-    w1 = @BBS_Start
     w0 = call w1(w2 w5)
     print(w0)
     ret_ = 0
@@ -22,22 +23,26 @@ func Main()
 func BBS_Start(this sz)
     aux01 = 0
     w9 = this
+    w8 = [w9 + 0]
+    w8 = [w8 + 4]
     w10 = sz
-    w8 = @BBS_Init
     w7 = call w8(w9 w10)
     aux01 = w7
     w15 = this
-    w14 = @BBS_Print
+    w14 = [w15 + 0]
+    w14 = [w14 + 0]
     w13 = call w14(w15)
     aux01 = w13
     w18 = 99999
     print(w18)
     w21 = this
-    w20 = @BBS_Sort
+    w20 = [w21 + 0]
+    w20 = [w20 + 12]
     w19 = call w20(w21)
     aux01 = w19
     w26 = this
-    w25 = @BBS_Print
+    w25 = [w26 + 0]
+    w25 = [w25 + 0]
     w24 = call w25(w26)
     aux01 = w24
     w29 = 0

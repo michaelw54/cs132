@@ -6,7 +6,8 @@ func Main()
     [w2 + 0] = w3
     w4 = @TV_Start
     [w3 + 0] = w4
-    w1 = @TV_Start
+    w1 = [w2 + 0]
+    w1 = [w1 + 0]
     w0 = call w1(w2)
     print(w0)
     ret_ = 0
@@ -66,111 +67,130 @@ func TV_Start(this)
     [w7 + 80] = w8
     root = w6
     w12 = root
+    w11 = [w12 + 0]
+    w11 = [w11 + 48]
     w13 = 16
-    w11 = @Tree_Init
     w10 = call w11(w12 w13)
     ntb = w10
     w18 = root
-    w17 = @Tree_Print
+    w17 = [w18 + 0]
+    w17 = [w17 + 44]
     w16 = call w17(w18)
     ntb = w16
     w21 = 100000000
     print(w21)
     w24 = root
+    w23 = [w24 + 0]
+    w23 = [w23 + 36]
     w25 = 8
-    w23 = @Tree_Insert
     w22 = call w23(w24 w25)
     ntb = w22
     w30 = root
+    w29 = [w30 + 0]
+    w29 = [w29 + 36]
     w31 = 24
-    w29 = @Tree_Insert
     w28 = call w29(w30 w31)
     ntb = w28
     w36 = root
+    w35 = [w36 + 0]
+    w35 = [w35 + 36]
     w37 = 4
-    w35 = @Tree_Insert
     w34 = call w35(w36 w37)
     ntb = w34
     w42 = root
+    w41 = [w42 + 0]
+    w41 = [w41 + 36]
     w43 = 12
-    w41 = @Tree_Insert
     w40 = call w41(w42 w43)
     ntb = w40
     w48 = root
+    w47 = [w48 + 0]
+    w47 = [w47 + 36]
     w49 = 20
-    w47 = @Tree_Insert
     w46 = call w47(w48 w49)
     ntb = w46
     w54 = root
+    w53 = [w54 + 0]
+    w53 = [w53 + 36]
     w55 = 28
-    w53 = @Tree_Insert
     w52 = call w53(w54 w55)
     ntb = w52
     w60 = root
+    w59 = [w60 + 0]
+    w59 = [w59 + 36]
     w61 = 14
-    w59 = @Tree_Insert
     w58 = call w59(w60 w61)
     ntb = w58
     w66 = root
-    w65 = @Tree_Print
+    w65 = [w66 + 0]
+    w65 = [w65 + 44]
     w64 = call w65(w66)
     ntb = w64
     w69 = 100000000
     print(w69)
     w72 = 12
     w70 = alloc(w72)
-    w72 = 8
+    w72 = 4
     w71 = alloc(w72)
     [w70 + 0] = w71
     w72 = @MyVisitor_visit
-    [w71 + 4] = w72
+    [w71 + 0] = w72
     v = w70
     w74 = 50000000
     print(w74)
     w77 = root
+    w76 = [w77 + 0]
+    w76 = [w76 + 40]
     w78 = v
-    w76 = @Tree_accept
     w75 = call w76(w77 w78)
     nti = w75
     w81 = 100000000
     print(w81)
     w84 = root
+    w83 = [w84 + 0]
+    w83 = [w83 + 64]
     w85 = 24
-    w83 = @Tree_Search
     w82 = call w83(w84 w85)
     print(w82)
     w89 = root
+    w88 = [w89 + 0]
+    w88 = [w88 + 64]
     w90 = 12
-    w88 = @Tree_Search
     w87 = call w88(w89 w90)
     print(w87)
     w94 = root
+    w93 = [w94 + 0]
+    w93 = [w93 + 64]
     w95 = 16
-    w93 = @Tree_Search
     w92 = call w93(w94 w95)
     print(w92)
     w99 = root
+    w98 = [w99 + 0]
+    w98 = [w98 + 64]
     w100 = 50
-    w98 = @Tree_Search
     w97 = call w98(w99 w100)
     print(w97)
     w104 = root
+    w103 = [w104 + 0]
+    w103 = [w103 + 64]
     w105 = 12
-    w103 = @Tree_Search
     w102 = call w103(w104 w105)
     print(w102)
     w109 = root
+    w108 = [w109 + 0]
+    w108 = [w108 + 0]
     w110 = 12
-    w108 = @Tree_Delete
     w107 = call w108(w109 w110)
     ntb = w107
     w115 = root
-    w114 = @Tree_Print
+    w114 = [w115 + 0]
+    w114 = [w114 + 44]
     w113 = call w114(w115)
     ntb = w113
     w120 = root
+    w119 = [w120 + 0]
+    w119 = [w119 + 64]
     w121 = 12
-    w119 = @Tree_Search
     w118 = call w119(w120 w121)
     print(w118)
     w123 = 0
@@ -325,8 +345,9 @@ func Tree_Insert(this v_key)
     [w179 + 80] = w180
     new_node = w178
     w184 = new_node
+    w183 = [w184 + 0]
+    w183 = [w183 + 48]
     w185 = v_key
-    w183 = @Tree_Init
     w182 = call w183(w184 w185)
     ntb = w182
     w188 = this
@@ -337,7 +358,8 @@ func Tree_Insert(this v_key)
     w192 = cont
     if0 w192 goto endLoop_192
     w195 = current_node
-    w194 = @Tree_GetKey
+    w194 = [w195 + 0]
+    w194 = [w194 + 12]
     w193 = call w194(w195)
     key_aux = w193
     w199 = v_key
@@ -345,11 +367,13 @@ func Tree_Insert(this v_key)
     w198 = w199 < w201
     if0 w198 goto else_198
     w205 = current_node
-    w204 = @Tree_GetHas_Left
+    w204 = [w205 + 0]
+    w204 = [w204 + 56]
     w203 = call w204(w205)
     if0 w203 goto else_203
     w209 = current_node
-    w208 = @Tree_GetLeft
+    w208 = [w209 + 0]
+    w208 = [w208 + 20]
     w207 = call w208(w209)
     current_node = w207
     goto end_203
@@ -357,24 +381,28 @@ func Tree_Insert(this v_key)
     w212 = 0
     cont = w212
     w216 = current_node
+    w215 = [w216 + 0]
+    w215 = [w215 + 4]
     w217 = 1
-    w215 = @Tree_SetHas_Left
     w214 = call w215(w216 w217)
     ntb = w214
     w222 = current_node
+    w221 = [w222 + 0]
+    w221 = [w221 + 32]
     w223 = new_node
-    w221 = @Tree_SetLeft
     w220 = call w221(w222 w223)
     ntb = w220
   end_203:
     goto end_198
   else_198:
     w228 = current_node
-    w227 = @Tree_GetHas_Right
+    w227 = [w228 + 0]
+    w227 = [w227 + 52]
     w226 = call w227(w228)
     if0 w226 goto else_226
     w232 = current_node
-    w231 = @Tree_GetRight
+    w231 = [w232 + 0]
+    w231 = [w231 + 24]
     w230 = call w231(w232)
     current_node = w230
     goto end_226
@@ -382,13 +410,15 @@ func Tree_Insert(this v_key)
     w235 = 0
     cont = w235
     w239 = current_node
+    w238 = [w239 + 0]
+    w238 = [w238 + 76]
     w240 = 1
-    w238 = @Tree_SetHas_Right
     w237 = call w238(w239 w240)
     ntb = w237
     w245 = current_node
+    w244 = [w245 + 0]
+    w244 = [w244 + 16]
     w246 = new_node
-    w244 = @Tree_SetRight
     w243 = call w244(w245 w246)
     ntb = w243
   end_226:
@@ -420,7 +450,8 @@ func Tree_Delete(this v_key)
     w260 = cont
     if0 w260 goto endLoop_260
     w263 = current_node
-    w262 = @Tree_GetKey
+    w262 = [w263 + 0]
+    w262 = [w262 + 12]
     w261 = call w262(w263)
     key_aux = w261
     w267 = v_key
@@ -428,13 +459,15 @@ func Tree_Delete(this v_key)
     w266 = w267 < w269
     if0 w266 goto else_266
     w273 = current_node
-    w272 = @Tree_GetHas_Left
+    w272 = [w273 + 0]
+    w272 = [w272 + 56]
     w271 = call w272(w273)
     if0 w271 goto else_271
     w275 = current_node
     parent_node = w275
     w279 = current_node
-    w278 = @Tree_GetLeft
+    w278 = [w279 + 0]
+    w278 = [w278 + 20]
     w277 = call w278(w279)
     current_node = w277
     goto end_271
@@ -449,13 +482,15 @@ func Tree_Delete(this v_key)
     w284 = w285 < w287
     if0 w284 goto else_284
     w291 = current_node
-    w290 = @Tree_GetHas_Right
+    w290 = [w291 + 0]
+    w290 = [w290 + 52]
     w289 = call w290(w291)
     if0 w289 goto else_289
     w293 = current_node
     parent_node = w293
     w297 = current_node
-    w296 = @Tree_GetRight
+    w296 = [w297 + 0]
+    w296 = [w296 + 24]
     w295 = call w296(w297)
     current_node = w295
     goto end_289
@@ -468,12 +503,14 @@ func Tree_Delete(this v_key)
     w302 = is_root
     if0 w302 goto else_302
     w308 = current_node
-    w307 = @Tree_GetHas_Right
+    w307 = [w308 + 0]
+    w307 = [w307 + 52]
     w306 = call w307(w308)
     w305 = 1
     w304 = w306 < w305
     w314 = current_node
-    w313 = @Tree_GetHas_Left
+    w313 = [w314 + 0]
+    w313 = [w313 + 56]
     w312 = call w313(w314)
     w311 = 1
     w310 = w312 < w311
@@ -484,18 +521,20 @@ func Tree_Delete(this v_key)
     goto end_303
   else_303:
     w321 = this
+    w320 = [w321 + 0]
+    w320 = [w320 + 28]
     w322 = parent_node
     w323 = current_node
-    w320 = @Tree_Remove
     w319 = call w320(w321 w322 w323)
     ntb = w319
   end_303:
     goto end_302
   else_302:
     w328 = this
+    w327 = [w328 + 0]
+    w327 = [w327 + 28]
     w329 = parent_node
     w330 = current_node
-    w327 = @Tree_Remove
     w326 = call w327(w328 w329 w330)
     ntb = w326
   end_302:
@@ -517,65 +556,77 @@ func Tree_Remove(this p_node c_node)
     auxkey1 = 0
     auxkey2 = 0
     w342 = c_node
-    w341 = @Tree_GetHas_Left
+    w341 = [w342 + 0]
+    w341 = [w341 + 56]
     w340 = call w341(w342)
     if0 w340 goto else_340
     w346 = this
+    w345 = [w346 + 0]
+    w345 = [w345 + 8]
     w347 = p_node
     w348 = c_node
-    w345 = @Tree_RemoveLeft
     w344 = call w345(w346 w347 w348)
     ntb = w344
     goto end_340
   else_340:
     w353 = c_node
-    w352 = @Tree_GetHas_Right
+    w352 = [w353 + 0]
+    w352 = [w352 + 52]
     w351 = call w352(w353)
     if0 w351 goto else_351
     w357 = this
+    w356 = [w357 + 0]
+    w356 = [w356 + 60]
     w358 = p_node
     w359 = c_node
-    w356 = @Tree_RemoveRight
     w355 = call w356(w357 w358 w359)
     ntb = w355
     goto end_351
   else_351:
     w364 = c_node
-    w363 = @Tree_GetKey
+    w363 = [w364 + 0]
+    w363 = [w363 + 12]
     w362 = call w363(w364)
     auxkey1 = w362
     w371 = p_node
-    w370 = @Tree_GetLeft
+    w370 = [w371 + 0]
+    w370 = [w370 + 20]
     w369 = call w370(w371)
-    w368 = @Tree_GetKey
+    w368 = [w369 + 0]
+    w368 = [w368 + 12]
     w367 = call w368(w369)
     auxkey2 = w367
     w377 = this
+    w376 = [w377 + 0]
+    w376 = [w376 + 72]
     w378 = auxkey1
     w379 = auxkey2
-    w376 = @Tree_Compare
     w375 = call w376(w377 w378 w379)
     if0 w375 goto else_375
     w383 = p_node
+    w382 = [w383 + 0]
+    w382 = [w382 + 32]
     w384 = [this + 12]
-    w382 = @Tree_SetLeft
     w381 = call w382(w383 w384)
     ntb = w381
     w389 = p_node
+    w388 = [w389 + 0]
+    w388 = [w388 + 4]
     w390 = 0
-    w388 = @Tree_SetHas_Left
     w387 = call w388(w389 w390)
     ntb = w387
     goto end_375
   else_375:
     w395 = p_node
+    w394 = [w395 + 0]
+    w394 = [w394 + 16]
     w396 = [this + 12]
-    w394 = @Tree_SetRight
     w393 = call w394(w395 w396)
     ntb = w393
     w401 = p_node
+    w400 = [w401 + 0]
+    w400 = [w400 + 76]
     w402 = 0
-    w400 = @Tree_SetHas_Right
     w399 = call w400(w401 w402)
     ntb = w399
   end_375:
@@ -588,34 +639,41 @@ func Tree_RemoveRight(this p_node c_node)
     ntb = 0
   loop_406:
     w408 = c_node
-    w407 = @Tree_GetHas_Right
+    w407 = [w408 + 0]
+    w407 = [w407 + 52]
     w406 = call w407(w408)
     if0 w406 goto endLoop_406
     w412 = c_node
+    w411 = [w412 + 0]
+    w411 = [w411 + 68]
     w417 = c_node
-    w416 = @Tree_GetRight
+    w416 = [w417 + 0]
+    w416 = [w416 + 24]
     w415 = call w416(w417)
-    w414 = @Tree_GetKey
+    w414 = [w415 + 0]
+    w414 = [w414 + 12]
     w413 = call w414(w415)
-    w411 = @Tree_SetKey
     w410 = call w411(w412 w413)
     ntb = w410
     w422 = c_node
     p_node = w422
     w426 = c_node
-    w425 = @Tree_GetRight
+    w425 = [w426 + 0]
+    w425 = [w425 + 24]
     w424 = call w425(w426)
     c_node = w424
     goto loop_406
   endLoop_406:
     w431 = p_node
+    w430 = [w431 + 0]
+    w430 = [w430 + 16]
     w432 = [this + 12]
-    w430 = @Tree_SetRight
     w429 = call w430(w431 w432)
     ntb = w429
     w437 = p_node
+    w436 = [w437 + 0]
+    w436 = [w436 + 76]
     w438 = 0
-    w436 = @Tree_SetHas_Right
     w435 = call w436(w437 w438)
     ntb = w435
     w441 = 1
@@ -625,34 +683,41 @@ func Tree_RemoveLeft(this p_node c_node)
     ntb = 0
   loop_442:
     w444 = c_node
-    w443 = @Tree_GetHas_Left
+    w443 = [w444 + 0]
+    w443 = [w443 + 56]
     w442 = call w443(w444)
     if0 w442 goto endLoop_442
     w448 = c_node
+    w447 = [w448 + 0]
+    w447 = [w447 + 68]
     w453 = c_node
-    w452 = @Tree_GetLeft
+    w452 = [w453 + 0]
+    w452 = [w452 + 20]
     w451 = call w452(w453)
-    w450 = @Tree_GetKey
+    w450 = [w451 + 0]
+    w450 = [w450 + 12]
     w449 = call w450(w451)
-    w447 = @Tree_SetKey
     w446 = call w447(w448 w449)
     ntb = w446
     w458 = c_node
     p_node = w458
     w462 = c_node
-    w461 = @Tree_GetLeft
+    w461 = [w462 + 0]
+    w461 = [w461 + 20]
     w460 = call w461(w462)
     c_node = w460
     goto loop_442
   endLoop_442:
     w467 = p_node
+    w466 = [w467 + 0]
+    w466 = [w466 + 32]
     w468 = [this + 12]
-    w466 = @Tree_SetLeft
     w465 = call w466(w467 w468)
     ntb = w465
     w473 = p_node
+    w472 = [w473 + 0]
+    w472 = [w472 + 4]
     w474 = 0
-    w472 = @Tree_SetHas_Left
     w471 = call w472(w473 w474)
     ntb = w471
     w477 = 1
@@ -673,7 +738,8 @@ func Tree_Search(this v_key)
     w484 = cont
     if0 w484 goto endLoop_484
     w487 = current_node
-    w486 = @Tree_GetKey
+    w486 = [w487 + 0]
+    w486 = [w486 + 12]
     w485 = call w486(w487)
     key_aux = w485
     w491 = v_key
@@ -681,11 +747,13 @@ func Tree_Search(this v_key)
     w490 = w491 < w493
     if0 w490 goto else_490
     w497 = current_node
-    w496 = @Tree_GetHas_Left
+    w496 = [w497 + 0]
+    w496 = [w496 + 56]
     w495 = call w496(w497)
     if0 w495 goto else_495
     w501 = current_node
-    w500 = @Tree_GetLeft
+    w500 = [w501 + 0]
+    w500 = [w500 + 20]
     w499 = call w500(w501)
     current_node = w499
     goto end_495
@@ -700,11 +768,13 @@ func Tree_Search(this v_key)
     w506 = w507 < w509
     if0 w506 goto else_506
     w513 = current_node
-    w512 = @Tree_GetHas_Right
+    w512 = [w513 + 0]
+    w512 = [w512 + 52]
     w511 = call w512(w513)
     if0 w511 goto else_511
     w517 = current_node
-    w516 = @Tree_GetRight
+    w516 = [w517 + 0]
+    w516 = [w516 + 24]
     w515 = call w516(w517)
     current_node = w515
     goto end_511
@@ -731,8 +801,9 @@ func Tree_Print(this)
     w527 = this
     current_node = w527
     w531 = this
+    w530 = [w531 + 0]
+    w530 = [w530 + 80]
     w532 = current_node
-    w530 = @Tree_RecPrint
     w529 = call w530(w531 w532)
     ntb = w529
     w535 = 1
@@ -741,14 +812,17 @@ func Tree_Print(this)
 func Tree_RecPrint(this node)
     ntb = 0
     w538 = node
-    w537 = @Tree_GetHas_Left
+    w537 = [w538 + 0]
+    w537 = [w537 + 56]
     w536 = call w537(w538)
     if0 w536 goto else_536
     w542 = this
+    w541 = [w542 + 0]
+    w541 = [w541 + 80]
     w545 = node
-    w544 = @Tree_GetLeft
+    w544 = [w545 + 0]
+    w544 = [w544 + 20]
     w543 = call w544(w545)
-    w541 = @Tree_RecPrint
     w540 = call w541(w542 w543)
     ntb = w540
     goto end_536
@@ -757,18 +831,22 @@ func Tree_RecPrint(this node)
     ntb = w549
   end_536:
     w553 = node
-    w552 = @Tree_GetKey
+    w552 = [w553 + 0]
+    w552 = [w552 + 12]
     w551 = call w552(w553)
     print(w551)
     w557 = node
-    w556 = @Tree_GetHas_Right
+    w556 = [w557 + 0]
+    w556 = [w556 + 52]
     w555 = call w556(w557)
     if0 w555 goto else_555
     w561 = this
+    w560 = [w561 + 0]
+    w560 = [w560 + 80]
     w564 = node
-    w563 = @Tree_GetRight
+    w563 = [w564 + 0]
+    w563 = [w563 + 24]
     w562 = call w563(w564)
-    w560 = @Tree_RecPrint
     w559 = call w560(w561 w562)
     ntb = w559
     goto end_555
@@ -784,8 +862,9 @@ func Tree_accept(this v)
     w571 = 333
     print(w571)
     w574 = v
+    w573 = [w574 + 0]
+    w573 = [w573 + 0]
     w575 = this
-    w573 = @Visitor_visit
     w572 = call w573(w574 w575)
     nti = w572
     w578 = 0
@@ -794,16 +873,19 @@ func Tree_accept(this v)
 func Visitor_visit(this n)
     nti = 0
     w581 = n
-    w580 = @Tree_GetHas_Right
+    w580 = [w581 + 0]
+    w580 = [w580 + 52]
     w579 = call w580(w581)
     if0 w579 goto else_579
     w585 = n
-    w584 = @Tree_GetRight
+    w584 = [w585 + 0]
+    w584 = [w584 + 24]
     w583 = call w584(w585)
     [this + 4] = w583
     w590 = [this + 4]
+    w589 = [w590 + 0]
+    w589 = [w589 + 40]
     w591 = this
-    w589 = @Tree_accept
     w588 = call w589(w590 w591)
     nti = w588
     goto end_579
@@ -812,16 +894,19 @@ func Visitor_visit(this n)
     nti = w594
   end_579:
     w598 = n
-    w597 = @Tree_GetHas_Left
+    w597 = [w598 + 0]
+    w597 = [w597 + 56]
     w596 = call w597(w598)
     if0 w596 goto else_596
     w602 = n
-    w601 = @Tree_GetLeft
+    w601 = [w602 + 0]
+    w601 = [w601 + 20]
     w600 = call w601(w602)
     [this + 8] = w600
     w607 = [this + 8]
+    w606 = [w607 + 0]
+    w606 = [w606 + 40]
     w608 = this
-    w606 = @Tree_accept
     w605 = call w606(w607 w608)
     nti = w605
     goto end_596
@@ -835,16 +920,19 @@ func Visitor_visit(this n)
 func MyVisitor_visit(this n)
     nti = 0
     w616 = n
-    w615 = @Tree_GetHas_Right
+    w615 = [w616 + 0]
+    w615 = [w615 + 52]
     w614 = call w615(w616)
     if0 w614 goto else_614
     w620 = n
-    w619 = @Tree_GetRight
+    w619 = [w620 + 0]
+    w619 = [w619 + 24]
     w618 = call w619(w620)
     [this + 4] = w618
     w625 = [this + 4]
+    w624 = [w625 + 0]
+    w624 = [w624 + 40]
     w626 = this
-    w624 = @Tree_accept
     w623 = call w624(w625 w626)
     nti = w623
     goto end_614
@@ -853,20 +941,24 @@ func MyVisitor_visit(this n)
     nti = w629
   end_614:
     w633 = n
-    w632 = @Tree_GetKey
+    w632 = [w633 + 0]
+    w632 = [w632 + 12]
     w631 = call w632(w633)
     print(w631)
     w637 = n
-    w636 = @Tree_GetHas_Left
+    w636 = [w637 + 0]
+    w636 = [w636 + 56]
     w635 = call w636(w637)
     if0 w635 goto else_635
     w641 = n
-    w640 = @Tree_GetLeft
+    w640 = [w641 + 0]
+    w640 = [w640 + 20]
     w639 = call w640(w641)
     [this + 8] = w639
     w646 = [this + 8]
+    w645 = [w646 + 0]
+    w645 = [w645 + 40]
     w647 = this
-    w645 = @Tree_accept
     w644 = call w645(w646 w647)
     nti = w644
     goto end_635

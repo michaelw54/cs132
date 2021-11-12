@@ -513,16 +513,17 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         TypecheckVisitor visitor = new TypecheckVisitor();
         // printWithIndents("MessageSend");
         String callerType = arg0.f0.accept(visitor, arg1);
-        System.out.println(callerType);
         int res = arg1.k;
         arg1.k += 2;
         int primaryK = arg1.k; // heap address of caller stored wprimaryK
         arg0.f0.accept(this, arg1);
-        String methodName = arg0.f2.f0.tokenImage;
-        String originatingClass = arg1.methodTable.get(callerType).get(methodName).get(0);
-        arg0.f4.accept(this, arg1);
+
         // load method
-        printWithIndents(createVar(res+1) + " = @" + originatingClass + "_" + methodName, arg1);
+        String methodName = arg0.f2.f0.tokenImage;
+        String offset = arg1.methodTable.get(callerType).get(methodName).get(1);
+        printWithIndents(createVar(res+1) + " = [" + createVar(primaryK) + " + 0]", arg1); // res+1(MT) = [primaryK + 0]
+        printWithIndents(createVar(res+1) + " = [" + createVar(res+1) + " + " + offset + "]", arg1); // res+1 = [res+1(MT) + offset]
+        arg0.f4.accept(this, arg1);
         String expList = String.join(" ", arg1.currentExpressionList);
         if (!expList.equals("")) {
             expList = " " + expList;

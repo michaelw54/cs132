@@ -63,8 +63,8 @@ public class ClassVisitor extends GJDepthFirst<Boolean, Scope> {
         arg1.populateOffsets();
         // System.out.println(arg1.propertyTable.toString());
         // System.out.println();
-        System.out.println(arg1.methodTable.toString());
-        System.out.println();
+        // System.out.println(arg1.methodTable.toString());
+        // System.out.println();
         // System.out.println(arg1.fields.toString());
         return main && rest;
     }

@@ -6,7 +6,8 @@ func Main()
     [w2 + 0] = w3
     w4 = @LL_Start
     [w3 + 0] = w4
-    w1 = @LL_Start
+    w1 = [w2 + 0]
+    w1 = [w1 + 0]
     w0 = call w1(w2)
     print(w0)
     ret_ = 0
@@ -42,13 +43,15 @@ func Element_Equal(this other)
     w16 = 1
     ret_val = w16
     w20 = other
-    w19 = @Element_GetAge
+    w19 = [w20 + 0]
+    w19 = [w19 + 8]
     w18 = call w19(w20)
     aux01 = w18
     w27 = this
+    w26 = [w27 + 0]
+    w26 = [w26 + 20]
     w28 = aux01
     w29 = [this + 12]
-    w26 = @Element_Compare
     w25 = call w26(w27 w28 w29)
     w24 = 1
     w23 = w25 < w24
@@ -58,13 +61,15 @@ func Element_Equal(this other)
     goto end_23
   else_23:
     w35 = other
-    w34 = @Element_GetSalary
+    w34 = [w35 + 0]
+    w34 = [w34 + 0]
     w33 = call w34(w35)
     aux02 = w33
     w42 = this
+    w41 = [w42 + 0]
+    w41 = [w41 + 20]
     w43 = aux02
     w44 = [this + 4]
-    w41 = @Element_Compare
     w40 = call w41(w42 w43 w44)
     w39 = 1
     w38 = w40 < w39
@@ -76,7 +81,8 @@ func Element_Equal(this other)
     w48 = [this + 8]
     if0 w48 goto else_48
     w53 = other
-    w52 = @Element_GetMarried
+    w52 = [w53 + 0]
+    w52 = [w52 + 16]
     w51 = call w52(w53)
     w50 = 1
     w49 = w51 < w50
@@ -91,7 +97,8 @@ func Element_Equal(this other)
     goto end_48
   else_48:
     w61 = other
-    w60 = @Element_GetMarried
+    w60 = [w61 + 0]
+    w60 = [w60 + 16]
     w59 = call w60(w61)
     if0 w59 goto else_59
     w63 = 0
@@ -190,10 +197,11 @@ func List_Insert(this new_elem)
     [w108 + 36] = w109
     aux02 = w107
     w113 = aux02
+    w112 = [w113 + 0]
+    w112 = [w112 + 32]
     w114 = new_elem
     w115 = aux03
     w116 = 0
-    w112 = @List_InitNew
     w111 = call w112(w113 w114 w115 w116)
     ret_val = w111
     w119 = aux02
@@ -241,8 +249,9 @@ func List_Delete(this e)
     w141 = w142 * w145
     if0 w141 goto endLoop_141
     w151 = e
+    w150 = [w151 + 0]
+    w150 = [w150 + 12]
     w152 = var_elem
-    w150 = @Element_Equal
     w149 = call w150(w151 w152)
     if0 w149 goto else_149
     w154 = 1
@@ -252,7 +261,8 @@ func List_Delete(this e)
     w156 = w157 < w159
     if0 w156 goto else_156
     w163 = aux01
-    w162 = @List_GetNext
+    w162 = [w163 + 0]
+    w162 = [w162 + 16]
     w161 = call w162(w163)
     my_head = w161
     goto end_156
@@ -262,10 +272,12 @@ func List_Delete(this e)
     w166 = w167 - w169
     print(w166)
     w173 = prev
+    w172 = [w173 + 0]
+    w172 = [w172 + 20]
     w176 = aux01
-    w175 = @List_GetNext
+    w175 = [w176 + 0]
+    w175 = [w175 + 16]
     w174 = call w175(w176)
-    w172 = @List_SetNext
     w171 = call w172(w173 w174)
     aux05 = w171
     w181 = 0
@@ -285,15 +297,18 @@ func List_Delete(this e)
     w190 = aux01
     prev = w190
     w194 = aux01
-    w193 = @List_GetNext
+    w193 = [w194 + 0]
+    w193 = [w193 + 16]
     w192 = call w193(w194)
     aux01 = w192
     w199 = aux01
-    w198 = @List_GetEnd
+    w198 = [w199 + 0]
+    w198 = [w198 + 28]
     w197 = call w198(w199)
     var_end = w197
     w204 = aux01
-    w203 = @List_GetElem
+    w203 = [w204 + 0]
+    w203 = [w203 + 12]
     w202 = call w203(w204)
     var_elem = w202
     w207 = 1
@@ -328,8 +343,9 @@ func List_Search(this e)
     w220 = w222 < w221
     if0 w220 goto endLoop_220
     w225 = e
+    w224 = [w225 + 0]
+    w224 = [w224 + 12]
     w226 = var_elem
-    w224 = @Element_Equal
     w223 = call w224(w225 w226)
     if0 w223 goto else_223
     w228 = 1
@@ -340,15 +356,18 @@ func List_Search(this e)
     nt = w230
   end_223:
     w234 = aux01
-    w233 = @List_GetNext
+    w233 = [w234 + 0]
+    w233 = [w233 + 16]
     w232 = call w233(w234)
     aux01 = w232
     w239 = aux01
-    w238 = @List_GetEnd
+    w238 = [w239 + 0]
+    w238 = [w238 + 28]
     w237 = call w238(w239)
     var_end = w237
     w244 = aux01
-    w243 = @List_GetElem
+    w243 = [w244 + 0]
+    w243 = [w243 + 12]
     w242 = call w243(w244)
     var_elem = w242
     goto loop_220
@@ -384,19 +403,23 @@ func List_Print(this)
     w257 = w259 < w258
     if0 w257 goto endLoop_257
     w262 = var_elem
-    w261 = @Element_GetAge
+    w261 = [w262 + 0]
+    w261 = [w261 + 8]
     w260 = call w261(w262)
     print(w260)
     w266 = aux01
-    w265 = @List_GetNext
+    w265 = [w266 + 0]
+    w265 = [w265 + 16]
     w264 = call w265(w266)
     aux01 = w264
     w271 = aux01
-    w270 = @List_GetEnd
+    w270 = [w271 + 0]
+    w270 = [w270 + 28]
     w269 = call w270(w271)
     var_end = w269
     w276 = aux01
-    w275 = @List_GetElem
+    w275 = [w276 + 0]
+    w275 = [w275 + 12]
     w274 = call w275(w276)
     var_elem = w274
     goto loop_257
@@ -438,17 +461,20 @@ func LL_Start(this)
     [w281 + 36] = w282
     last_elem = w280
     w286 = last_elem
-    w285 = @List_Init
+    w285 = [w286 + 0]
+    w285 = [w285 + 8]
     w284 = call w285(w286)
     aux01 = w284
     w289 = last_elem
     head = w289
     w293 = head
-    w292 = @List_Init
+    w292 = [w293 + 0]
+    w292 = [w292 + 8]
     w291 = call w292(w293)
     aux01 = w291
     w298 = head
-    w297 = @List_Print
+    w297 = [w298 + 0]
+    w297 = [w297 + 4]
     w296 = call w297(w298)
     aux01 = w296
     w303 = 16
@@ -470,19 +496,22 @@ func LL_Start(this)
     [w302 + 20] = w303
     el01 = w301
     w307 = el01
+    w306 = [w307 + 0]
+    w306 = [w306 + 4]
     w308 = 25
     w309 = 37000
     w310 = 0
-    w306 = @Element_Init
     w305 = call w306(w307 w308 w309 w310)
     aux01 = w305
     w315 = head
+    w314 = [w315 + 0]
+    w314 = [w314 + 36]
     w316 = el01
-    w314 = @List_Insert
     w313 = call w314(w315 w316)
     head = w313
     w321 = head
-    w320 = @List_Print
+    w320 = [w321 + 0]
+    w320 = [w320 + 4]
     w319 = call w320(w321)
     aux01 = w319
     w324 = 10000000
@@ -506,21 +535,24 @@ func LL_Start(this)
     [w326 + 20] = w327
     el01 = w325
     w331 = el01
+    w330 = [w331 + 0]
+    w330 = [w330 + 4]
     w332 = 39
     w333 = 42000
     w334 = 1
-    w330 = @Element_Init
     w329 = call w330(w331 w332 w333 w334)
     aux01 = w329
     w337 = el01
     el02 = w337
     w341 = head
+    w340 = [w341 + 0]
+    w340 = [w340 + 36]
     w342 = el01
-    w340 = @List_Insert
     w339 = call w340(w341 w342)
     head = w339
     w347 = head
-    w346 = @List_Print
+    w346 = [w347 + 0]
+    w346 = [w346 + 4]
     w345 = call w346(w347)
     aux01 = w345
     w350 = 10000000
@@ -544,19 +576,22 @@ func LL_Start(this)
     [w352 + 20] = w353
     el01 = w351
     w357 = el01
+    w356 = [w357 + 0]
+    w356 = [w356 + 4]
     w358 = 22
     w359 = 34000
     w360 = 0
-    w356 = @Element_Init
     w355 = call w356(w357 w358 w359 w360)
     aux01 = w355
     w365 = head
+    w364 = [w365 + 0]
+    w364 = [w364 + 36]
     w366 = el01
-    w364 = @List_Insert
     w363 = call w364(w365 w366)
     head = w363
     w371 = head
-    w370 = @List_Print
+    w370 = [w371 + 0]
+    w370 = [w370 + 4]
     w369 = call w370(w371)
     aux01 = w369
     w376 = 16
@@ -578,20 +613,23 @@ func LL_Start(this)
     [w375 + 20] = w376
     el03 = w374
     w380 = el03
+    w379 = [w380 + 0]
+    w379 = [w379 + 4]
     w381 = 27
     w382 = 34000
     w383 = 0
-    w379 = @Element_Init
     w378 = call w379(w380 w381 w382 w383)
     aux01 = w378
     w388 = head
+    w387 = [w388 + 0]
+    w387 = [w387 + 24]
     w389 = el02
-    w387 = @List_Search
     w386 = call w387(w388 w389)
     print(w386)
     w393 = head
+    w392 = [w393 + 0]
+    w392 = [w392 + 24]
     w394 = el03
-    w392 = @List_Search
     w391 = call w392(w393 w394)
     print(w391)
     w396 = 10000000
@@ -615,41 +653,48 @@ func LL_Start(this)
     [w398 + 20] = w399
     el01 = w397
     w403 = el01
+    w402 = [w403 + 0]
+    w402 = [w402 + 4]
     w404 = 28
     w405 = 35000
     w406 = 0
-    w402 = @Element_Init
     w401 = call w402(w403 w404 w405 w406)
     aux01 = w401
     w411 = head
+    w410 = [w411 + 0]
+    w410 = [w410 + 36]
     w412 = el01
-    w410 = @List_Insert
     w409 = call w410(w411 w412)
     head = w409
     w417 = head
-    w416 = @List_Print
+    w416 = [w417 + 0]
+    w416 = [w416 + 4]
     w415 = call w416(w417)
     aux01 = w415
     w420 = 2220000
     print(w420)
     w423 = head
+    w422 = [w423 + 0]
+    w422 = [w422 + 0]
     w424 = el02
-    w422 = @List_Delete
     w421 = call w422(w423 w424)
     head = w421
     w429 = head
-    w428 = @List_Print
+    w428 = [w429 + 0]
+    w428 = [w428 + 4]
     w427 = call w428(w429)
     aux01 = w427
     w432 = 33300000
     print(w432)
     w435 = head
+    w434 = [w435 + 0]
+    w434 = [w434 + 0]
     w436 = el01
-    w434 = @List_Delete
     w433 = call w434(w435 w436)
     head = w433
     w441 = head
-    w440 = @List_Print
+    w440 = [w441 + 0]
+    w440 = [w440 + 4]
     w439 = call w440(w441)
     aux01 = w439
     w444 = 44440000
