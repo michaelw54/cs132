@@ -67,11 +67,9 @@ func LS_Print(this)
     if0 w42 goto endLoop_42
     w51 = [this + 4]
     w52 = j
-    w48 = 1
-    w49 = w52 + w48
     w48 = [w51 + 0]
-    w50 = w49 < w48
-    if0 w50 goto outOfBounds_47
+    w49 = w52 < w48
+    if0 w49 goto outOfBounds_47
     w48 = 4
     w49 = 1
     w50 = w52 + w49
@@ -112,11 +110,9 @@ func LS_Search(this num)
     if0 w67 goto endLoop_67
     w76 = [this + 4]
     w77 = j
-    w73 = 1
-    w74 = w77 + w73
     w73 = [w76 + 0]
-    w75 = w74 < w73
-    if0 w75 goto outOfBounds_72
+    w74 = w77 < w73
+    if0 w74 goto outOfBounds_72
     w73 = 4
     w74 = 1
     w75 = w77 + w74
@@ -205,4 +201,23 @@ func LS_Init(this sz)
     w155 = aux01
     w157 = aux02
     w154 = w155 + w157
-java.lang.NullPointerException
+    w150 = 4
+    w151 = 1
+    w152 = w153 + w151
+    w151 = w152 * w150
+    w149 = [this + 4]
+    w150 = w149 + w151
+    [w150 + 0] = w154
+    w161 = j
+    w163 = 1
+    w160 = w161 + w163
+    j = w160
+    w167 = k
+    w169 = 1
+    w166 = w167 - w169
+    k = w166
+    goto loop_132
+  endLoop_132:
+    w172 = 0
+    return w172
+    

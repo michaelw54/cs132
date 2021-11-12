@@ -24,11 +24,9 @@ func A_run(this)
     a = w6
     w17 = a
     w18 = 10
-    w14 = 1
-    w15 = w18 + w14
     w14 = [w17 + 0]
-    w16 = w15 < w14
-    if0 w16 goto outOfBounds_13
+    w15 = w18 < w14
+    if0 w15 goto outOfBounds_13
     w14 = 4
     w15 = 1
     w16 = w18 + w15
@@ -42,11 +40,9 @@ func A_run(this)
     print(w13)
     w24 = a
     w25 = 40
-    w21 = 1
-    w22 = w25 + w21
     w21 = [w24 + 0]
-    w23 = w22 < w21
-    if0 w23 goto outOfBounds_20
+    w22 = w25 < w21
+    if0 w22 goto outOfBounds_20
     w21 = 4
     w22 = 1
     w23 = w25 + w22

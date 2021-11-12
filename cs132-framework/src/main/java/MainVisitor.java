@@ -286,14 +286,18 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
             arg0.f2.accept(this, arg1);
             int rhsK = arg1.k;
             arg0.f5.accept(this, arg1);
-            int offset = arg1.propertyTable.get(arg1.currentClass).get(arg0.f0.f0.tokenImage); // offset of field in class
+            String parent = arg1.currentClass;
+            while (!arg1.propertyTable.get(arg1.currentClass).containsKey(parent+"#"+arg0.f0.f0.tokenImage)) {
+                parent = arg1.subtypes.get(parent);
+            }
+            int offset = arg1.propertyTable.get(arg1.currentClass).get(parent+"#"+arg0.f0.f0.tokenImage);
             String indexVar = createVar(i+4);
             printWithIndents(createVar(i+1) + " = 4", arg1); // wk+1 = 4
             printWithIndents(createVar(i+2) + " = 1", arg1); // wk+2 = 1
             printWithIndents(createVar(i+3) + " = " + indexVar + " + " + createVar(i+2), arg1); // wk+3 = wk+4 + wk+2 (1)
             printWithIndents(createVar(i+2) + " = " + createVar(i+3) + " * " + createVar(i+1), arg1); // wk+2 = wk+3 * wk+1 (4)
-            printWithIndents(createVar(i) + " = " + "[this + " + Integer.toString(offset) + "]", arg1); // w_k = [this + offset]
-            printWithIndents(createVar(i+1) + " = " + createVar(i) + " + " + indexVar, arg1);
+            printWithIndents(createVar(i) + " = " + "[this + " + Integer.toString(offset) + "]", arg1); // wk = [this + offset]
+            printWithIndents(createVar(i+1) + " = " + createVar(i) + " + " + createVar(i+2), arg1); // wk+1 = wk + wk+2
             // TODO: bounds check
             // [w_k + w_k+4] = w_rhsK
             printWithIndents("[" + createVar(i+1) + " + 0] = " + createVar(rhsK), arg1);
@@ -464,11 +468,9 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         // Out of bounds checking
         String outOfBoundsLabel = "outOfBounds_" + Integer.toString(res);
         String passLabel = "pass_" + Integer.toString(res);
-        printWithIndents(createVar(res+1) + " = 1" , arg1); // res+1 = 1
-        printWithIndents(createVar(res+2) + " = " + createVar(indexK) + " + " + createVar(res+1), arg1); // res+2 = indexK + res+1
         printWithIndents(createVar(res+1) + " = [" + createVar(heapK) + " + 0]", arg1); // res+1 = [heapK + 0]
-        printWithIndents(createVar(res+3) + " = " + createVar(res+2) + " < " + createVar(res+1), arg1); // res+3 = res+2 < res+1
-        printWithIndents("if0 " + createVar(res+3) + " goto " + outOfBoundsLabel, arg1); // if0 res+3 goto outOfBoundsRes
+        printWithIndents(createVar(res+2) + " = " + createVar(indexK) + " < " + createVar(res+1), arg1); // res+2 = indexK < res+1
+        printWithIndents("if0 " + createVar(res+2) + " goto " + outOfBoundsLabel, arg1); // if0 res+2 goto outOfBoundsRes
         printWithIndents(createVar(res+1) + " = 4", arg1);
         printWithIndents(createVar(res+2) + " = 1", arg1);
         printWithIndents(createVar(res+3) + " = " + createVar(indexK) + " + " + createVar(res+2), arg1);
@@ -511,6 +513,7 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         TypecheckVisitor visitor = new TypecheckVisitor();
         // printWithIndents("MessageSend");
         String callerType = arg0.f0.accept(visitor, arg1);
+        System.out.println(callerType);
         int res = arg1.k;
         arg1.k += 2;
         int primaryK = arg1.k; // heap address of caller stored wprimaryK
