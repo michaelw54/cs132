@@ -1,1 +1,19 @@
-Program type checked successfully
+func Main()
+w_2 = alloc(4)
+w_3 = alloc(8)
+[w_2 + 0] = w_3
+[w_3 + 0] = @MT4_Start
+[w_3 + 4] = @MT4_Change
+w_2 = 1
+w_3 = 2
+w_4 = 3
+w_5 = 4
+w_6 = 5
+w_7 = 6
+w_1 = @MT4_Start
+w_0 = call w_1(w_2)
+print(w_0)
+ret_ = 0
+return ret_
+
+Type error

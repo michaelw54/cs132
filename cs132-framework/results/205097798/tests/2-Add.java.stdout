@@ -1,0 +1,8 @@
+func Main()
+w_1 = 12
+w_3 = 21
+w_0 = w_1 + w_3
+print(w_0)
+ret_ = 0
+return ret_
+

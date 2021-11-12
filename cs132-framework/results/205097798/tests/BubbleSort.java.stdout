@@ -1,1 +1,16 @@
-Program type checked successfully
+func Main()
+w_2 = alloc(12)
+w_3 = alloc(16)
+[w_2 + 0] = w_3
+[w_3 + 0] = @BBS_Print
+[w_3 + 4] = @BBS_Init
+[w_3 + 8] = @BBS_Start
+[w_3 + 12] = @BBS_Sort
+w_2 = 10
+w_1 = @BBS_Start
+w_0 = call w_1(w_2)
+print(w_0)
+ret_ = 0
+return ret_
+
+Type error

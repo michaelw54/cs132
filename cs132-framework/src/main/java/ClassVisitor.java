@@ -58,7 +58,15 @@ public class ClassVisitor extends GJDepthFirst<Boolean, Scope> {
 
     @Override
     public Boolean visit(Goal arg0, Scope arg1) {
-        return arg0.f1.accept(this, arg1);
+        Boolean main = arg0.f0.accept(this, arg1);
+        Boolean rest = arg0.f1.accept(this, arg1);
+        arg1.populateOffsets();
+        // System.out.println(arg1.propertyTable.toString());
+        // System.out.println();
+        // System.out.println(arg1.methodTable.toString());
+        // System.out.println();
+        // System.out.println(arg1.fields.toString());
+        return main && rest;
     }
 
     @Override
@@ -91,7 +99,7 @@ public class ClassVisitor extends GJDepthFirst<Boolean, Scope> {
         }
         arg1.classes.add(arg0.f1.f0.tokenImage);
         // Variables processed in second pass (TypecheckVisitor)
-        // arg0.f3.accept(this, arg1);
+        arg0.f3.accept(this, arg1);
         arg0.f4.accept(this, arg1);
         arg1.stepOut();
         return true;
@@ -138,6 +146,25 @@ public class ClassVisitor extends GJDepthFirst<Boolean, Scope> {
         arg1.addMethod(arg1.currentClass, methodName, visitor.visit(arg0.f1, arg1));
         arg1.addMethodParams(arg1.currentClass, methodName, visitor.visit(arg0.f4, arg1));
         arg1.stepOut();
+        return true;
+    }
+
+    @Override
+    public Boolean visit(VarDeclaration arg0, Scope arg1) {
+        TypecheckVisitor visitor = new TypecheckVisitor();
+        if (arg1.scope.equals("class")) {
+            if (arg1.fields.containsKey(arg0.f1.f0.tokenImage)) {
+                return false;
+            }
+            arg1.addField(arg1.currentClass, arg0.f1.f0.tokenImage, visitor.visit(arg0.f0, arg1));
+        } else if (arg1.scope.equals("method")) {
+            if (arg1.locals.containsKey(arg0.f1.f0.tokenImage) || arg1.formalParams.containsKey(arg0.f1.f0.tokenImage)) {
+                return false;
+            }
+            arg1.addLocal(arg1.currentClass, arg0.f1.f0.tokenImage, visitor.visit(arg0.f0, arg1));
+        } else {
+            return false;
+        }
         return true;
     }
 }

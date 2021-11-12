@@ -1,1 +1,16 @@
-Program type checked successfully
+func Main()
+w_2 = alloc(4)
+w_3 = alloc(4)
+[w_2 + 0] = w_3
+[w_3 + 0] = @BT_Start
+w_1 = @BT_Start
+w_0 = call w_1(w_2)
+print(w_0)
+ret_ = 0
+return ret_
+
+func BT_Start(this)
+root = 0
+ntb = 0
+nti = 0
+java.lang.NullPointerException

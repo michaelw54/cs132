@@ -1,0 +1,3 @@
+A :== ε | xyB | zyC
+B :== w | xzB
+C :== ε | zy

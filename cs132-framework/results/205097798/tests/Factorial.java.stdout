@@ -1,1 +1,13 @@
-Program type checked successfully
+func Main()
+w_2 = alloc(4)
+w_3 = alloc(4)
+[w_2 + 0] = w_3
+[w_3 + 0] = @Fac_ComputeFac
+w_2 = 10
+w_1 = @Fac_ComputeFac
+w_0 = call w_1(w_2)
+print(w_0)
+ret_ = 0
+return ret_
+
+Type error

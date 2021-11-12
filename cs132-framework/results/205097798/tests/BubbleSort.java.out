@@ -1,1 +1,4 @@
-Program type checked successfully
+ParseException: Encountered " <IDENTIFIER> "w_2 "" at line 2, column 1.
+Was expecting:
+    "return" ...
+    

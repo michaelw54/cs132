@@ -1,0 +1,32 @@
+1,4c1,26
+< ParseException: Encountered " <IDENTIFIER> "w_2 "" at line 2, column 1.
+< Was expecting:
+<     "return" ...
+<     
+---
+> 16
+> 100000000
+> 8
+> 16
+> 4
+> 8
+> 12
+> 14
+> 16
+> 20
+> 24
+> 28
+> 1
+> 1
+> 1
+> 0
+> 1
+> 4
+> 8
+> 14
+> 16
+> 20
+> 24
+> 28
+> 0
+> 0
