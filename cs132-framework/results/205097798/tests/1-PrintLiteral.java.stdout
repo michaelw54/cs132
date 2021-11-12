@@ -1,6 +1,6 @@
 func Main()
-w_0 = 12
-print(w_0)
-ret_ = 0
-return ret_
-
+    w0 = 12
+    print(w0)
+    ret_ = 0
+    return ret_
+    

@@ -1,12 +1,659 @@
 func Main()
-w_2 = alloc(4)
-w_3 = alloc(4)
-[w_2 + 0] = w_3
-[w_3 + 0] = @LL_Start
-w_1 = @LL_Start
-w_0 = call w_1(w_2)
-print(w_0)
-ret_ = 0
-return ret_
-
-Type error
+    w4 = 4
+    w2 = alloc(w4)
+    w4 = 4
+    w3 = alloc(w4)
+    [w2 + 0] = w3
+    w4 = @LL_Start
+    [w3 + 0] = w4
+    w1 = @LL_Start
+    w0 = call w1(w2)
+    print(w0)
+    ret_ = 0
+    return ret_
+    
+func Element_Init(this v_Age v_Salary v_Married)
+    w6 = v_Age
+    [this + 12] = w6
+    w8 = v_Salary
+    [this + 4] = w8
+    w10 = v_Married
+    [this + 8] = w10
+    w12 = 1
+    return w12
+    
+func Element_GetAge(this)
+    w13 = [this + 12]
+    return w13
+    
+func Element_GetSalary(this)
+    w14 = [this + 4]
+    return w14
+    
+func Element_GetMarried(this)
+    w15 = [this + 8]
+    return w15
+    
+func Element_Equal(this other)
+    ret_val = 0
+    aux01 = 0
+    aux02 = 0
+    nt = 0
+    w16 = 1
+    ret_val = w16
+    w20 = other
+    w19 = @Element_GetAge
+    w18 = call w19(w20)
+    aux01 = w18
+    w27 = this
+    w28 = aux01
+    w29 = [this + 12]
+    w26 = @Element_Compare
+    w25 = call w26(w27 w28 w29)
+    w24 = 1
+    w23 = w25 < w24
+    if0 w23 goto else_23
+    w31 = 0
+    ret_val = w31
+    goto end_23
+  else_23:
+    w35 = other
+    w34 = @Element_GetSalary
+    w33 = call w34(w35)
+    aux02 = w33
+    w42 = this
+    w43 = aux02
+    w44 = [this + 4]
+    w41 = @Element_Compare
+    w40 = call w41(w42 w43 w44)
+    w39 = 1
+    w38 = w40 < w39
+    if0 w38 goto else_38
+    w46 = 0
+    ret_val = w46
+    goto end_38
+  else_38:
+    w48 = [this + 8]
+    if0 w48 goto else_48
+    w53 = other
+    w52 = @Element_GetMarried
+    w51 = call w52(w53)
+    w50 = 1
+    w49 = w51 < w50
+    if0 w49 goto else_49
+    w55 = 0
+    ret_val = w55
+    goto end_49
+  else_49:
+    w57 = 0
+    nt = w57
+  end_49:
+    goto end_48
+  else_48:
+    w61 = other
+    w60 = @Element_GetMarried
+    w59 = call w60(w61)
+    if0 w59 goto else_59
+    w63 = 0
+    ret_val = w63
+    goto end_59
+  else_59:
+    w65 = 0
+    nt = w65
+  end_59:
+  end_48:
+  end_38:
+  end_23:
+    w67 = ret_val
+    return w67
+    
+func Element_Compare(this num1 num2)
+    retval = 0
+    aux02 = 0
+    w68 = 0
+    retval = w68
+    w71 = num2
+    w73 = 1
+    w70 = w71 + w73
+    aux02 = w70
+    w77 = num1
+    w79 = num2
+    w76 = w77 < w79
+    if0 w76 goto else_76
+    w81 = 0
+    retval = w81
+    goto end_76
+  else_76:
+    w86 = num1
+    w88 = aux02
+    w85 = w86 < w88
+    w84 = 1
+    w83 = w85 < w84
+    if0 w83 goto else_83
+    w90 = 0
+    retval = w90
+    goto end_83
+  else_83:
+    w92 = 1
+    retval = w92
+  end_83:
+  end_76:
+    w94 = retval
+    return w94
+    
+func List_Init(this)
+    w95 = 1
+    [this + 12] = w95
+    w97 = 1
+    return w97
+    
+func List_InitNew(this v_elem v_next v_end)
+    w98 = v_end
+    [this + 12] = w98
+    w100 = v_elem
+    [this + 4] = w100
+    w102 = v_next
+    [this + 8] = w102
+    w104 = 1
+    return w104
+    
+func List_Insert(this new_elem)
+    ret_val = 0
+    aux03 = 0
+    aux02 = 0
+    w105 = this
+    aux03 = w105
+    w109 = 16
+    w107 = alloc(w109)
+    w109 = 40
+    w108 = alloc(w109)
+    [w107 + 0] = w108
+    w109 = @List_Delete
+    [w108 + 0] = w109
+    w109 = @List_Print
+    [w108 + 4] = w109
+    w109 = @List_Init
+    [w108 + 8] = w109
+    w109 = @List_GetElem
+    [w108 + 12] = w109
+    w109 = @List_GetNext
+    [w108 + 16] = w109
+    w109 = @List_SetNext
+    [w108 + 20] = w109
+    w109 = @List_Search
+    [w108 + 24] = w109
+    w109 = @List_GetEnd
+    [w108 + 28] = w109
+    w109 = @List_InitNew
+    [w108 + 32] = w109
+    w109 = @List_Insert
+    [w108 + 36] = w109
+    aux02 = w107
+    w113 = aux02
+    w114 = new_elem
+    w115 = aux03
+    w116 = 0
+    w112 = @List_InitNew
+    w111 = call w112(w113 w114 w115 w116)
+    ret_val = w111
+    w119 = aux02
+    return w119
+    
+func List_SetNext(this v_next)
+    w120 = v_next
+    [this + 8] = w120
+    w122 = 1
+    return w122
+    
+func List_Delete(this e)
+    my_head = 0
+    ret_val = 0
+    aux05 = 0
+    aux01 = 0
+    prev = 0
+    var_end = 0
+    var_elem = 0
+    aux04 = 0
+    nt = 0
+    w123 = this
+    my_head = w123
+    w125 = 0
+    ret_val = w125
+    w128 = 0
+    w130 = 1
+    w127 = w128 - w130
+    aux04 = w127
+    w133 = this
+    aux01 = w133
+    w135 = this
+    prev = w135
+    w137 = [this + 12]
+    var_end = w137
+    w139 = [this + 4]
+    var_elem = w139
+  loop_141:
+    w144 = var_end
+    w143 = 1
+    w142 = w144 < w143
+    w147 = ret_val
+    w146 = 1
+    w145 = w147 < w146
+    w141 = w142 * w145
+    if0 w141 goto endLoop_141
+    w151 = e
+    w152 = var_elem
+    w150 = @Element_Equal
+    w149 = call w150(w151 w152)
+    if0 w149 goto else_149
+    w154 = 1
+    ret_val = w154
+    w157 = aux04
+    w159 = 0
+    w156 = w157 < w159
+    if0 w156 goto else_156
+    w163 = aux01
+    w162 = @List_GetNext
+    w161 = call w162(w163)
+    my_head = w161
+    goto end_156
+  else_156:
+    w167 = 0
+    w169 = 555
+    w166 = w167 - w169
+    print(w166)
+    w173 = prev
+    w176 = aux01
+    w175 = @List_GetNext
+    w174 = call w175(w176)
+    w172 = @List_SetNext
+    w171 = call w172(w173 w174)
+    aux05 = w171
+    w181 = 0
+    w183 = 555
+    w180 = w181 - w183
+    print(w180)
+  end_156:
+    goto end_149
+  else_149:
+    w185 = 0
+    nt = w185
+  end_149:
+    w189 = ret_val
+    w188 = 1
+    w187 = w189 < w188
+    if0 w187 goto else_187
+    w190 = aux01
+    prev = w190
+    w194 = aux01
+    w193 = @List_GetNext
+    w192 = call w193(w194)
+    aux01 = w192
+    w199 = aux01
+    w198 = @List_GetEnd
+    w197 = call w198(w199)
+    var_end = w197
+    w204 = aux01
+    w203 = @List_GetElem
+    w202 = call w203(w204)
+    var_elem = w202
+    w207 = 1
+    aux04 = w207
+    goto end_187
+  else_187:
+    w209 = 0
+    nt = w209
+  end_187:
+    goto loop_141
+  endLoop_141:
+    w211 = my_head
+    return w211
+    
+func List_Search(this e)
+    int_ret_val = 0
+    aux01 = 0
+    var_elem = 0
+    var_end = 0
+    nt = 0
+    w212 = 0
+    int_ret_val = w212
+    w214 = this
+    aux01 = w214
+    w216 = [this + 12]
+    var_end = w216
+    w218 = [this + 4]
+    var_elem = w218
+  loop_220:
+    w222 = var_end
+    w221 = 1
+    w220 = w222 < w221
+    if0 w220 goto endLoop_220
+    w225 = e
+    w226 = var_elem
+    w224 = @Element_Equal
+    w223 = call w224(w225 w226)
+    if0 w223 goto else_223
+    w228 = 1
+    int_ret_val = w228
+    goto end_223
+  else_223:
+    w230 = 0
+    nt = w230
+  end_223:
+    w234 = aux01
+    w233 = @List_GetNext
+    w232 = call w233(w234)
+    aux01 = w232
+    w239 = aux01
+    w238 = @List_GetEnd
+    w237 = call w238(w239)
+    var_end = w237
+    w244 = aux01
+    w243 = @List_GetElem
+    w242 = call w243(w244)
+    var_elem = w242
+    goto loop_220
+  endLoop_220:
+    w247 = int_ret_val
+    return w247
+    
+func List_GetEnd(this)
+    w248 = [this + 12]
+    return w248
+    
+func List_GetElem(this)
+    w249 = [this + 4]
+    return w249
+    
+func List_GetNext(this)
+    w250 = [this + 8]
+    return w250
+    
+func List_Print(this)
+    aux01 = 0
+    var_end = 0
+    var_elem = 0
+    w251 = this
+    aux01 = w251
+    w253 = [this + 12]
+    var_end = w253
+    w255 = [this + 4]
+    var_elem = w255
+  loop_257:
+    w259 = var_end
+    w258 = 1
+    w257 = w259 < w258
+    if0 w257 goto endLoop_257
+    w262 = var_elem
+    w261 = @Element_GetAge
+    w260 = call w261(w262)
+    print(w260)
+    w266 = aux01
+    w265 = @List_GetNext
+    w264 = call w265(w266)
+    aux01 = w264
+    w271 = aux01
+    w270 = @List_GetEnd
+    w269 = call w270(w271)
+    var_end = w269
+    w276 = aux01
+    w275 = @List_GetElem
+    w274 = call w275(w276)
+    var_elem = w274
+    goto loop_257
+  endLoop_257:
+    w279 = 1
+    return w279
+    
+func LL_Start(this)
+    head = 0
+    last_elem = 0
+    aux01 = 0
+    el01 = 0
+    el02 = 0
+    el03 = 0
+    w282 = 16
+    w280 = alloc(w282)
+    w282 = 40
+    w281 = alloc(w282)
+    [w280 + 0] = w281
+    w282 = @List_Delete
+    [w281 + 0] = w282
+    w282 = @List_Print
+    [w281 + 4] = w282
+    w282 = @List_Init
+    [w281 + 8] = w282
+    w282 = @List_GetElem
+    [w281 + 12] = w282
+    w282 = @List_GetNext
+    [w281 + 16] = w282
+    w282 = @List_SetNext
+    [w281 + 20] = w282
+    w282 = @List_Search
+    [w281 + 24] = w282
+    w282 = @List_GetEnd
+    [w281 + 28] = w282
+    w282 = @List_InitNew
+    [w281 + 32] = w282
+    w282 = @List_Insert
+    [w281 + 36] = w282
+    last_elem = w280
+    w286 = last_elem
+    w285 = @List_Init
+    w284 = call w285(w286)
+    aux01 = w284
+    w289 = last_elem
+    head = w289
+    w293 = head
+    w292 = @List_Init
+    w291 = call w292(w293)
+    aux01 = w291
+    w298 = head
+    w297 = @List_Print
+    w296 = call w297(w298)
+    aux01 = w296
+    w303 = 16
+    w301 = alloc(w303)
+    w303 = 24
+    w302 = alloc(w303)
+    [w301 + 0] = w302
+    w303 = @Element_GetSalary
+    [w302 + 0] = w303
+    w303 = @Element_Init
+    [w302 + 4] = w303
+    w303 = @Element_GetAge
+    [w302 + 8] = w303
+    w303 = @Element_Equal
+    [w302 + 12] = w303
+    w303 = @Element_GetMarried
+    [w302 + 16] = w303
+    w303 = @Element_Compare
+    [w302 + 20] = w303
+    el01 = w301
+    w307 = el01
+    w308 = 25
+    w309 = 37000
+    w310 = 0
+    w306 = @Element_Init
+    w305 = call w306(w307 w308 w309 w310)
+    aux01 = w305
+    w315 = head
+    w316 = el01
+    w314 = @List_Insert
+    w313 = call w314(w315 w316)
+    head = w313
+    w321 = head
+    w320 = @List_Print
+    w319 = call w320(w321)
+    aux01 = w319
+    w324 = 10000000
+    print(w324)
+    w327 = 16
+    w325 = alloc(w327)
+    w327 = 24
+    w326 = alloc(w327)
+    [w325 + 0] = w326
+    w327 = @Element_GetSalary
+    [w326 + 0] = w327
+    w327 = @Element_Init
+    [w326 + 4] = w327
+    w327 = @Element_GetAge
+    [w326 + 8] = w327
+    w327 = @Element_Equal
+    [w326 + 12] = w327
+    w327 = @Element_GetMarried
+    [w326 + 16] = w327
+    w327 = @Element_Compare
+    [w326 + 20] = w327
+    el01 = w325
+    w331 = el01
+    w332 = 39
+    w333 = 42000
+    w334 = 1
+    w330 = @Element_Init
+    w329 = call w330(w331 w332 w333 w334)
+    aux01 = w329
+    w337 = el01
+    el02 = w337
+    w341 = head
+    w342 = el01
+    w340 = @List_Insert
+    w339 = call w340(w341 w342)
+    head = w339
+    w347 = head
+    w346 = @List_Print
+    w345 = call w346(w347)
+    aux01 = w345
+    w350 = 10000000
+    print(w350)
+    w353 = 16
+    w351 = alloc(w353)
+    w353 = 24
+    w352 = alloc(w353)
+    [w351 + 0] = w352
+    w353 = @Element_GetSalary
+    [w352 + 0] = w353
+    w353 = @Element_Init
+    [w352 + 4] = w353
+    w353 = @Element_GetAge
+    [w352 + 8] = w353
+    w353 = @Element_Equal
+    [w352 + 12] = w353
+    w353 = @Element_GetMarried
+    [w352 + 16] = w353
+    w353 = @Element_Compare
+    [w352 + 20] = w353
+    el01 = w351
+    w357 = el01
+    w358 = 22
+    w359 = 34000
+    w360 = 0
+    w356 = @Element_Init
+    w355 = call w356(w357 w358 w359 w360)
+    aux01 = w355
+    w365 = head
+    w366 = el01
+    w364 = @List_Insert
+    w363 = call w364(w365 w366)
+    head = w363
+    w371 = head
+    w370 = @List_Print
+    w369 = call w370(w371)
+    aux01 = w369
+    w376 = 16
+    w374 = alloc(w376)
+    w376 = 24
+    w375 = alloc(w376)
+    [w374 + 0] = w375
+    w376 = @Element_GetSalary
+    [w375 + 0] = w376
+    w376 = @Element_Init
+    [w375 + 4] = w376
+    w376 = @Element_GetAge
+    [w375 + 8] = w376
+    w376 = @Element_Equal
+    [w375 + 12] = w376
+    w376 = @Element_GetMarried
+    [w375 + 16] = w376
+    w376 = @Element_Compare
+    [w375 + 20] = w376
+    el03 = w374
+    w380 = el03
+    w381 = 27
+    w382 = 34000
+    w383 = 0
+    w379 = @Element_Init
+    w378 = call w379(w380 w381 w382 w383)
+    aux01 = w378
+    w388 = head
+    w389 = el02
+    w387 = @List_Search
+    w386 = call w387(w388 w389)
+    print(w386)
+    w393 = head
+    w394 = el03
+    w392 = @List_Search
+    w391 = call w392(w393 w394)
+    print(w391)
+    w396 = 10000000
+    print(w396)
+    w399 = 16
+    w397 = alloc(w399)
+    w399 = 24
+    w398 = alloc(w399)
+    [w397 + 0] = w398
+    w399 = @Element_GetSalary
+    [w398 + 0] = w399
+    w399 = @Element_Init
+    [w398 + 4] = w399
+    w399 = @Element_GetAge
+    [w398 + 8] = w399
+    w399 = @Element_Equal
+    [w398 + 12] = w399
+    w399 = @Element_GetMarried
+    [w398 + 16] = w399
+    w399 = @Element_Compare
+    [w398 + 20] = w399
+    el01 = w397
+    w403 = el01
+    w404 = 28
+    w405 = 35000
+    w406 = 0
+    w402 = @Element_Init
+    w401 = call w402(w403 w404 w405 w406)
+    aux01 = w401
+    w411 = head
+    w412 = el01
+    w410 = @List_Insert
+    w409 = call w410(w411 w412)
+    head = w409
+    w417 = head
+    w416 = @List_Print
+    w415 = call w416(w417)
+    aux01 = w415
+    w420 = 2220000
+    print(w420)
+    w423 = head
+    w424 = el02
+    w422 = @List_Delete
+    w421 = call w422(w423 w424)
+    head = w421
+    w429 = head
+    w428 = @List_Print
+    w427 = call w428(w429)
+    aux01 = w427
+    w432 = 33300000
+    print(w432)
+    w435 = head
+    w436 = el01
+    w434 = @List_Delete
+    w433 = call w434(w435 w436)
+    head = w433
+    w441 = head
+    w440 = @List_Print
+    w439 = call w440(w441)
+    aux01 = w439
+    w444 = 44440000
+    print(w444)
+    w445 = 0
+    return w445
+    

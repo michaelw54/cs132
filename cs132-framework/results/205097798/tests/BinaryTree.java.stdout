@@ -1,16 +1,761 @@
 func Main()
-w_2 = alloc(4)
-w_3 = alloc(4)
-[w_2 + 0] = w_3
-[w_3 + 0] = @BT_Start
-w_1 = @BT_Start
-w_0 = call w_1(w_2)
-print(w_0)
-ret_ = 0
-return ret_
-
+    w4 = 4
+    w2 = alloc(w4)
+    w4 = 4
+    w3 = alloc(w4)
+    [w2 + 0] = w3
+    w4 = @BT_Start
+    [w3 + 0] = w4
+    w1 = @BT_Start
+    w0 = call w1(w2)
+    print(w0)
+    ret_ = 0
+    return ret_
+    
 func BT_Start(this)
-root = 0
-ntb = 0
-nti = 0
-java.lang.NullPointerException
+    root = 0
+    ntb = 0
+    nti = 0
+    w8 = 28
+    w6 = alloc(w8)
+    w8 = 80
+    w7 = alloc(w8)
+    [w6 + 0] = w7
+    w8 = @Tree_Delete
+    [w7 + 0] = w8
+    w8 = @Tree_SetHas_Left
+    [w7 + 4] = w8
+    w8 = @Tree_RemoveLeft
+    [w7 + 8] = w8
+    w8 = @Tree_GetKey
+    [w7 + 12] = w8
+    w8 = @Tree_SetRight
+    [w7 + 16] = w8
+    w8 = @Tree_GetLeft
+    [w7 + 20] = w8
+    w8 = @Tree_GetRight
+    [w7 + 24] = w8
+    w8 = @Tree_Remove
+    [w7 + 28] = w8
+    w8 = @Tree_SetLeft
+    [w7 + 32] = w8
+    w8 = @Tree_Insert
+    [w7 + 36] = w8
+    w8 = @Tree_Print
+    [w7 + 40] = w8
+    w8 = @Tree_Init
+    [w7 + 44] = w8
+    w8 = @Tree_GetHas_Right
+    [w7 + 48] = w8
+    w8 = @Tree_GetHas_Left
+    [w7 + 52] = w8
+    w8 = @Tree_RemoveRight
+    [w7 + 56] = w8
+    w8 = @Tree_Search
+    [w7 + 60] = w8
+    w8 = @Tree_SetKey
+    [w7 + 64] = w8
+    w8 = @Tree_Compare
+    [w7 + 68] = w8
+    w8 = @Tree_SetHas_Right
+    [w7 + 72] = w8
+    w8 = @Tree_RecPrint
+    [w7 + 76] = w8
+    root = w6
+    w12 = root
+    w13 = 16
+    w11 = @Tree_Init
+    w10 = call w11(w12 w13)
+    ntb = w10
+    w18 = root
+    w17 = @Tree_Print
+    w16 = call w17(w18)
+    ntb = w16
+    w21 = 100000000
+    print(w21)
+    w24 = root
+    w25 = 8
+    w23 = @Tree_Insert
+    w22 = call w23(w24 w25)
+    ntb = w22
+    w30 = root
+    w29 = @Tree_Print
+    w28 = call w29(w30)
+    ntb = w28
+    w35 = root
+    w36 = 24
+    w34 = @Tree_Insert
+    w33 = call w34(w35 w36)
+    ntb = w33
+    w41 = root
+    w42 = 4
+    w40 = @Tree_Insert
+    w39 = call w40(w41 w42)
+    ntb = w39
+    w47 = root
+    w48 = 12
+    w46 = @Tree_Insert
+    w45 = call w46(w47 w48)
+    ntb = w45
+    w53 = root
+    w54 = 20
+    w52 = @Tree_Insert
+    w51 = call w52(w53 w54)
+    ntb = w51
+    w59 = root
+    w60 = 28
+    w58 = @Tree_Insert
+    w57 = call w58(w59 w60)
+    ntb = w57
+    w65 = root
+    w66 = 14
+    w64 = @Tree_Insert
+    w63 = call w64(w65 w66)
+    ntb = w63
+    w71 = root
+    w70 = @Tree_Print
+    w69 = call w70(w71)
+    ntb = w69
+    w76 = root
+    w77 = 24
+    w75 = @Tree_Search
+    w74 = call w75(w76 w77)
+    print(w74)
+    w81 = root
+    w82 = 12
+    w80 = @Tree_Search
+    w79 = call w80(w81 w82)
+    print(w79)
+    w86 = root
+    w87 = 16
+    w85 = @Tree_Search
+    w84 = call w85(w86 w87)
+    print(w84)
+    w91 = root
+    w92 = 50
+    w90 = @Tree_Search
+    w89 = call w90(w91 w92)
+    print(w89)
+    w96 = root
+    w97 = 12
+    w95 = @Tree_Search
+    w94 = call w95(w96 w97)
+    print(w94)
+    w101 = root
+    w102 = 12
+    w100 = @Tree_Delete
+    w99 = call w100(w101 w102)
+    ntb = w99
+    w107 = root
+    w106 = @Tree_Print
+    w105 = call w106(w107)
+    ntb = w105
+    w112 = root
+    w113 = 12
+    w111 = @Tree_Search
+    w110 = call w111(w112 w113)
+    print(w110)
+    w115 = 0
+    return w115
+    
+func Tree_Init(this v_key)
+    w116 = v_key
+    [this + 24] = w116
+    w118 = 0
+    [this + 20] = w118
+    w120 = 0
+    [this + 8] = w120
+    w122 = 1
+    return w122
+    
+func Tree_SetRight(this rn)
+    w123 = rn
+    [this + 16] = w123
+    w125 = 1
+    return w125
+    
+func Tree_SetLeft(this ln)
+    w126 = ln
+    [this + 4] = w126
+    w128 = 1
+    return w128
+    
+func Tree_GetRight(this)
+    w129 = [this + 16]
+    return w129
+    
+func Tree_GetLeft(this)
+    w130 = [this + 4]
+    return w130
+    
+func Tree_GetKey(this)
+    w131 = [this + 24]
+    return w131
+    
+func Tree_SetKey(this v_key)
+    w132 = v_key
+    [this + 24] = w132
+    w134 = 1
+    return w134
+    
+func Tree_GetHas_Right(this)
+    w135 = [this + 8]
+    return w135
+    
+func Tree_GetHas_Left(this)
+    w136 = [this + 20]
+    return w136
+    
+func Tree_SetHas_Left(this val)
+    w137 = val
+    [this + 20] = w137
+    w139 = 1
+    return w139
+    
+func Tree_SetHas_Right(this val)
+    w140 = val
+    [this + 8] = w140
+    w142 = 1
+    return w142
+    
+func Tree_Compare(this num1 num2)
+    ntb = 0
+    nti = 0
+    w143 = 0
+    ntb = w143
+    w146 = num2
+    w148 = 1
+    w145 = w146 + w148
+    nti = w145
+    w152 = num1
+    w154 = num2
+    w151 = w152 < w154
+    if0 w151 goto else_151
+    w156 = 0
+    ntb = w156
+    goto end_151
+  else_151:
+    w161 = num1
+    w163 = nti
+    w160 = w161 < w163
+    w159 = 1
+    w158 = w160 < w159
+    if0 w158 goto else_158
+    w165 = 0
+    ntb = w165
+    goto end_158
+  else_158:
+    w167 = 1
+    ntb = w167
+  end_158:
+  end_151:
+    w169 = ntb
+    return w169
+    
+func Tree_Insert(this v_key)
+    new_node = 0
+    ntb = 0
+    cont = 0
+    key_aux = 0
+    current_node = 0
+    w172 = 28
+    w170 = alloc(w172)
+    w172 = 80
+    w171 = alloc(w172)
+    [w170 + 0] = w171
+    w172 = @Tree_Delete
+    [w171 + 0] = w172
+    w172 = @Tree_SetHas_Left
+    [w171 + 4] = w172
+    w172 = @Tree_RemoveLeft
+    [w171 + 8] = w172
+    w172 = @Tree_GetKey
+    [w171 + 12] = w172
+    w172 = @Tree_SetRight
+    [w171 + 16] = w172
+    w172 = @Tree_GetLeft
+    [w171 + 20] = w172
+    w172 = @Tree_GetRight
+    [w171 + 24] = w172
+    w172 = @Tree_Remove
+    [w171 + 28] = w172
+    w172 = @Tree_SetLeft
+    [w171 + 32] = w172
+    w172 = @Tree_Insert
+    [w171 + 36] = w172
+    w172 = @Tree_Print
+    [w171 + 40] = w172
+    w172 = @Tree_Init
+    [w171 + 44] = w172
+    w172 = @Tree_GetHas_Right
+    [w171 + 48] = w172
+    w172 = @Tree_GetHas_Left
+    [w171 + 52] = w172
+    w172 = @Tree_RemoveRight
+    [w171 + 56] = w172
+    w172 = @Tree_Search
+    [w171 + 60] = w172
+    w172 = @Tree_SetKey
+    [w171 + 64] = w172
+    w172 = @Tree_Compare
+    [w171 + 68] = w172
+    w172 = @Tree_SetHas_Right
+    [w171 + 72] = w172
+    w172 = @Tree_RecPrint
+    [w171 + 76] = w172
+    new_node = w170
+    w176 = new_node
+    w177 = v_key
+    w175 = @Tree_Init
+    w174 = call w175(w176 w177)
+    ntb = w174
+    w180 = this
+    current_node = w180
+    w182 = 1
+    cont = w182
+  loop_184:
+    w184 = cont
+    if0 w184 goto endLoop_184
+    w187 = current_node
+    w186 = @Tree_GetKey
+    w185 = call w186(w187)
+    key_aux = w185
+    w191 = v_key
+    w193 = key_aux
+    w190 = w191 < w193
+    if0 w190 goto else_190
+    w197 = current_node
+    w196 = @Tree_GetHas_Left
+    w195 = call w196(w197)
+    if0 w195 goto else_195
+    w201 = current_node
+    w200 = @Tree_GetLeft
+    w199 = call w200(w201)
+    current_node = w199
+    goto end_195
+  else_195:
+    w204 = 0
+    cont = w204
+    w208 = current_node
+    w209 = 1
+    w207 = @Tree_SetHas_Left
+    w206 = call w207(w208 w209)
+    ntb = w206
+    w214 = current_node
+    w215 = new_node
+    w213 = @Tree_SetLeft
+    w212 = call w213(w214 w215)
+    ntb = w212
+  end_195:
+    goto end_190
+  else_190:
+    w220 = current_node
+    w219 = @Tree_GetHas_Right
+    w218 = call w219(w220)
+    if0 w218 goto else_218
+    w224 = current_node
+    w223 = @Tree_GetRight
+    w222 = call w223(w224)
+    current_node = w222
+    goto end_218
+  else_218:
+    w227 = 0
+    cont = w227
+    w231 = current_node
+    w232 = 1
+    w230 = @Tree_SetHas_Right
+    w229 = call w230(w231 w232)
+    ntb = w229
+    w237 = current_node
+    w238 = new_node
+    w236 = @Tree_SetRight
+    w235 = call w236(w237 w238)
+    ntb = w235
+  end_218:
+  end_190:
+    goto loop_184
+  endLoop_184:
+    w241 = 1
+    return w241
+    
+func Tree_Delete(this v_key)
+    current_node = 0
+    parent_node = 0
+    cont = 0
+    found = 0
+    is_root = 0
+    key_aux = 0
+    ntb = 0
+    w242 = this
+    current_node = w242
+    w244 = this
+    parent_node = w244
+    w246 = 1
+    cont = w246
+    w248 = 0
+    found = w248
+    w250 = 1
+    is_root = w250
+  loop_252:
+    w252 = cont
+    if0 w252 goto endLoop_252
+    w255 = current_node
+    w254 = @Tree_GetKey
+    w253 = call w254(w255)
+    key_aux = w253
+    w259 = v_key
+    w261 = key_aux
+    w258 = w259 < w261
+    if0 w258 goto else_258
+    w265 = current_node
+    w264 = @Tree_GetHas_Left
+    w263 = call w264(w265)
+    if0 w263 goto else_263
+    w267 = current_node
+    parent_node = w267
+    w271 = current_node
+    w270 = @Tree_GetLeft
+    w269 = call w270(w271)
+    current_node = w269
+    goto end_263
+  else_263:
+    w274 = 0
+    cont = w274
+  end_263:
+    goto end_258
+  else_258:
+    w277 = key_aux
+    w279 = v_key
+    w276 = w277 < w279
+    if0 w276 goto else_276
+    w283 = current_node
+    w282 = @Tree_GetHas_Right
+    w281 = call w282(w283)
+    if0 w281 goto else_281
+    w285 = current_node
+    parent_node = w285
+    w289 = current_node
+    w288 = @Tree_GetRight
+    w287 = call w288(w289)
+    current_node = w287
+    goto end_281
+  else_281:
+    w292 = 0
+    cont = w292
+  end_281:
+    goto end_276
+  else_276:
+    w294 = is_root
+    if0 w294 goto else_294
+    w300 = current_node
+    w299 = @Tree_GetHas_Right
+    w298 = call w299(w300)
+    w297 = 1
+    w296 = w298 < w297
+    w306 = current_node
+    w305 = @Tree_GetHas_Left
+    w304 = call w305(w306)
+    w303 = 1
+    w302 = w304 < w303
+    w295 = w296 * w302
+    if0 w295 goto else_295
+    w309 = 1
+    ntb = w309
+    goto end_295
+  else_295:
+    w313 = this
+    w314 = parent_node
+    w315 = current_node
+    w312 = @Tree_Remove
+    w311 = call w312(w313 w314 w315)
+    ntb = w311
+  end_295:
+    goto end_294
+  else_294:
+    w320 = this
+    w321 = parent_node
+    w322 = current_node
+    w319 = @Tree_Remove
+    w318 = call w319(w320 w321 w322)
+    ntb = w318
+  end_294:
+    w325 = 1
+    found = w325
+    w327 = 0
+    cont = w327
+  end_276:
+  end_258:
+    w329 = 0
+    is_root = w329
+    goto loop_252
+  endLoop_252:
+    w331 = found
+    return w331
+    
+func Tree_Remove(this p_node c_node)
+    ntb = 0
+    auxkey1 = 0
+    auxkey2 = 0
+    w334 = c_node
+    w333 = @Tree_GetHas_Left
+    w332 = call w333(w334)
+    if0 w332 goto else_332
+    w338 = this
+    w339 = p_node
+    w340 = c_node
+    w337 = @Tree_RemoveLeft
+    w336 = call w337(w338 w339 w340)
+    ntb = w336
+    goto end_332
+  else_332:
+    w345 = c_node
+    w344 = @Tree_GetHas_Right
+    w343 = call w344(w345)
+    if0 w343 goto else_343
+    w349 = this
+    w350 = p_node
+    w351 = c_node
+    w348 = @Tree_RemoveRight
+    w347 = call w348(w349 w350 w351)
+    ntb = w347
+    goto end_343
+  else_343:
+    w356 = c_node
+    w355 = @Tree_GetKey
+    w354 = call w355(w356)
+    auxkey1 = w354
+    w363 = p_node
+    w362 = @Tree_GetLeft
+    w361 = call w362(w363)
+    w360 = @Tree_GetKey
+    w359 = call w360(w361)
+    auxkey2 = w359
+    w369 = this
+    w370 = auxkey1
+    w371 = auxkey2
+    w368 = @Tree_Compare
+    w367 = call w368(w369 w370 w371)
+    if0 w367 goto else_367
+    w375 = p_node
+    w376 = [this + 12]
+    w374 = @Tree_SetLeft
+    w373 = call w374(w375 w376)
+    ntb = w373
+    w381 = p_node
+    w382 = 0
+    w380 = @Tree_SetHas_Left
+    w379 = call w380(w381 w382)
+    ntb = w379
+    goto end_367
+  else_367:
+    w387 = p_node
+    w388 = [this + 12]
+    w386 = @Tree_SetRight
+    w385 = call w386(w387 w388)
+    ntb = w385
+    w393 = p_node
+    w394 = 0
+    w392 = @Tree_SetHas_Right
+    w391 = call w392(w393 w394)
+    ntb = w391
+  end_367:
+  end_343:
+  end_332:
+    w397 = 1
+    return w397
+    
+func Tree_RemoveRight(this p_node c_node)
+    ntb = 0
+  loop_398:
+    w400 = c_node
+    w399 = @Tree_GetHas_Right
+    w398 = call w399(w400)
+    if0 w398 goto endLoop_398
+    w404 = c_node
+    w409 = c_node
+    w408 = @Tree_GetRight
+    w407 = call w408(w409)
+    w406 = @Tree_GetKey
+    w405 = call w406(w407)
+    w403 = @Tree_SetKey
+    w402 = call w403(w404 w405)
+    ntb = w402
+    w414 = c_node
+    p_node = w414
+    w418 = c_node
+    w417 = @Tree_GetRight
+    w416 = call w417(w418)
+    c_node = w416
+    goto loop_398
+  endLoop_398:
+    w423 = p_node
+    w424 = [this + 12]
+    w422 = @Tree_SetRight
+    w421 = call w422(w423 w424)
+    ntb = w421
+    w429 = p_node
+    w430 = 0
+    w428 = @Tree_SetHas_Right
+    w427 = call w428(w429 w430)
+    ntb = w427
+    w433 = 1
+    return w433
+    
+func Tree_RemoveLeft(this p_node c_node)
+    ntb = 0
+  loop_434:
+    w436 = c_node
+    w435 = @Tree_GetHas_Left
+    w434 = call w435(w436)
+    if0 w434 goto endLoop_434
+    w440 = c_node
+    w445 = c_node
+    w444 = @Tree_GetLeft
+    w443 = call w444(w445)
+    w442 = @Tree_GetKey
+    w441 = call w442(w443)
+    w439 = @Tree_SetKey
+    w438 = call w439(w440 w441)
+    ntb = w438
+    w450 = c_node
+    p_node = w450
+    w454 = c_node
+    w453 = @Tree_GetLeft
+    w452 = call w453(w454)
+    c_node = w452
+    goto loop_434
+  endLoop_434:
+    w459 = p_node
+    w460 = [this + 12]
+    w458 = @Tree_SetLeft
+    w457 = call w458(w459 w460)
+    ntb = w457
+    w465 = p_node
+    w466 = 0
+    w464 = @Tree_SetHas_Left
+    w463 = call w464(w465 w466)
+    ntb = w463
+    w469 = 1
+    return w469
+    
+func Tree_Search(this v_key)
+    cont = 0
+    ifound = 0
+    current_node = 0
+    key_aux = 0
+    w470 = this
+    current_node = w470
+    w472 = 1
+    cont = w472
+    w474 = 0
+    ifound = w474
+  loop_476:
+    w476 = cont
+    if0 w476 goto endLoop_476
+    w479 = current_node
+    w478 = @Tree_GetKey
+    w477 = call w478(w479)
+    key_aux = w477
+    w483 = v_key
+    w485 = key_aux
+    w482 = w483 < w485
+    if0 w482 goto else_482
+    w489 = current_node
+    w488 = @Tree_GetHas_Left
+    w487 = call w488(w489)
+    if0 w487 goto else_487
+    w493 = current_node
+    w492 = @Tree_GetLeft
+    w491 = call w492(w493)
+    current_node = w491
+    goto end_487
+  else_487:
+    w496 = 0
+    cont = w496
+  end_487:
+    goto end_482
+  else_482:
+    w499 = key_aux
+    w501 = v_key
+    w498 = w499 < w501
+    if0 w498 goto else_498
+    w505 = current_node
+    w504 = @Tree_GetHas_Right
+    w503 = call w504(w505)
+    if0 w503 goto else_503
+    w509 = current_node
+    w508 = @Tree_GetRight
+    w507 = call w508(w509)
+    current_node = w507
+    goto end_503
+  else_503:
+    w512 = 0
+    cont = w512
+  end_503:
+    goto end_498
+  else_498:
+    w514 = 1
+    ifound = w514
+    w516 = 0
+    cont = w516
+  end_498:
+  end_482:
+    goto loop_476
+  endLoop_476:
+    w518 = ifound
+    return w518
+    
+func Tree_Print(this)
+    current_node = 0
+    ntb = 0
+    w519 = this
+    current_node = w519
+    w523 = this
+    w524 = current_node
+    w522 = @Tree_RecPrint
+    w521 = call w522(w523 w524)
+    ntb = w521
+    w527 = 1
+    return w527
+    
+func Tree_RecPrint(this node)
+    ntb = 0
+    w530 = node
+    w529 = @Tree_GetHas_Left
+    w528 = call w529(w530)
+    if0 w528 goto else_528
+    w534 = this
+    w537 = node
+    w536 = @Tree_GetLeft
+    w535 = call w536(w537)
+    w533 = @Tree_RecPrint
+    w532 = call w533(w534 w535)
+    ntb = w532
+    goto end_528
+  else_528:
+    w541 = 1
+    ntb = w541
+  end_528:
+    w545 = node
+    w544 = @Tree_GetKey
+    w543 = call w544(w545)
+    print(w543)
+    w549 = node
+    w548 = @Tree_GetHas_Right
+    w547 = call w548(w549)
+    if0 w547 goto else_547
+    w553 = this
+    w556 = node
+    w555 = @Tree_GetRight
+    w554 = call w555(w556)
+    w552 = @Tree_RecPrint
+    w551 = call w552(w553 w554)
+    ntb = w551
+    goto end_547
+  else_547:
+    w560 = 1
+    ntb = w560
+  end_547:
+    w562 = 1
+    return w562
+    

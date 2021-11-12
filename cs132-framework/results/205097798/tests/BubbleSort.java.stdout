@@ -1,16 +1,162 @@
 func Main()
-w_2 = alloc(12)
-w_3 = alloc(16)
-[w_2 + 0] = w_3
-[w_3 + 0] = @BBS_Print
-[w_3 + 4] = @BBS_Init
-[w_3 + 8] = @BBS_Start
-[w_3 + 12] = @BBS_Sort
-w_2 = 10
-w_1 = @BBS_Start
-w_0 = call w_1(w_2)
-print(w_0)
-ret_ = 0
-return ret_
-
-Type error
+    w4 = 12
+    w2 = alloc(w4)
+    w4 = 16
+    w3 = alloc(w4)
+    [w2 + 0] = w3
+    w4 = @BBS_Print
+    [w3 + 0] = w4
+    w4 = @BBS_Init
+    [w3 + 4] = w4
+    w4 = @BBS_Start
+    [w3 + 8] = w4
+    w4 = @BBS_Sort
+    [w3 + 12] = w4
+    w5 = 10
+    w1 = @BBS_Start
+    w0 = call w1(w2 w5)
+    print(w0)
+    ret_ = 0
+    return ret_
+    
+func BBS_Start(this sz)
+    aux01 = 0
+    w9 = this
+    w10 = sz
+    w8 = @BBS_Init
+    w7 = call w8(w9 w10)
+    aux01 = w7
+    w15 = this
+    w14 = @BBS_Print
+    w13 = call w14(w15)
+    aux01 = w13
+    w18 = 99999
+    print(w18)
+    w21 = this
+    w20 = @BBS_Sort
+    w19 = call w20(w21)
+    aux01 = w19
+    w26 = this
+    w25 = @BBS_Print
+    w24 = call w25(w26)
+    aux01 = w24
+    w29 = 0
+    return w29
+    
+func BBS_Sort(this)
+    nt = 0
+    i = 0
+    aux02 = 0
+    aux04 = 0
+    aux05 = 0
+    aux06 = 0
+    aux07 = 0
+    j = 0
+    t = 0
+    w31 = [this + 8]
+    w33 = 1
+    w30 = w31 - w33
+    i = w30
+    w37 = 0
+    w39 = 1
+    w36 = w37 - w39
+    aux02 = w36
+  loop_42:
+    w43 = aux02
+    w45 = i
+    w42 = w43 < w45
+    if0 w42 goto endLoop_42
+    w47 = 1
+    j = w47
+  loop_49:
+    w50 = j
+    w53 = i
+    w55 = 1
+    w52 = w53 + w55
+    w49 = w50 < w52
+    if0 w49 goto endLoop_49
+    w59 = j
+    w61 = 1
+    w58 = w59 - w61
+    aux07 = w58
+    w68 = [this + 4]
+    w69 = aux07
+    w65 = 1
+    w66 = w69 + w65
+    w65 = [w68 + 0]
+    w67 = w66 < w65
+    if0 w67 goto outOfBounds_64
+    w65 = 4
+    w66 = 1
+    w67 = w69 + w66
+    w66 = w67 * w65
+    w65 = w68 + w66
+    w64 = [w65 + 0]
+    goto pass_64
+  outOfBounds_64:
+    error("array index out of bounds")
+  pass_64:
+    aux04 = w64
+    w76 = [this + 4]
+    w77 = j
+    w73 = 1
+    w74 = w77 + w73
+    w73 = [w76 + 0]
+    w75 = w74 < w73
+    if0 w75 goto outOfBounds_72
+    w73 = 4
+    w74 = 1
+    w75 = w77 + w74
+    w74 = w75 * w73
+    w73 = w76 + w74
+    w72 = [w73 + 0]
+    goto pass_72
+  outOfBounds_72:
+    error("array index out of bounds")
+  pass_72:
+    aux05 = w72
+    w81 = aux05
+    w83 = aux04
+    w80 = w81 < w83
+    if0 w80 goto else_80
+    w86 = j
+    w88 = 1
+    w85 = w86 - w88
+    aux06 = w85
+    w95 = [this + 4]
+    w96 = aux06
+    w92 = 1
+    w93 = w96 + w92
+    w92 = [w95 + 0]
+    w94 = w93 < w92
+    if0 w94 goto outOfBounds_91
+    w92 = 4
+    w93 = 1
+    w94 = w96 + w93
+    w93 = w94 * w92
+    w92 = w95 + w93
+    w91 = [w92 + 0]
+    goto pass_91
+  outOfBounds_91:
+    error("array index out of bounds")
+  pass_91:
+    t = w91
+    w103 = aux06
+    w108 = [this + 4]
+    w109 = j
+    w105 = 1
+    w106 = w109 + w105
+    w105 = [w108 + 0]
+    w107 = w106 < w105
+    if0 w107 goto outOfBounds_104
+    w105 = 4
+    w106 = 1
+    w107 = w109 + w106
+    w106 = w107 * w105
+    w105 = w108 + w106
+    w104 = [w105 + 0]
+    goto pass_104
+  outOfBounds_104:
+    error("array index out of bounds")
+  pass_104:
+java.lang.NullPointerException

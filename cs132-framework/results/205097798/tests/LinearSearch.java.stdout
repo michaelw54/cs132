@@ -1,16 +1,208 @@
 func Main()
-w_2 = alloc(12)
-w_3 = alloc(16)
-[w_2 + 0] = w_3
-[w_3 + 0] = @LS_Print
-[w_3 + 4] = @LS_Init
-[w_3 + 8] = @LS_Start
-[w_3 + 12] = @LS_Search
-w_2 = 10
-w_1 = @LS_Start
-w_0 = call w_1(w_2)
-print(w_0)
-ret_ = 0
-return ret_
-
-Type error
+    w4 = 12
+    w2 = alloc(w4)
+    w4 = 16
+    w3 = alloc(w4)
+    [w2 + 0] = w3
+    w4 = @LS_Print
+    [w3 + 0] = w4
+    w4 = @LS_Init
+    [w3 + 4] = w4
+    w4 = @LS_Start
+    [w3 + 8] = w4
+    w4 = @LS_Search
+    [w3 + 12] = w4
+    w5 = 10
+    w1 = @LS_Start
+    w0 = call w1(w2 w5)
+    print(w0)
+    ret_ = 0
+    return ret_
+    
+func LS_Start(this sz)
+    aux01 = 0
+    aux02 = 0
+    w9 = this
+    w10 = sz
+    w8 = @LS_Init
+    w7 = call w8(w9 w10)
+    aux01 = w7
+    w15 = this
+    w14 = @LS_Print
+    w13 = call w14(w15)
+    aux02 = w13
+    w18 = 9999
+    print(w18)
+    w21 = this
+    w22 = 8
+    w20 = @LS_Search
+    w19 = call w20(w21 w22)
+    print(w19)
+    w26 = this
+    w27 = 12
+    w25 = @LS_Search
+    w24 = call w25(w26 w27)
+    print(w24)
+    w31 = this
+    w32 = 17
+    w30 = @LS_Search
+    w29 = call w30(w31 w32)
+    print(w29)
+    w36 = this
+    w37 = 50
+    w35 = @LS_Search
+    w34 = call w35(w36 w37)
+    print(w34)
+    w39 = 55
+    return w39
+    
+func LS_Print(this)
+    j = 0
+    w40 = 1
+    j = w40
+  loop_42:
+    w43 = j
+    w45 = [this + 8]
+    w42 = w43 < w45
+    if0 w42 goto endLoop_42
+    w51 = [this + 4]
+    w52 = j
+    w48 = 1
+    w49 = w52 + w48
+    w48 = [w51 + 0]
+    w50 = w49 < w48
+    if0 w50 goto outOfBounds_47
+    w48 = 4
+    w49 = 1
+    w50 = w52 + w49
+    w49 = w50 * w48
+    w48 = w51 + w49
+    w47 = [w48 + 0]
+    goto pass_47
+  outOfBounds_47:
+    error("array index out of bounds")
+  pass_47:
+    print(w47)
+    w55 = j
+    w57 = 1
+    w54 = w55 + w57
+    j = w54
+    goto loop_42
+  endLoop_42:
+    w60 = 0
+    return w60
+    
+func LS_Search(this num)
+    j = 0
+    ls01 = 0
+    ifound = 0
+    aux01 = 0
+    aux02 = 0
+    nt = 0
+    w61 = 1
+    j = w61
+    w63 = 0
+    ls01 = w63
+    w65 = 0
+    ifound = w65
+  loop_67:
+    w68 = j
+    w70 = [this + 8]
+    w67 = w68 < w70
+    if0 w67 goto endLoop_67
+    w76 = [this + 4]
+    w77 = j
+    w73 = 1
+    w74 = w77 + w73
+    w73 = [w76 + 0]
+    w75 = w74 < w73
+    if0 w75 goto outOfBounds_72
+    w73 = 4
+    w74 = 1
+    w75 = w77 + w74
+    w74 = w75 * w73
+    w73 = w76 + w74
+    w72 = [w73 + 0]
+    goto pass_72
+  outOfBounds_72:
+    error("array index out of bounds")
+  pass_72:
+    aux01 = w72
+    w81 = num
+    w83 = 1
+    w80 = w81 + w83
+    aux02 = w80
+    w87 = aux01
+    w89 = num
+    w86 = w87 < w89
+    if0 w86 goto else_86
+    w91 = 0
+    nt = w91
+    goto end_86
+  else_86:
+    w96 = aux01
+    w98 = aux02
+    w95 = w96 < w98
+    w94 = 1
+    w93 = w95 < w94
+    if0 w93 goto else_93
+    w100 = 0
+    nt = w100
+    goto end_93
+  else_93:
+    w102 = 1
+    ls01 = w102
+    w104 = 1
+    ifound = w104
+    w106 = [this + 8]
+    j = w106
+  end_93:
+  end_86:
+    w109 = j
+    w111 = 1
+    w108 = w109 + w111
+    j = w108
+    goto loop_67
+  endLoop_67:
+    w114 = ifound
+    return w114
+    
+func LS_Init(this sz)
+    j = 0
+    k = 0
+    aux01 = 0
+    aux02 = 0
+    w115 = sz
+    [this + 8] = w115
+    w122 = sz
+    w120 = 4
+    w121 = 1
+    w118 = w122 + w121
+    w119 = w118 * w120
+    w117 = alloc(w119)
+    [w117 + 0] = w122
+    [this + 4] = w117
+    w124 = 1
+    j = w124
+    w127 = [this + 8]
+    w129 = 1
+    w126 = w127 + w129
+    k = w126
+  loop_132:
+    w133 = j
+    w135 = [this + 8]
+    w132 = w133 < w135
+    if0 w132 goto endLoop_132
+    w138 = 2
+    w140 = j
+    w137 = w138 * w140
+    aux01 = w137
+    w144 = k
+    w146 = 3
+    w143 = w144 - w146
+    aux02 = w143
+    w153 = j
+    w155 = aux01
+    w157 = aux02
+    w154 = w155 + w157
+java.lang.NullPointerException

@@ -1,16 +1,47 @@
 func Main()
-w_2 = alloc(4)
-w_3 = alloc(8)
-[w_2 + 0] = w_3
-[w_3 + 0] = @A_helper
-[w_3 + 4] = @A_run
-w_1 = @A_run
-w_0 = call w_1(w_2)
-print(w_0)
-ret_ = 0
-return ret_
-
+    w4 = 4
+    w2 = alloc(w4)
+    w4 = 8
+    w3 = alloc(w4)
+    [w2 + 0] = w3
+    w4 = @A_helper
+    [w3 + 0] = w4
+    w4 = @A_run
+    [w3 + 4] = w4
+    w1 = @A_run
+    w0 = call w1(w2)
+    print(w0)
+    ret_ = 0
+    return ret_
+    
 func A_run(this)
-a = 0
-b = 0
-java.lang.NullPointerException
+    a = 0
+    b = 0
+    w8 = this
+    w9 = 12
+    w7 = @A_helper
+    w6 = call w7(w8 w9)
+    a = w6
+    w14 = this
+    w15 = 15
+    w13 = @A_helper
+    w12 = call w13(w14 w15)
+    b = w12
+    w19 = a
+    w21 = b
+    w18 = w19 + w21
+    return w18
+    
+func A_helper(this param)
+    x = 0
+    w23 = param
+    x = w23
+    w26 = param
+    w28 = 1
+    w25 = w26 + w28
+    param = w25
+    w31 = x
+    print(w31)
+    w32 = x
+    return w32
+    

@@ -20,6 +20,8 @@ public class Scope {
     public boolean enteringPotentialUserDefinedType = false;
     public boolean inExpressionList = false;
     public ArrayList<String> currentExpressionList = new ArrayList<>();
+    public boolean inFormalParameterList = false;
+    public ArrayList<String> currentParameterList = new ArrayList<>();
 
     // [className -> [methodName -> (originatingClass, offset)]] offset is a string
     // in this case, be sure to convert back to int
