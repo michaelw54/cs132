@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 public class MainVisitor extends GJVoidDepthFirst<Scope> {
 
-    private String createVar(int k) {
+    private String id(int k) {
         return "w" + String.valueOf(k);
     }
 
@@ -26,6 +26,21 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
 
     private String getArrayType(String arrayType) {
         return arrayType.substring(0, arrayType.length() - 2);
+    }
+
+    // Call this when you have alloc(x) 
+    // to check that sparrow allocated a correct heap address
+    private void checkNullPtr(int k, Scope arg1) {
+        if (!arg1.nullPtrChecked.contains(k)) {
+            String nullPtrLabel = "null_" + Integer.toString(k);
+            String passNullLabel = "passNull_" + Integer.toString(k);
+            printWithIndents("if0 " + id(k) + " goto " + nullPtrLabel, arg1);
+            printWithIndents("goto " + passNullLabel, arg1);
+            printLabel(nullPtrLabel);
+            printWithIndents("error(\"null pointer\")", arg1);
+            printLabel(passNullLabel);
+            arg1.nullPtrChecked.add(k);
+        }
     }
 
     private void printWithIndents(String msg, Scope arg1) {
@@ -104,6 +119,11 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         arg1.stepOut();
     }
 
+    /**
+     * f0 -> Type()
+     * f1 -> Identifier()
+     * f2 -> ";"
+     */
     @Override
     public void visit(VarDeclaration arg0, Scope arg1) {
         TypecheckVisitor visitor = new TypecheckVisitor();
@@ -149,7 +169,7 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         arg0.f8.accept(this, arg1);
         int retK = arg1.k;
         arg0.f10.accept(this, arg1);
-        printWithIndents("return " + createVar(retK), arg1);
+        printWithIndents("return " + id(retK), arg1);
         printWithIndents("", arg1);
         arg1.stepOut();
     }
@@ -235,7 +255,7 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
             int res = arg1.k;
             arg0.f2.accept(this, arg1);
             // Store back into local variable
-            printWithIndents(arg0.f0.f0.tokenImage + " = " + createVar(res), arg1);
+            printWithIndents(arg0.f0.f0.tokenImage + " = " + id(res), arg1);
         } else { // is field
             int res = arg1.k;
             arg0.f2.accept(this, arg1);
@@ -248,7 +268,7 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
             // if (res == 94) {
             //     printWithIndents("print(this)", arg1);
             // }
-            printWithIndents("[this + " + Integer.toString(offset) + "] = " + createVar(res), arg1);
+            printWithIndents("[this + " + Integer.toString(offset) + "] = " + id(res), arg1);
         }
         arg1.k += 1;
     }
@@ -272,14 +292,30 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
             arg0.f2.accept(this, arg1);
             int rhsK = arg1.k;
             arg0.f5.accept(this, arg1);
-            printWithIndents(createVar(i+1) + " = 4", arg1); // wk+1 = 4
-            printWithIndents(createVar(i+2) + " = 1", arg1); // wk+2 = 1
-            printWithIndents(createVar(i+3) + " = " + createVar(i+4) + " + " + createVar(i+2), arg1); // wk+3 = wk+4 + wk+2 (1)
-            printWithIndents(createVar(i+2) + " = " + createVar(i+3) + " * " + createVar(i+1), arg1); // wk+2 = wk+3 * wk+1 (4)
-            printWithIndents(createVar(i+1) + " = " + arg0.f0.f0.tokenImage + " + " + createVar(i+2), arg1);
-            // TODO: bounds check
+            
+            // BOUNDS CHECK BEGIN
+            String outOfBoundsLabel = "outOfBounds_" + Integer.toString(i);
+            String passLabel = "pass_" + Integer.toString(i);
+            printWithIndents(id(i+1) + " = [" + arg0.f0.f0.tokenImage + " + 0]", arg1); // res+1 = [localVar + 0]
+            printWithIndents(id(i+2) + " = " + id(i+4) + " < " + id(i+1), arg1); // res+2 = res+4 < res+1
+            printWithIndents("if0 " + id(i+2) + " goto " + outOfBoundsLabel, arg1); // if0 res+2 goto outOfBoundsRes
+            // BOUNDS CHECK END
+
+            printWithIndents(id(i+1) + " = 4", arg1); // wk+1 = 4
+            printWithIndents(id(i+2) + " = 1", arg1); // wk+2 = 1
+            printWithIndents(id(i+3) + " = " + id(i+4) + " + " + id(i+2), arg1); // wk+3 = wk+4 + wk+2 (1)
+            printWithIndents(id(i+2) + " = " + id(i+3) + " * " + id(i+1), arg1); // wk+2 = wk+3 * wk+1 (4)
+            printWithIndents(id(i+1) + " = " + arg0.f0.f0.tokenImage + " + " + id(i+2), arg1);
             // [arg0.f0.f0.tokenImage + (w_indexK + 1) * 4] = w_rhsK
-            printWithIndents("[" + createVar(i+1) + " + 0] = " + createVar(rhsK), arg1);
+            printWithIndents("[" + id(i+1) + " + 0] = " + id(rhsK), arg1);
+
+            // BOUNDS LABELS BEGIN
+            printWithIndents("goto " + passLabel, arg1);
+            printLabel(outOfBoundsLabel); // outOfBoundsRes:
+            printWithIndents("error(\"array index out of bounds\")", arg1);// error("array index out of bounds")
+            printLabel(passLabel);
+            // BOUNDS LABELS END
+
         } else { // is field
             int i = arg1.k;
             arg1.k += 4;
@@ -291,16 +327,31 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
                 parent = arg1.subtypes.get(parent);
             }
             int offset = arg1.propertyTable.get(arg1.currentClass).get(parent+"#"+arg0.f0.f0.tokenImage);
-            String indexVar = createVar(i+4);
-            printWithIndents(createVar(i+1) + " = 4", arg1); // wk+1 = 4
-            printWithIndents(createVar(i+2) + " = 1", arg1); // wk+2 = 1
-            printWithIndents(createVar(i+3) + " = " + indexVar + " + " + createVar(i+2), arg1); // wk+3 = wk+4 + wk+2 (1)
-            printWithIndents(createVar(i+2) + " = " + createVar(i+3) + " * " + createVar(i+1), arg1); // wk+2 = wk+3 * wk+1 (4)
-            printWithIndents(createVar(i) + " = " + "[this + " + Integer.toString(offset) + "]", arg1); // wk = [this + offset]
-            printWithIndents(createVar(i+1) + " = " + createVar(i) + " + " + createVar(i+2), arg1); // wk+1 = wk + wk+2
-            // TODO: bounds check
+            String indexVar = id(i+4);
+            printWithIndents(id(i+1) + " = 4", arg1); // wk+1 = 4
+            printWithIndents(id(i+2) + " = 1", arg1); // wk+2 = 1
+            printWithIndents(id(i+3) + " = " + indexVar + " + " + id(i+2), arg1); // wk+3 = wk+4 + wk+2 (1)
+            printWithIndents(id(i+2) + " = " + id(i+3) + " * " + id(i+1), arg1); // wk+2 = wk+3 * wk+1 (4)
+            printWithIndents(id(i) + " = " + "[this + " + Integer.toString(offset) + "]", arg1); // wk = [this + offset]
+
+            // BOUNDS CHECK BEGIN
+            String outOfBoundsLabel = "outOfBounds_" + Integer.toString(i);
+            String passLabel = "pass_" + Integer.toString(i);
+            printWithIndents(id(i+1) + " = [" + id(i) + " + 0]", arg1); // res+1 = [field + 0]
+            printWithIndents(id(i+3) + " = " + id(i+4) + " < " + id(i+1), arg1); // res+2 = res+4 < res+1
+            printWithIndents("if0 " + id(i+3) + " goto " + outOfBoundsLabel, arg1); // if0 res+2 goto outOfBoundsRes
+            // BOUNDS CHECK END
+            
+            printWithIndents(id(i+1) + " = " + id(i) + " + " + id(i+2), arg1); // wk+1 = wk + wk+2
             // [w_k + w_k+4] = w_rhsK
-            printWithIndents("[" + createVar(i+1) + " + 0] = " + createVar(rhsK), arg1);
+            printWithIndents("[" + id(i+1) + " + 0] = " + id(rhsK), arg1);
+
+            // BOUNDS LABELS BEGIN
+            printWithIndents("goto " + passLabel, arg1);
+            printLabel(outOfBoundsLabel); // outOfBoundsRes:
+            printWithIndents("error(\"array index out of bounds\")", arg1);// error("array index out of bounds")
+            printLabel(passLabel);
+            // BOUNDS LABELS END
         }
         arg1.k += 1;
     }
@@ -320,7 +371,7 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         String elseLabel = "else_" + Integer.toString(expK);
         String endLabel = "end_" + Integer.toString(expK);
         arg0.f2.accept(this, arg1);
-        printWithIndents("if0 " + createVar(expK) + " goto " + elseLabel, arg1);
+        printWithIndents("if0 " + id(expK) + " goto " + elseLabel, arg1);
         arg0.f4.accept(this, arg1);
         printWithIndents("goto " + endLabel, arg1);
         printLabel(elseLabel);
@@ -342,7 +393,7 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         String endLabel = "endLoop_" + Integer.toString(k);
         printLabel(loopLabel);
         arg0.f2.accept(this, arg1);
-        printWithIndents("if0 " + createVar(k) + " goto " + endLabel, arg1);
+        printWithIndents("if0 " + id(k) + " goto " + endLabel, arg1);
         arg0.f4.accept(this, arg1);
         printWithIndents("goto " + loopLabel, arg1);
         printLabel(endLabel);
@@ -359,7 +410,7 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
     public void visit(PrintStatement arg0, Scope arg1) {
         int k = arg1.k;
         arg0.f2.accept(this, arg1);
-        printWithIndents("print(" + createVar(k) + ")", arg1);
+        printWithIndents("print(" + id(k) + ")", arg1);
     }
 
     /**
@@ -389,9 +440,21 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         arg1.k += 1;
         int lhsK = arg1.k;
         arg0.f0.accept(this, arg1);
+
+        // BOOLEAN SHORT CIRCUITING
+        // if0 id(lhsK) goto false_retK
+        String shortCircuitLabel = "shortCircuit_" + Integer.toString(retK);
+        printWithIndents("if0 " + id(lhsK) + " goto " + shortCircuitLabel, arg1);
+
         int rhsK = arg1.k;
         arg0.f2.accept(this, arg1);
-        printWithIndents(createVar(retK) + " = " + createVar(lhsK) + " * " + createVar(rhsK), arg1);
+        printWithIndents(id(retK) + " = " + id(lhsK) + " * " + id(rhsK), arg1);
+        String endCircuitLabel = "endCircuit_" + Integer.toString(retK);
+        printWithIndents("goto " + endCircuitLabel, arg1);
+
+        printLabel(shortCircuitLabel);
+        printWithIndents(id(retK) + " = 0", arg1);
+        printLabel(endCircuitLabel);
         arg1.k += 1;
     }
 
@@ -404,7 +467,7 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         arg1.k += 1;
         int f2 = arg1.k;
         arg0.f2.accept(this, arg1); // value of f2 -> Primary() in wK+1, return _
-        printWithIndents(createVar(res) + " = " + createVar(f0) + " < " + createVar(f2), arg1); // wk = f0 + f2
+        printWithIndents(id(res) + " = " + id(f0) + " < " + id(f2), arg1); // wk = f0 + f2
         arg1.k += 1;
     }
 
@@ -420,7 +483,7 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         arg1.k += 1;
         int f2 = arg1.k;
         arg0.f2.accept(this, arg1); // value of f2 -> Primary() in wK+1, return _
-        printWithIndents(createVar(res) + " = " + createVar(f0) + " + " + createVar(f2), arg1); // wk = f0 + f2
+        printWithIndents(id(res) + " = " + id(f0) + " + " + id(f2), arg1); // wk = f0 + f2
         arg1.k += 1;
     }
 
@@ -433,7 +496,7 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         arg1.k += 1;
         int f2 = arg1.k;
         arg0.f2.accept(this, arg1); // value of f2 -> Primary() in wK+1, return _
-        printWithIndents(createVar(res) + " = " + createVar(f0) + " - " + createVar(f2), arg1); // wk = f0 + f2
+        printWithIndents(id(res) + " = " + id(f0) + " - " + id(f2), arg1); // wk = f0 + f2
         arg1.k += 1;
     }
 
@@ -446,7 +509,7 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         arg1.k += 1;
         int f2 = arg1.k;
         arg0.f2.accept(this, arg1); // value of f2 -> Primary() in wK+1, return _
-        printWithIndents(createVar(res) + " = " + createVar(f0) + " * " + createVar(f2), arg1); // wk = f0 + f2
+        printWithIndents(id(res) + " = " + id(f0) + " * " + id(f2), arg1); // wk = f0 + f2
         arg1.k += 1;
     }
 
@@ -468,15 +531,15 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         // Out of bounds checking
         String outOfBoundsLabel = "outOfBounds_" + Integer.toString(res);
         String passLabel = "pass_" + Integer.toString(res);
-        printWithIndents(createVar(res+1) + " = [" + createVar(heapK) + " + 0]", arg1); // res+1 = [heapK + 0]
-        printWithIndents(createVar(res+2) + " = " + createVar(indexK) + " < " + createVar(res+1), arg1); // res+2 = indexK < res+1
-        printWithIndents("if0 " + createVar(res+2) + " goto " + outOfBoundsLabel, arg1); // if0 res+2 goto outOfBoundsRes
-        printWithIndents(createVar(res+1) + " = 4", arg1);
-        printWithIndents(createVar(res+2) + " = 1", arg1);
-        printWithIndents(createVar(res+3) + " = " + createVar(indexK) + " + " + createVar(res+2), arg1);
-        printWithIndents(createVar(res+2) + " = " + createVar(res+3) + " * " + createVar(res+1), arg1);
-        printWithIndents(createVar(res+1) + " = " + createVar(heapK) + " + " + createVar(res+2), arg1);
-        printWithIndents(createVar(res) + " = " + "[" + createVar(res+1) + " + 0]", arg1);
+        printWithIndents(id(res+1) + " = [" + id(heapK) + " + 0]", arg1); // res+1 = [heapK + 0]
+        printWithIndents(id(res+2) + " = " + id(indexK) + " < " + id(res+1), arg1); // res+2 = indexK < res+1
+        printWithIndents("if0 " + id(res+2) + " goto " + outOfBoundsLabel, arg1); // if0 res+2 goto outOfBoundsRes
+        printWithIndents(id(res+1) + " = 4", arg1);
+        printWithIndents(id(res+2) + " = 1", arg1);
+        printWithIndents(id(res+3) + " = " + id(indexK) + " + " + id(res+2), arg1);
+        printWithIndents(id(res+2) + " = " + id(res+3) + " * " + id(res+1), arg1);
+        printWithIndents(id(res+1) + " = " + id(heapK) + " + " + id(res+2), arg1);
+        printWithIndents(id(res) + " = " + "[" + id(res+1) + " + 0]", arg1);
         printWithIndents("goto " + passLabel, arg1);
         printLabel(outOfBoundsLabel); // outOfBoundsRes:
         printWithIndents("error(\"array index out of bounds\")", arg1);// error("array index out of bounds")
@@ -496,7 +559,7 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         arg1.k += 1;
         int heapK = arg1.k;
         arg0.f0.accept(this, arg1);
-        printWithIndents(createVar(res) + " = " + "[" + createVar(heapK) + " + 0]", arg1);
+        printWithIndents(id(res) + " = " + "[" + id(heapK) + " + 0]", arg1);
         arg1.k += 1;
     }
 
@@ -518,17 +581,20 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         int primaryK = arg1.k; // heap address of caller stored wprimaryK
         arg0.f0.accept(this, arg1);
 
+        // NULL PTR CHECK
+        checkNullPtr(primaryK, arg1);
+
         // load method
         String methodName = arg0.f2.f0.tokenImage;
         String offset = arg1.methodTable.get(callerType).get(methodName).get(1);
-        printWithIndents(createVar(res+1) + " = [" + createVar(primaryK) + " + 0]", arg1); // res+1(MT) = [primaryK + 0]
-        printWithIndents(createVar(res+1) + " = [" + createVar(res+1) + " + " + offset + "]", arg1); // res+1 = [res+1(MT) + offset]
+        printWithIndents(id(res+1) + " = [" + id(primaryK) + " + 0]", arg1); // res+1(MT) = [primaryK + 0]
+        printWithIndents(id(res+1) + " = [" + id(res+1) + " + " + offset + "]", arg1); // res+1 = [res+1(MT) + offset]
         arg0.f4.accept(this, arg1);
         String expList = String.join(" ", arg1.currentExpressionList);
         if (!expList.equals("")) {
             expList = " " + expList;
         }
-        printWithIndents(createVar(res) + " = " + "call " + createVar(res+1) + "(" + createVar(primaryK) + expList + ")", arg1);
+        printWithIndents(id(res) + " = " + "call " + id(res+1) + "(" + id(primaryK) + expList + ")", arg1);
         arg1.currentExpressionList.clear();
         arg1.k += 1;
     }
@@ -543,7 +609,7 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         arg1.inExpressionList = true;
         int initialExpressionK = arg1.k;
         arg0.f0.accept(this, arg1);
-        arg1.currentExpressionList.add(createVar(initialExpressionK));
+        arg1.currentExpressionList.add(id(initialExpressionK));
         arg0.f1.accept(this, arg1);
         arg1.inExpressionList = false;
     }
@@ -557,7 +623,7 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         int k = arg1.k;
         arg0.f1.accept(this, arg1);
         if (arg1.inExpressionList) {
-            arg1.currentExpressionList.add(createVar(k));
+            arg1.currentExpressionList.add(id(k));
         }
     }
 
@@ -579,19 +645,19 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
 
     @Override
     public void visit(IntegerLiteral arg0, Scope arg1) {
-        printWithIndents(createVar(arg1.k) + " = " + arg0.f0.tokenImage, arg1);
+        printWithIndents(id(arg1.k) + " = " + arg0.f0.tokenImage, arg1);
         arg1.k += 1;
     }
 
     @Override
     public void visit(TrueLiteral arg0, Scope arg1) {
-        printWithIndents(createVar(arg1.k) + " = 1", arg1);
+        printWithIndents(id(arg1.k) + " = 1", arg1);
         arg1.k += 1;
     }
 
     @Override
     public void visit(FalseLiteral arg0, Scope arg1) {
-        printWithIndents(createVar(arg1.k) + " = 0", arg1);
+        printWithIndents(id(arg1.k) + " = 0", arg1);
         arg1.k += 1;
     }
 
@@ -602,14 +668,14 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         if (arg1.locals.get(arg1.currentClass).containsKey(arg0.f0.tokenImage)
                 || (arg1.formalParams.containsKey(arg1.currentClass) && arg1.formalParams.get(arg1.currentClass).containsKey(arg0.f0.tokenImage))) { // is local variable or
                                                                                                // param within method
-            printWithIndents(createVar(arg1.k) + " = " + arg0.f0.tokenImage, arg1);
+            printWithIndents(id(arg1.k) + " = " + arg0.f0.tokenImage, arg1);
         } else {
             String parent = arg1.currentClass;
             while (!arg1.propertyTable.get(arg1.currentClass).containsKey(parent+"#"+arg0.f0.tokenImage)) {
                 parent = arg1.subtypes.get(parent);
             }
             int offset = arg1.propertyTable.get(arg1.currentClass).get(parent+"#"+arg0.f0.tokenImage);
-            printWithIndents(createVar(arg1.k) + " = " + "[this + " + Integer.toString(offset) + "]", arg1);
+            printWithIndents(id(arg1.k) + " = " + "[this + " + Integer.toString(offset) + "]", arg1);
         }
         arg1.k += 1;
     }
@@ -619,7 +685,7 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
      */
     @Override
     public void visit(ThisExpression arg0, Scope arg1) {
-        printWithIndents(createVar(arg1.k) + " = this", arg1);
+        printWithIndents(id(arg1.k) + " = this", arg1);
         arg1.k += 1;
     }
 
@@ -631,24 +697,37 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         int res = arg1.k;
         arg1.k += 5;
         arg0.f3.accept(this, arg1); // value of f3 -> Expression() in wk+5
-        ArrayList<String> vars = new ArrayList<>();
-        for (int i = 0; i <= 5; i++) {
-            vars.add(createVar(res + i));
-        }
-        printWithIndents(vars.get(3) + " = 4", arg1); // wk+3 = 4
-        printWithIndents(vars.get(4) + " = 1", arg1); // wk+4 = 1
-        printWithIndents(vars.get(1) + " = " + vars.get(5) + " + " + vars.get(4), arg1); // wk+1 = wk+5 + wk+4 (1)
-        printWithIndents(vars.get(2) + " = " + vars.get(1) + " * " + vars.get(3), arg1); // wk+2 = wk+1 * wk+3 (4)
-        printWithIndents(vars.get(0) + " = " + "alloc(" + vars.get(2) + ")", arg1); // wk = alloc(wk+2)
+
+        // BEGIN BOUNDS CHECKING: CHECK NEGATIVE LENGTH
+        String outOfBoundsLabel = "outOfBounds_" + Integer.toString(res);
+        String passLabel = "pass_" + Integer.toString(res);
+        printWithIndents(id(res+1) + " = 0", arg1); // wk+1 = 0
+        printWithIndents(id(res+2) + " = 1", arg1); // wk+2 = 1
+        printWithIndents(id(res+1) + " = " + id(res+1) + " - " + id(res+2), arg1); // wk+1 = wk+1 - wk+2 (should be -1)
+        printWithIndents(id(res+1) + " = " + id(res+1) + " < " + id(res+5), arg1); // wk+1 = wk+1 < wk+5
+        printWithIndents("if0 " + id(res+1) + " goto " + outOfBoundsLabel, arg1);
+
+        printWithIndents(id(res+3) + " = 4", arg1); // wk+3 = 4
+        printWithIndents(id(res+4) + " = 1", arg1); // wk+4 = 1
+        printWithIndents(id(res+1) + " = " + id(res+5) + " + " + id(res+4), arg1); // wk+1 = wk+5 + wk+4 (1)
+        printWithIndents(id(res+2) + " = " + id(res+1) + " * " + id(res+3), arg1); // wk+2 = wk+1 * wk+3 (4)
+        printWithIndents(id(res) + " = " + "alloc(" + id(res+2) + ")", arg1); // wk = alloc(wk+2)
+        checkNullPtr(res, arg1);
 
         // Set length of array
-        printWithIndents("[" + vars.get(0) + " + 0] = " + vars.get(5), arg1); // [wk] = wk+5
+        printWithIndents("[" + id(res+0) + " + 0] = " + id(res+5), arg1); // [wk] = wk+5
+
+        // END BOUNDS CHECKING
+        printWithIndents("goto " + passLabel, arg1);
+        printLabel(outOfBoundsLabel); // outOfBoundsRes:
+        printWithIndents("error(\"array index out of bounds\")", arg1);// error("array index out of bounds")
+        printLabel(passLabel);
 
         // Loop through and initialize array values to 0
         // Nevermind Sparrow auto initializes to 0
-        // printWithIndents("if0 " + createVar(res+2) + " goto loop" +
+        // printWithIndents("if0 " + id(res+2) + " goto loop" +
         // Integer.toString(res+3)); // if0 wk+4 goto loopwk+3
-        // printWithIndents("[" + createVar(res) + " + " + createVar(res+2) + "] =
+        // printWithIndents("[" + id(res) + " + " + id(res+2) + "] =
         // 0"); // [wk + wk+2] = 0
     }
 
@@ -669,24 +748,26 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
             largestSize = Math.max(offset+4, largestSize);
         }
         // property table address in res
-        printWithIndents(createVar(res+2) + " = " + Integer.toString(largestSize), arg1);
-        printWithIndents(createVar(res) + " = alloc(" + createVar(res+2) + ")", arg1);
+        printWithIndents(id(res+2) + " = " + Integer.toString(largestSize), arg1);
+        printWithIndents(id(res) + " = alloc(" + id(res+2) + ")", arg1);
+        checkNullPtr(res, arg1);
         largestSize = 0;
         for (ArrayList<String> methodData : arg1.methodTable.get(type).values()) {
             int offset = Integer.valueOf(methodData.get(1));
             largestSize = Math.max(offset+4, largestSize);
         }
         // method table heap address in res+1
-        printWithIndents(createVar(res+2) + " = " + Integer.toString(largestSize), arg1);
-        printWithIndents(createVar(res+1) + " = alloc(" + createVar(res+2) + ")", arg1);
-        printWithIndents("[" + createVar(res) + " + 0] = " + createVar(res+1), arg1); // [propertyTableAddress + 0] = methodTableAdress
+        printWithIndents(id(res+2) + " = " + Integer.toString(largestSize), arg1);
+        printWithIndents(id(res+1) + " = alloc(" + id(res+2) + ")", arg1);
+        checkNullPtr(res+1, arg1);
+        printWithIndents("[" + id(res) + " + 0] = " + id(res+1), arg1); // [propertyTableAddress + 0] = methodTableAdress
         
         // populate method table
         for (String methodName : arg1.methodTable.get(type).keySet()) {
             String originatingClass = arg1.methodTable.get(type).get(methodName).get(0);
             String offset = arg1.methodTable.get(type).get(methodName).get(1);
-            printWithIndents(createVar(res+2) + " = @" + originatingClass + "_" + methodName , arg1);
-            printWithIndents("[" + createVar(res+1) + " + " + offset + "] = " + createVar(res+2), arg1);
+            printWithIndents(id(res+2) + " = @" + originatingClass + "_" + methodName , arg1);
+            printWithIndents("[" + id(res+1) + " + " + offset + "] = " + id(res+2), arg1);
         }
 
         arg1.k += 3;
@@ -702,8 +783,8 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         arg1.k += 2;
         int expressionK = arg1.k;
         arg0.f1.accept(this, arg1);
-        printWithIndents(createVar(res+1) + " = 1", arg1);
-        printWithIndents(createVar(res) + " = " + createVar(expressionK) + " < " + createVar(res+1), arg1);
+        printWithIndents(id(res+1) + " = 1", arg1);
+        printWithIndents(id(res) + " = " + id(expressionK) + " < " + id(res+1), arg1);
     }
 
     /**

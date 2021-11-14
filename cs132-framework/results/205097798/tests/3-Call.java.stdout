@@ -1,8 +1,18 @@
 func Main()
     w4 = 4
     w2 = alloc(w4)
+    if0 w2 goto null_2
+    goto passNull_2
+  null_2:
+    error("null pointer")
+  passNull_2:
     w4 = 4
     w3 = alloc(w4)
+    if0 w3 goto null_3
+    goto passNull_3
+  null_3:
+    error("null pointer")
+  passNull_3:
     [w2 + 0] = w3
     w4 = @A_run
     [w3 + 0] = w4

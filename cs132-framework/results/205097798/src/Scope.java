@@ -22,6 +22,7 @@ public class Scope {
     public ArrayList<String> currentExpressionList = new ArrayList<>();
     public boolean inFormalParameterList = false;
     public ArrayList<String> currentParameterList = new ArrayList<>();
+    public HashSet<Integer> nullPtrChecked = new HashSet<>();
 
     // [className -> [methodName -> (originatingClass, offset)]] offset is a string
     // in this case, be sure to convert back to int
@@ -93,7 +94,8 @@ public class Scope {
                 propertyTable.get(className).put(propertyName, propertyTable.get(parentClass).get(propertyName));
             }
 
-            int propertyTableBaseOffset = propertyTable.get(parentClass).size();
+            // System.out.println(className);
+            int propertyTableBaseOffset = propertyTable.get(parentClass).size() + 1;
             if (fields.containsKey(className)) {
                 // Now add current class properties into its property table
                 for (String propertyName : fields.get(className).keySet()) {

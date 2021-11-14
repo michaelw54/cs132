@@ -1,8 +1,18 @@
 func Main()
     w4 = 12
     w2 = alloc(w4)
+    if0 w2 goto null_2
+    goto passNull_2
+  null_2:
+    error("null pointer")
+  passNull_2:
     w4 = 16
     w3 = alloc(w4)
+    if0 w3 goto null_3
+    goto passNull_3
+  null_3:
+    error("null pointer")
+  passNull_3:
     [w2 + 0] = w3
     w4 = @QS_Print
     [w3 + 0] = w4
@@ -23,12 +33,22 @@ func Main()
 func QS_Start(this sz)
     aux01 = 0
     w9 = this
+    if0 w9 goto null_9
+    goto passNull_9
+  null_9:
+    error("null pointer")
+  passNull_9:
     w8 = [w9 + 0]
     w8 = [w8 + 4]
     w10 = sz
     w7 = call w8(w9 w10)
     aux01 = w7
     w15 = this
+    if0 w15 goto null_15
+    goto passNull_15
+  null_15:
+    error("null pointer")
+  passNull_15:
     w14 = [w15 + 0]
     w14 = [w14 + 0]
     w13 = call w14(w15)
@@ -40,6 +60,11 @@ func QS_Start(this sz)
     w19 = w20 - w22
     aux01 = w19
     w27 = this
+    if0 w27 goto null_27
+    goto passNull_27
+  null_27:
+    error("null pointer")
+  passNull_27:
     w26 = [w27 + 0]
     w26 = [w26 + 12]
     w28 = 0
@@ -47,6 +72,11 @@ func QS_Start(this sz)
     w25 = call w26(w27 w28 w29)
     aux01 = w25
     w34 = this
+    if0 w34 goto null_34
+    goto passNull_34
+  null_34:
+    error("null pointer")
+  passNull_34:
     w33 = [w34 + 0]
     w33 = [w33 + 0]
     w32 = call w33(w34)
@@ -213,8 +243,15 @@ func QS_Sort(this left right)
     w131 = w132 + w130
     w130 = w131 * w129
     w128 = [this + 4]
+    w129 = [w128 + 0]
+    w131 = w132 < w129
+    if0 w131 goto outOfBounds_128
     w129 = w128 + w130
     [w129 + 0] = w133
+    goto pass_128
+  outOfBounds_128:
+    error("array index out of bounds")
+  pass_128:
     w145 = j
     w146 = t
     w142 = 4
@@ -222,8 +259,15 @@ func QS_Sort(this left right)
     w144 = w145 + w143
     w143 = w144 * w142
     w141 = [this + 4]
+    w142 = [w141 + 0]
+    w144 = w145 < w142
+    if0 w144 goto outOfBounds_141
     w142 = w141 + w143
     [w142 + 0] = w146
+    goto pass_141
+  outOfBounds_141:
+    error("array index out of bounds")
+  pass_141:
     w149 = j
     w152 = i
     w154 = 1
@@ -260,8 +304,15 @@ func QS_Sort(this left right)
     w164 = w165 + w163
     w163 = w164 * w162
     w161 = [this + 4]
+    w162 = [w161 + 0]
+    w164 = w165 < w162
+    if0 w164 goto outOfBounds_161
     w162 = w161 + w163
     [w162 + 0] = w166
+    goto pass_161
+  outOfBounds_161:
+    error("array index out of bounds")
+  pass_161:
     w178 = i
     w183 = [this + 4]
     w184 = right
@@ -283,8 +334,15 @@ func QS_Sort(this left right)
     w177 = w178 + w176
     w176 = w177 * w175
     w174 = [this + 4]
+    w175 = [w174 + 0]
+    w177 = w178 < w175
+    if0 w177 goto outOfBounds_174
     w175 = w174 + w176
     [w175 + 0] = w179
+    goto pass_174
+  outOfBounds_174:
+    error("array index out of bounds")
+  pass_174:
     w191 = right
     w192 = t
     w188 = 4
@@ -292,9 +350,21 @@ func QS_Sort(this left right)
     w190 = w191 + w189
     w189 = w190 * w188
     w187 = [this + 4]
+    w188 = [w187 + 0]
+    w190 = w191 < w188
+    if0 w190 goto outOfBounds_187
     w188 = w187 + w189
     [w188 + 0] = w192
+    goto pass_187
+  outOfBounds_187:
+    error("array index out of bounds")
+  pass_187:
     w196 = this
+    if0 w196 goto null_196
+    goto passNull_196
+  null_196:
+    error("null pointer")
+  passNull_196:
     w195 = [w196 + 0]
     w195 = [w195 + 12]
     w197 = left
@@ -304,6 +374,11 @@ func QS_Sort(this left right)
     w194 = call w195(w196 w197 w198)
     nt = w194
     w207 = this
+    if0 w207 goto null_207
+    goto passNull_207
+  null_207:
+    error("null pointer")
+  passNull_207:
     w206 = [w207 + 0]
     w206 = [w206 + 12]
     w209 = i
@@ -358,12 +433,26 @@ func QS_Init(this sz)
     w240 = sz
     [this + 8] = w240
     w247 = sz
+    w243 = 0
+    w244 = 1
+    w243 = w243 - w244
+    w243 = w243 < w247
+    if0 w243 goto outOfBounds_242
     w245 = 4
     w246 = 1
     w243 = w247 + w246
     w244 = w243 * w245
     w242 = alloc(w244)
+    if0 w242 goto null_242
+    goto passNull_242
+  null_242:
+    error("null pointer")
+  passNull_242:
     [w242 + 0] = w247
+    goto pass_242
+  outOfBounds_242:
+    error("array index out of bounds")
+  pass_242:
     [this + 4] = w242
     w253 = 0
     w254 = 20
@@ -372,8 +461,15 @@ func QS_Init(this sz)
     w252 = w253 + w251
     w251 = w252 * w250
     w249 = [this + 4]
+    w250 = [w249 + 0]
+    w252 = w253 < w250
+    if0 w252 goto outOfBounds_249
     w250 = w249 + w251
     [w250 + 0] = w254
+    goto pass_249
+  outOfBounds_249:
+    error("array index out of bounds")
+  pass_249:
     w260 = 1
     w261 = 7
     w257 = 4
@@ -381,8 +477,15 @@ func QS_Init(this sz)
     w259 = w260 + w258
     w258 = w259 * w257
     w256 = [this + 4]
+    w257 = [w256 + 0]
+    w259 = w260 < w257
+    if0 w259 goto outOfBounds_256
     w257 = w256 + w258
     [w257 + 0] = w261
+    goto pass_256
+  outOfBounds_256:
+    error("array index out of bounds")
+  pass_256:
     w267 = 2
     w268 = 12
     w264 = 4
@@ -390,8 +493,15 @@ func QS_Init(this sz)
     w266 = w267 + w265
     w265 = w266 * w264
     w263 = [this + 4]
+    w264 = [w263 + 0]
+    w266 = w267 < w264
+    if0 w266 goto outOfBounds_263
     w264 = w263 + w265
     [w264 + 0] = w268
+    goto pass_263
+  outOfBounds_263:
+    error("array index out of bounds")
+  pass_263:
     w274 = 3
     w275 = 18
     w271 = 4
@@ -399,8 +509,15 @@ func QS_Init(this sz)
     w273 = w274 + w272
     w272 = w273 * w271
     w270 = [this + 4]
+    w271 = [w270 + 0]
+    w273 = w274 < w271
+    if0 w273 goto outOfBounds_270
     w271 = w270 + w272
     [w271 + 0] = w275
+    goto pass_270
+  outOfBounds_270:
+    error("array index out of bounds")
+  pass_270:
     w281 = 4
     w282 = 2
     w278 = 4
@@ -408,8 +525,15 @@ func QS_Init(this sz)
     w280 = w281 + w279
     w279 = w280 * w278
     w277 = [this + 4]
+    w278 = [w277 + 0]
+    w280 = w281 < w278
+    if0 w280 goto outOfBounds_277
     w278 = w277 + w279
     [w278 + 0] = w282
+    goto pass_277
+  outOfBounds_277:
+    error("array index out of bounds")
+  pass_277:
     w288 = 5
     w289 = 11
     w285 = 4
@@ -417,8 +541,15 @@ func QS_Init(this sz)
     w287 = w288 + w286
     w286 = w287 * w285
     w284 = [this + 4]
+    w285 = [w284 + 0]
+    w287 = w288 < w285
+    if0 w287 goto outOfBounds_284
     w285 = w284 + w286
     [w285 + 0] = w289
+    goto pass_284
+  outOfBounds_284:
+    error("array index out of bounds")
+  pass_284:
     w295 = 6
     w296 = 6
     w292 = 4
@@ -426,8 +557,15 @@ func QS_Init(this sz)
     w294 = w295 + w293
     w293 = w294 * w292
     w291 = [this + 4]
+    w292 = [w291 + 0]
+    w294 = w295 < w292
+    if0 w294 goto outOfBounds_291
     w292 = w291 + w293
     [w292 + 0] = w296
+    goto pass_291
+  outOfBounds_291:
+    error("array index out of bounds")
+  pass_291:
     w302 = 7
     w303 = 9
     w299 = 4
@@ -435,8 +573,15 @@ func QS_Init(this sz)
     w301 = w302 + w300
     w300 = w301 * w299
     w298 = [this + 4]
+    w299 = [w298 + 0]
+    w301 = w302 < w299
+    if0 w301 goto outOfBounds_298
     w299 = w298 + w300
     [w299 + 0] = w303
+    goto pass_298
+  outOfBounds_298:
+    error("array index out of bounds")
+  pass_298:
     w309 = 8
     w310 = 19
     w306 = 4
@@ -444,8 +589,15 @@ func QS_Init(this sz)
     w308 = w309 + w307
     w307 = w308 * w306
     w305 = [this + 4]
+    w306 = [w305 + 0]
+    w308 = w309 < w306
+    if0 w308 goto outOfBounds_305
     w306 = w305 + w307
     [w306 + 0] = w310
+    goto pass_305
+  outOfBounds_305:
+    error("array index out of bounds")
+  pass_305:
     w316 = 9
     w317 = 5
     w313 = 4
@@ -453,8 +605,15 @@ func QS_Init(this sz)
     w315 = w316 + w314
     w314 = w315 * w313
     w312 = [this + 4]
+    w313 = [w312 + 0]
+    w315 = w316 < w313
+    if0 w315 goto outOfBounds_312
     w313 = w312 + w314
     [w313 + 0] = w317
+    goto pass_312
+  outOfBounds_312:
+    error("array index out of bounds")
+  pass_312:
     w319 = 0
     return w319
     

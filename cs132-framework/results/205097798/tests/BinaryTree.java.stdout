@@ -1,8 +1,18 @@
 func Main()
     w4 = 4
     w2 = alloc(w4)
+    if0 w2 goto null_2
+    goto passNull_2
+  null_2:
+    error("null pointer")
+  passNull_2:
     w4 = 4
     w3 = alloc(w4)
+    if0 w3 goto null_3
+    goto passNull_3
+  null_3:
+    error("null pointer")
+  passNull_3:
     [w2 + 0] = w3
     w4 = @BT_Start
     [w3 + 0] = w4
@@ -19,8 +29,18 @@ func BT_Start(this)
     nti = 0
     w8 = 28
     w6 = alloc(w8)
+    if0 w6 goto null_6
+    goto passNull_6
+  null_6:
+    error("null pointer")
+  passNull_6:
     w8 = 80
     w7 = alloc(w8)
+    if0 w7 goto null_7
+    goto passNull_7
+  null_7:
+    error("null pointer")
+  passNull_7:
     [w6 + 0] = w7
     w8 = @Tree_Delete
     [w7 + 0] = w8
@@ -64,12 +84,22 @@ func BT_Start(this)
     [w7 + 76] = w8
     root = w6
     w12 = root
+    if0 w12 goto null_12
+    goto passNull_12
+  null_12:
+    error("null pointer")
+  passNull_12:
     w11 = [w12 + 0]
     w11 = [w11 + 44]
     w13 = 16
     w10 = call w11(w12 w13)
     ntb = w10
     w18 = root
+    if0 w18 goto null_18
+    goto passNull_18
+  null_18:
+    error("null pointer")
+  passNull_18:
     w17 = [w18 + 0]
     w17 = [w17 + 40]
     w16 = call w17(w18)
@@ -77,99 +107,184 @@ func BT_Start(this)
     w21 = 100000000
     print(w21)
     w24 = root
+    if0 w24 goto null_24
+    goto passNull_24
+  null_24:
+    error("null pointer")
+  passNull_24:
     w23 = [w24 + 0]
     w23 = [w23 + 36]
     w25 = 8
     w22 = call w23(w24 w25)
     ntb = w22
     w30 = root
+    if0 w30 goto null_30
+    goto passNull_30
+  null_30:
+    error("null pointer")
+  passNull_30:
     w29 = [w30 + 0]
     w29 = [w29 + 40]
     w28 = call w29(w30)
     ntb = w28
     w35 = root
+    if0 w35 goto null_35
+    goto passNull_35
+  null_35:
+    error("null pointer")
+  passNull_35:
     w34 = [w35 + 0]
     w34 = [w34 + 36]
     w36 = 24
     w33 = call w34(w35 w36)
     ntb = w33
     w41 = root
+    if0 w41 goto null_41
+    goto passNull_41
+  null_41:
+    error("null pointer")
+  passNull_41:
     w40 = [w41 + 0]
     w40 = [w40 + 36]
     w42 = 4
     w39 = call w40(w41 w42)
     ntb = w39
     w47 = root
+    if0 w47 goto null_47
+    goto passNull_47
+  null_47:
+    error("null pointer")
+  passNull_47:
     w46 = [w47 + 0]
     w46 = [w46 + 36]
     w48 = 12
     w45 = call w46(w47 w48)
     ntb = w45
     w53 = root
+    if0 w53 goto null_53
+    goto passNull_53
+  null_53:
+    error("null pointer")
+  passNull_53:
     w52 = [w53 + 0]
     w52 = [w52 + 36]
     w54 = 20
     w51 = call w52(w53 w54)
     ntb = w51
     w59 = root
+    if0 w59 goto null_59
+    goto passNull_59
+  null_59:
+    error("null pointer")
+  passNull_59:
     w58 = [w59 + 0]
     w58 = [w58 + 36]
     w60 = 28
     w57 = call w58(w59 w60)
     ntb = w57
     w65 = root
+    if0 w65 goto null_65
+    goto passNull_65
+  null_65:
+    error("null pointer")
+  passNull_65:
     w64 = [w65 + 0]
     w64 = [w64 + 36]
     w66 = 14
     w63 = call w64(w65 w66)
     ntb = w63
     w71 = root
+    if0 w71 goto null_71
+    goto passNull_71
+  null_71:
+    error("null pointer")
+  passNull_71:
     w70 = [w71 + 0]
     w70 = [w70 + 40]
     w69 = call w70(w71)
     ntb = w69
     w76 = root
+    if0 w76 goto null_76
+    goto passNull_76
+  null_76:
+    error("null pointer")
+  passNull_76:
     w75 = [w76 + 0]
     w75 = [w75 + 60]
     w77 = 24
     w74 = call w75(w76 w77)
     print(w74)
     w81 = root
+    if0 w81 goto null_81
+    goto passNull_81
+  null_81:
+    error("null pointer")
+  passNull_81:
     w80 = [w81 + 0]
     w80 = [w80 + 60]
     w82 = 12
     w79 = call w80(w81 w82)
     print(w79)
     w86 = root
+    if0 w86 goto null_86
+    goto passNull_86
+  null_86:
+    error("null pointer")
+  passNull_86:
     w85 = [w86 + 0]
     w85 = [w85 + 60]
     w87 = 16
     w84 = call w85(w86 w87)
     print(w84)
     w91 = root
+    if0 w91 goto null_91
+    goto passNull_91
+  null_91:
+    error("null pointer")
+  passNull_91:
     w90 = [w91 + 0]
     w90 = [w90 + 60]
     w92 = 50
     w89 = call w90(w91 w92)
     print(w89)
     w96 = root
+    if0 w96 goto null_96
+    goto passNull_96
+  null_96:
+    error("null pointer")
+  passNull_96:
     w95 = [w96 + 0]
     w95 = [w95 + 60]
     w97 = 12
     w94 = call w95(w96 w97)
     print(w94)
     w101 = root
+    if0 w101 goto null_101
+    goto passNull_101
+  null_101:
+    error("null pointer")
+  passNull_101:
     w100 = [w101 + 0]
     w100 = [w100 + 0]
     w102 = 12
     w99 = call w100(w101 w102)
     ntb = w99
     w107 = root
+    if0 w107 goto null_107
+    goto passNull_107
+  null_107:
+    error("null pointer")
+  passNull_107:
     w106 = [w107 + 0]
     w106 = [w106 + 40]
     w105 = call w106(w107)
     ntb = w105
     w112 = root
+    if0 w112 goto null_112
+    goto passNull_112
+  null_112:
+    error("null pointer")
+  passNull_112:
     w111 = [w112 + 0]
     w111 = [w111 + 60]
     w113 = 12
@@ -280,8 +395,18 @@ func Tree_Insert(this v_key)
     current_node = 0
     w172 = 28
     w170 = alloc(w172)
+    if0 w170 goto null_170
+    goto passNull_170
+  null_170:
+    error("null pointer")
+  passNull_170:
     w172 = 80
     w171 = alloc(w172)
+    if0 w171 goto null_171
+    goto passNull_171
+  null_171:
+    error("null pointer")
+  passNull_171:
     [w170 + 0] = w171
     w172 = @Tree_Delete
     [w171 + 0] = w172
@@ -325,6 +450,11 @@ func Tree_Insert(this v_key)
     [w171 + 76] = w172
     new_node = w170
     w176 = new_node
+    if0 w176 goto null_176
+    goto passNull_176
+  null_176:
+    error("null pointer")
+  passNull_176:
     w175 = [w176 + 0]
     w175 = [w175 + 44]
     w177 = v_key
@@ -338,6 +468,11 @@ func Tree_Insert(this v_key)
     w184 = cont
     if0 w184 goto endLoop_184
     w187 = current_node
+    if0 w187 goto null_187
+    goto passNull_187
+  null_187:
+    error("null pointer")
+  passNull_187:
     w186 = [w187 + 0]
     w186 = [w186 + 12]
     w185 = call w186(w187)
@@ -347,11 +482,21 @@ func Tree_Insert(this v_key)
     w190 = w191 < w193
     if0 w190 goto else_190
     w197 = current_node
+    if0 w197 goto null_197
+    goto passNull_197
+  null_197:
+    error("null pointer")
+  passNull_197:
     w196 = [w197 + 0]
     w196 = [w196 + 52]
     w195 = call w196(w197)
     if0 w195 goto else_195
     w201 = current_node
+    if0 w201 goto null_201
+    goto passNull_201
+  null_201:
+    error("null pointer")
+  passNull_201:
     w200 = [w201 + 0]
     w200 = [w200 + 20]
     w199 = call w200(w201)
@@ -361,12 +506,22 @@ func Tree_Insert(this v_key)
     w204 = 0
     cont = w204
     w208 = current_node
+    if0 w208 goto null_208
+    goto passNull_208
+  null_208:
+    error("null pointer")
+  passNull_208:
     w207 = [w208 + 0]
     w207 = [w207 + 4]
     w209 = 1
     w206 = call w207(w208 w209)
     ntb = w206
     w214 = current_node
+    if0 w214 goto null_214
+    goto passNull_214
+  null_214:
+    error("null pointer")
+  passNull_214:
     w213 = [w214 + 0]
     w213 = [w213 + 32]
     w215 = new_node
@@ -376,11 +531,21 @@ func Tree_Insert(this v_key)
     goto end_190
   else_190:
     w220 = current_node
+    if0 w220 goto null_220
+    goto passNull_220
+  null_220:
+    error("null pointer")
+  passNull_220:
     w219 = [w220 + 0]
     w219 = [w219 + 48]
     w218 = call w219(w220)
     if0 w218 goto else_218
     w224 = current_node
+    if0 w224 goto null_224
+    goto passNull_224
+  null_224:
+    error("null pointer")
+  passNull_224:
     w223 = [w224 + 0]
     w223 = [w223 + 24]
     w222 = call w223(w224)
@@ -390,12 +555,22 @@ func Tree_Insert(this v_key)
     w227 = 0
     cont = w227
     w231 = current_node
+    if0 w231 goto null_231
+    goto passNull_231
+  null_231:
+    error("null pointer")
+  passNull_231:
     w230 = [w231 + 0]
     w230 = [w230 + 72]
     w232 = 1
     w229 = call w230(w231 w232)
     ntb = w229
     w237 = current_node
+    if0 w237 goto null_237
+    goto passNull_237
+  null_237:
+    error("null pointer")
+  passNull_237:
     w236 = [w237 + 0]
     w236 = [w236 + 16]
     w238 = new_node
@@ -430,6 +605,11 @@ func Tree_Delete(this v_key)
     w252 = cont
     if0 w252 goto endLoop_252
     w255 = current_node
+    if0 w255 goto null_255
+    goto passNull_255
+  null_255:
+    error("null pointer")
+  passNull_255:
     w254 = [w255 + 0]
     w254 = [w254 + 12]
     w253 = call w254(w255)
@@ -439,6 +619,11 @@ func Tree_Delete(this v_key)
     w258 = w259 < w261
     if0 w258 goto else_258
     w265 = current_node
+    if0 w265 goto null_265
+    goto passNull_265
+  null_265:
+    error("null pointer")
+  passNull_265:
     w264 = [w265 + 0]
     w264 = [w264 + 52]
     w263 = call w264(w265)
@@ -446,6 +631,11 @@ func Tree_Delete(this v_key)
     w267 = current_node
     parent_node = w267
     w271 = current_node
+    if0 w271 goto null_271
+    goto passNull_271
+  null_271:
+    error("null pointer")
+  passNull_271:
     w270 = [w271 + 0]
     w270 = [w270 + 20]
     w269 = call w270(w271)
@@ -462,6 +652,11 @@ func Tree_Delete(this v_key)
     w276 = w277 < w279
     if0 w276 goto else_276
     w283 = current_node
+    if0 w283 goto null_283
+    goto passNull_283
+  null_283:
+    error("null pointer")
+  passNull_283:
     w282 = [w283 + 0]
     w282 = [w282 + 48]
     w281 = call w282(w283)
@@ -469,6 +664,11 @@ func Tree_Delete(this v_key)
     w285 = current_node
     parent_node = w285
     w289 = current_node
+    if0 w289 goto null_289
+    goto passNull_289
+  null_289:
+    error("null pointer")
+  passNull_289:
     w288 = [w289 + 0]
     w288 = [w288 + 24]
     w287 = call w288(w289)
@@ -483,24 +683,44 @@ func Tree_Delete(this v_key)
     w294 = is_root
     if0 w294 goto else_294
     w300 = current_node
+    if0 w300 goto null_300
+    goto passNull_300
+  null_300:
+    error("null pointer")
+  passNull_300:
     w299 = [w300 + 0]
     w299 = [w299 + 48]
     w298 = call w299(w300)
     w297 = 1
     w296 = w298 < w297
+    if0 w296 goto shortCircuit_295
     w306 = current_node
+    if0 w306 goto null_306
+    goto passNull_306
+  null_306:
+    error("null pointer")
+  passNull_306:
     w305 = [w306 + 0]
     w305 = [w305 + 52]
     w304 = call w305(w306)
     w303 = 1
     w302 = w304 < w303
     w295 = w296 * w302
+    goto endCircuit_295
+  shortCircuit_295:
+    w295 = 0
+  endCircuit_295:
     if0 w295 goto else_295
     w309 = 1
     ntb = w309
     goto end_295
   else_295:
     w313 = this
+    if0 w313 goto null_313
+    goto passNull_313
+  null_313:
+    error("null pointer")
+  passNull_313:
     w312 = [w313 + 0]
     w312 = [w312 + 28]
     w314 = parent_node
@@ -511,6 +731,11 @@ func Tree_Delete(this v_key)
     goto end_294
   else_294:
     w320 = this
+    if0 w320 goto null_320
+    goto passNull_320
+  null_320:
+    error("null pointer")
+  passNull_320:
     w319 = [w320 + 0]
     w319 = [w319 + 28]
     w321 = parent_node
@@ -536,11 +761,21 @@ func Tree_Remove(this p_node c_node)
     auxkey1 = 0
     auxkey2 = 0
     w334 = c_node
+    if0 w334 goto null_334
+    goto passNull_334
+  null_334:
+    error("null pointer")
+  passNull_334:
     w333 = [w334 + 0]
     w333 = [w333 + 52]
     w332 = call w333(w334)
     if0 w332 goto else_332
     w338 = this
+    if0 w338 goto null_338
+    goto passNull_338
+  null_338:
+    error("null pointer")
+  passNull_338:
     w337 = [w338 + 0]
     w337 = [w337 + 8]
     w339 = p_node
@@ -550,11 +785,21 @@ func Tree_Remove(this p_node c_node)
     goto end_332
   else_332:
     w345 = c_node
+    if0 w345 goto null_345
+    goto passNull_345
+  null_345:
+    error("null pointer")
+  passNull_345:
     w344 = [w345 + 0]
     w344 = [w344 + 48]
     w343 = call w344(w345)
     if0 w343 goto else_343
     w349 = this
+    if0 w349 goto null_349
+    goto passNull_349
+  null_349:
+    error("null pointer")
+  passNull_349:
     w348 = [w349 + 0]
     w348 = [w348 + 56]
     w350 = p_node
@@ -564,19 +809,39 @@ func Tree_Remove(this p_node c_node)
     goto end_343
   else_343:
     w356 = c_node
+    if0 w356 goto null_356
+    goto passNull_356
+  null_356:
+    error("null pointer")
+  passNull_356:
     w355 = [w356 + 0]
     w355 = [w355 + 12]
     w354 = call w355(w356)
     auxkey1 = w354
     w363 = p_node
+    if0 w363 goto null_363
+    goto passNull_363
+  null_363:
+    error("null pointer")
+  passNull_363:
     w362 = [w363 + 0]
     w362 = [w362 + 20]
     w361 = call w362(w363)
+    if0 w361 goto null_361
+    goto passNull_361
+  null_361:
+    error("null pointer")
+  passNull_361:
     w360 = [w361 + 0]
     w360 = [w360 + 12]
     w359 = call w360(w361)
     auxkey2 = w359
     w369 = this
+    if0 w369 goto null_369
+    goto passNull_369
+  null_369:
+    error("null pointer")
+  passNull_369:
     w368 = [w369 + 0]
     w368 = [w368 + 68]
     w370 = auxkey1
@@ -584,12 +849,22 @@ func Tree_Remove(this p_node c_node)
     w367 = call w368(w369 w370 w371)
     if0 w367 goto else_367
     w375 = p_node
+    if0 w375 goto null_375
+    goto passNull_375
+  null_375:
+    error("null pointer")
+  passNull_375:
     w374 = [w375 + 0]
     w374 = [w374 + 32]
     w376 = [this + 12]
     w373 = call w374(w375 w376)
     ntb = w373
     w381 = p_node
+    if0 w381 goto null_381
+    goto passNull_381
+  null_381:
+    error("null pointer")
+  passNull_381:
     w380 = [w381 + 0]
     w380 = [w380 + 4]
     w382 = 0
@@ -598,12 +873,22 @@ func Tree_Remove(this p_node c_node)
     goto end_367
   else_367:
     w387 = p_node
+    if0 w387 goto null_387
+    goto passNull_387
+  null_387:
+    error("null pointer")
+  passNull_387:
     w386 = [w387 + 0]
     w386 = [w386 + 16]
     w388 = [this + 12]
     w385 = call w386(w387 w388)
     ntb = w385
     w393 = p_node
+    if0 w393 goto null_393
+    goto passNull_393
+  null_393:
+    error("null pointer")
+  passNull_393:
     w392 = [w393 + 0]
     w392 = [w392 + 72]
     w394 = 0
@@ -619,17 +904,37 @@ func Tree_RemoveRight(this p_node c_node)
     ntb = 0
   loop_398:
     w400 = c_node
+    if0 w400 goto null_400
+    goto passNull_400
+  null_400:
+    error("null pointer")
+  passNull_400:
     w399 = [w400 + 0]
     w399 = [w399 + 48]
     w398 = call w399(w400)
     if0 w398 goto endLoop_398
     w404 = c_node
+    if0 w404 goto null_404
+    goto passNull_404
+  null_404:
+    error("null pointer")
+  passNull_404:
     w403 = [w404 + 0]
     w403 = [w403 + 64]
     w409 = c_node
+    if0 w409 goto null_409
+    goto passNull_409
+  null_409:
+    error("null pointer")
+  passNull_409:
     w408 = [w409 + 0]
     w408 = [w408 + 24]
     w407 = call w408(w409)
+    if0 w407 goto null_407
+    goto passNull_407
+  null_407:
+    error("null pointer")
+  passNull_407:
     w406 = [w407 + 0]
     w406 = [w406 + 12]
     w405 = call w406(w407)
@@ -638,6 +943,11 @@ func Tree_RemoveRight(this p_node c_node)
     w414 = c_node
     p_node = w414
     w418 = c_node
+    if0 w418 goto null_418
+    goto passNull_418
+  null_418:
+    error("null pointer")
+  passNull_418:
     w417 = [w418 + 0]
     w417 = [w417 + 24]
     w416 = call w417(w418)
@@ -645,12 +955,22 @@ func Tree_RemoveRight(this p_node c_node)
     goto loop_398
   endLoop_398:
     w423 = p_node
+    if0 w423 goto null_423
+    goto passNull_423
+  null_423:
+    error("null pointer")
+  passNull_423:
     w422 = [w423 + 0]
     w422 = [w422 + 16]
     w424 = [this + 12]
     w421 = call w422(w423 w424)
     ntb = w421
     w429 = p_node
+    if0 w429 goto null_429
+    goto passNull_429
+  null_429:
+    error("null pointer")
+  passNull_429:
     w428 = [w429 + 0]
     w428 = [w428 + 72]
     w430 = 0
@@ -663,17 +983,37 @@ func Tree_RemoveLeft(this p_node c_node)
     ntb = 0
   loop_434:
     w436 = c_node
+    if0 w436 goto null_436
+    goto passNull_436
+  null_436:
+    error("null pointer")
+  passNull_436:
     w435 = [w436 + 0]
     w435 = [w435 + 52]
     w434 = call w435(w436)
     if0 w434 goto endLoop_434
     w440 = c_node
+    if0 w440 goto null_440
+    goto passNull_440
+  null_440:
+    error("null pointer")
+  passNull_440:
     w439 = [w440 + 0]
     w439 = [w439 + 64]
     w445 = c_node
+    if0 w445 goto null_445
+    goto passNull_445
+  null_445:
+    error("null pointer")
+  passNull_445:
     w444 = [w445 + 0]
     w444 = [w444 + 20]
     w443 = call w444(w445)
+    if0 w443 goto null_443
+    goto passNull_443
+  null_443:
+    error("null pointer")
+  passNull_443:
     w442 = [w443 + 0]
     w442 = [w442 + 12]
     w441 = call w442(w443)
@@ -682,6 +1022,11 @@ func Tree_RemoveLeft(this p_node c_node)
     w450 = c_node
     p_node = w450
     w454 = c_node
+    if0 w454 goto null_454
+    goto passNull_454
+  null_454:
+    error("null pointer")
+  passNull_454:
     w453 = [w454 + 0]
     w453 = [w453 + 20]
     w452 = call w453(w454)
@@ -689,12 +1034,22 @@ func Tree_RemoveLeft(this p_node c_node)
     goto loop_434
   endLoop_434:
     w459 = p_node
+    if0 w459 goto null_459
+    goto passNull_459
+  null_459:
+    error("null pointer")
+  passNull_459:
     w458 = [w459 + 0]
     w458 = [w458 + 32]
     w460 = [this + 12]
     w457 = call w458(w459 w460)
     ntb = w457
     w465 = p_node
+    if0 w465 goto null_465
+    goto passNull_465
+  null_465:
+    error("null pointer")
+  passNull_465:
     w464 = [w465 + 0]
     w464 = [w464 + 4]
     w466 = 0
@@ -718,6 +1073,11 @@ func Tree_Search(this v_key)
     w476 = cont
     if0 w476 goto endLoop_476
     w479 = current_node
+    if0 w479 goto null_479
+    goto passNull_479
+  null_479:
+    error("null pointer")
+  passNull_479:
     w478 = [w479 + 0]
     w478 = [w478 + 12]
     w477 = call w478(w479)
@@ -727,11 +1087,21 @@ func Tree_Search(this v_key)
     w482 = w483 < w485
     if0 w482 goto else_482
     w489 = current_node
+    if0 w489 goto null_489
+    goto passNull_489
+  null_489:
+    error("null pointer")
+  passNull_489:
     w488 = [w489 + 0]
     w488 = [w488 + 52]
     w487 = call w488(w489)
     if0 w487 goto else_487
     w493 = current_node
+    if0 w493 goto null_493
+    goto passNull_493
+  null_493:
+    error("null pointer")
+  passNull_493:
     w492 = [w493 + 0]
     w492 = [w492 + 20]
     w491 = call w492(w493)
@@ -748,11 +1118,21 @@ func Tree_Search(this v_key)
     w498 = w499 < w501
     if0 w498 goto else_498
     w505 = current_node
+    if0 w505 goto null_505
+    goto passNull_505
+  null_505:
+    error("null pointer")
+  passNull_505:
     w504 = [w505 + 0]
     w504 = [w504 + 48]
     w503 = call w504(w505)
     if0 w503 goto else_503
     w509 = current_node
+    if0 w509 goto null_509
+    goto passNull_509
+  null_509:
+    error("null pointer")
+  passNull_509:
     w508 = [w509 + 0]
     w508 = [w508 + 24]
     w507 = call w508(w509)
@@ -781,6 +1161,11 @@ func Tree_Print(this)
     w519 = this
     current_node = w519
     w523 = this
+    if0 w523 goto null_523
+    goto passNull_523
+  null_523:
+    error("null pointer")
+  passNull_523:
     w522 = [w523 + 0]
     w522 = [w522 + 76]
     w524 = current_node
@@ -792,14 +1177,29 @@ func Tree_Print(this)
 func Tree_RecPrint(this node)
     ntb = 0
     w530 = node
+    if0 w530 goto null_530
+    goto passNull_530
+  null_530:
+    error("null pointer")
+  passNull_530:
     w529 = [w530 + 0]
     w529 = [w529 + 52]
     w528 = call w529(w530)
     if0 w528 goto else_528
     w534 = this
+    if0 w534 goto null_534
+    goto passNull_534
+  null_534:
+    error("null pointer")
+  passNull_534:
     w533 = [w534 + 0]
     w533 = [w533 + 76]
     w537 = node
+    if0 w537 goto null_537
+    goto passNull_537
+  null_537:
+    error("null pointer")
+  passNull_537:
     w536 = [w537 + 0]
     w536 = [w536 + 20]
     w535 = call w536(w537)
@@ -811,19 +1211,39 @@ func Tree_RecPrint(this node)
     ntb = w541
   end_528:
     w545 = node
+    if0 w545 goto null_545
+    goto passNull_545
+  null_545:
+    error("null pointer")
+  passNull_545:
     w544 = [w545 + 0]
     w544 = [w544 + 12]
     w543 = call w544(w545)
     print(w543)
     w549 = node
+    if0 w549 goto null_549
+    goto passNull_549
+  null_549:
+    error("null pointer")
+  passNull_549:
     w548 = [w549 + 0]
     w548 = [w548 + 48]
     w547 = call w548(w549)
     if0 w547 goto else_547
     w553 = this
+    if0 w553 goto null_553
+    goto passNull_553
+  null_553:
+    error("null pointer")
+  passNull_553:
     w552 = [w553 + 0]
     w552 = [w552 + 76]
     w556 = node
+    if0 w556 goto null_556
+    goto passNull_556
+  null_556:
+    error("null pointer")
+  passNull_556:
     w555 = [w556 + 0]
     w555 = [w555 + 24]
     w554 = call w555(w556)

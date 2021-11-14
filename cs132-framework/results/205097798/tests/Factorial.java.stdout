@@ -1,8 +1,18 @@
 func Main()
     w4 = 4
     w2 = alloc(w4)
+    if0 w2 goto null_2
+    goto passNull_2
+  null_2:
+    error("null pointer")
+  passNull_2:
     w4 = 4
     w3 = alloc(w4)
+    if0 w3 goto null_3
+    goto passNull_3
+  null_3:
+    error("null pointer")
+  passNull_3:
     [w2 + 0] = w3
     w4 = @Fac_ComputeFac
     [w3 + 0] = w4
@@ -26,6 +36,11 @@ func Fac_ComputeFac(this num)
   else_7:
     w15 = num
     w19 = this
+    if0 w19 goto null_19
+    goto passNull_19
+  null_19:
+    error("null pointer")
+  passNull_19:
     w18 = [w19 + 0]
     w18 = [w18 + 0]
     w21 = num

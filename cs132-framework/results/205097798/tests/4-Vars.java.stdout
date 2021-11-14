@@ -1,8 +1,18 @@
 func Main()
     w4 = 4
     w2 = alloc(w4)
+    if0 w2 goto null_2
+    goto passNull_2
+  null_2:
+    error("null pointer")
+  passNull_2:
     w4 = 8
     w3 = alloc(w4)
+    if0 w3 goto null_3
+    goto passNull_3
+  null_3:
+    error("null pointer")
+  passNull_3:
     [w2 + 0] = w3
     w4 = @A_helper
     [w3 + 0] = w4
@@ -19,12 +29,22 @@ func A_run(this)
     a = 0
     b = 0
     w8 = this
+    if0 w8 goto null_8
+    goto passNull_8
+  null_8:
+    error("null pointer")
+  passNull_8:
     w7 = [w8 + 0]
     w7 = [w7 + 0]
     w9 = 12
     w6 = call w7(w8 w9)
     a = w6
     w14 = this
+    if0 w14 goto null_14
+    goto passNull_14
+  null_14:
+    error("null pointer")
+  passNull_14:
     w13 = [w14 + 0]
     w13 = [w13 + 0]
     w15 = 15

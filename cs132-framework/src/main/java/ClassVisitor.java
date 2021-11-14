@@ -88,6 +88,14 @@ public class ClassVisitor extends GJDepthFirst<Boolean, Scope> {
         return arg0.f0.accept(this, arg1);
     }
 
+    /**
+     * f0 -> "class"
+     * f1 -> Identifier()
+     * f2 -> "{"
+     * f3 -> ( VarDeclaration() )*
+     * f4 -> ( MethodDeclaration() )*
+     * f5 -> "}"
+     */
     @Override
     public Boolean visit(ClassDeclaration arg0, Scope arg1) {
         arg1.scope = "class";
@@ -118,6 +126,16 @@ public class ClassVisitor extends GJDepthFirst<Boolean, Scope> {
         return false; // cycle not found
     }
 
+    /**
+     * f0 -> "class"
+     * f1 -> Identifier()
+     * f2 -> "extends"
+     * f3 -> Identifier()
+     * f4 -> "{"
+     * f5 -> ( VarDeclaration() )*
+     * f6 -> ( MethodDeclaration() )*
+     * f7 -> "}"
+     */
     @Override
     public Boolean visit(ClassExtendsDeclaration arg0, Scope arg1) {
         arg1.scope = "class";
@@ -133,6 +151,7 @@ public class ClassVisitor extends GJDepthFirst<Boolean, Scope> {
             Scope.dipTfOut();
             return false;
         }
+        arg0.f5.accept(this, arg1);
         arg0.f6.accept(this, arg1);
         arg1.stepOut();
         return true;
@@ -153,7 +172,8 @@ public class ClassVisitor extends GJDepthFirst<Boolean, Scope> {
     public Boolean visit(VarDeclaration arg0, Scope arg1) {
         TypecheckVisitor visitor = new TypecheckVisitor();
         if (arg1.scope.equals("class")) {
-            if (arg1.fields.containsKey(arg0.f1.f0.tokenImage)) {
+            // System.out.println(arg1.currentClass);
+            if (arg1.fields.containsKey(arg1.currentClass) && arg1.fields.get(arg1.currentClass).containsKey(arg0.f1.f0.tokenImage)) {
                 return false;
             }
             arg1.addField(arg1.currentClass, arg0.f1.f0.tokenImage, visitor.visit(arg0.f0, arg1));

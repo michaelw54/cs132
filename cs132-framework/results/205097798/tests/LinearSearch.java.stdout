@@ -1,8 +1,18 @@
 func Main()
     w4 = 12
     w2 = alloc(w4)
+    if0 w2 goto null_2
+    goto passNull_2
+  null_2:
+    error("null pointer")
+  passNull_2:
     w4 = 16
     w3 = alloc(w4)
+    if0 w3 goto null_3
+    goto passNull_3
+  null_3:
+    error("null pointer")
+  passNull_3:
     [w2 + 0] = w3
     w4 = @LS_Print
     [w3 + 0] = w4
@@ -24,12 +34,22 @@ func LS_Start(this sz)
     aux01 = 0
     aux02 = 0
     w9 = this
+    if0 w9 goto null_9
+    goto passNull_9
+  null_9:
+    error("null pointer")
+  passNull_9:
     w8 = [w9 + 0]
     w8 = [w8 + 4]
     w10 = sz
     w7 = call w8(w9 w10)
     aux01 = w7
     w15 = this
+    if0 w15 goto null_15
+    goto passNull_15
+  null_15:
+    error("null pointer")
+  passNull_15:
     w14 = [w15 + 0]
     w14 = [w14 + 0]
     w13 = call w14(w15)
@@ -37,24 +57,44 @@ func LS_Start(this sz)
     w18 = 9999
     print(w18)
     w21 = this
+    if0 w21 goto null_21
+    goto passNull_21
+  null_21:
+    error("null pointer")
+  passNull_21:
     w20 = [w21 + 0]
     w20 = [w20 + 12]
     w22 = 8
     w19 = call w20(w21 w22)
     print(w19)
     w26 = this
+    if0 w26 goto null_26
+    goto passNull_26
+  null_26:
+    error("null pointer")
+  passNull_26:
     w25 = [w26 + 0]
     w25 = [w25 + 12]
     w27 = 12
     w24 = call w25(w26 w27)
     print(w24)
     w31 = this
+    if0 w31 goto null_31
+    goto passNull_31
+  null_31:
+    error("null pointer")
+  passNull_31:
     w30 = [w31 + 0]
     w30 = [w30 + 12]
     w32 = 17
     w29 = call w30(w31 w32)
     print(w29)
     w36 = this
+    if0 w36 goto null_36
+    goto passNull_36
+  null_36:
+    error("null pointer")
+  passNull_36:
     w35 = [w36 + 0]
     w35 = [w35 + 12]
     w37 = 50
@@ -178,12 +218,26 @@ func LS_Init(this sz)
     w115 = sz
     [this + 8] = w115
     w122 = sz
+    w118 = 0
+    w119 = 1
+    w118 = w118 - w119
+    w118 = w118 < w122
+    if0 w118 goto outOfBounds_117
     w120 = 4
     w121 = 1
     w118 = w122 + w121
     w119 = w118 * w120
     w117 = alloc(w119)
+    if0 w117 goto null_117
+    goto passNull_117
+  null_117:
+    error("null pointer")
+  passNull_117:
     [w117 + 0] = w122
+    goto pass_117
+  outOfBounds_117:
+    error("array index out of bounds")
+  pass_117:
     [this + 4] = w117
     w124 = 1
     j = w124
@@ -213,8 +267,15 @@ func LS_Init(this sz)
     w152 = w153 + w151
     w151 = w152 * w150
     w149 = [this + 4]
+    w150 = [w149 + 0]
+    w152 = w153 < w150
+    if0 w152 goto outOfBounds_149
     w150 = w149 + w151
     [w150 + 0] = w154
+    goto pass_149
+  outOfBounds_149:
+    error("array index out of bounds")
+  pass_149:
     w161 = j
     w163 = 1
     w160 = w161 + w163

@@ -1,0 +1,60 @@
+func Main()
+    x = 0
+    w4 = 12
+    w2 = alloc(w4)
+    if0 w2 goto null_2
+    goto passNull_2
+  null_2:
+    error("null pointer")
+  passNull_2:
+    w4 = 8
+    w3 = alloc(w4)
+    if0 w3 goto null_3
+    goto passNull_3
+  null_3:
+    error("null pointer")
+  passNull_3:
+    [w2 + 0] = w3
+    w4 = @B_bar
+    [w3 + 0] = w4
+    w4 = @A_foo
+    [w3 + 4] = w4
+    w1 = [w2 + 0]
+    w1 = [w1 + 0]
+    w0 = call w1(w2)
+    x = w0
+    ret_ = 0
+    return ret_
+    
+func A_foo(this)
+    w7 = 2
+    [this + 4] = w7
+    w9 = [this + 4]
+    print(w9)
+    w10 = 0
+    return w10
+    
+func A_bar(this)
+    w11 = 777
+    print(w11)
+    w12 = 0
+    return w12
+    
+func B_bar(this)
+    w13 = 1
+    [this + 8] = w13
+    w17 = this
+    if0 w17 goto null_17
+    goto passNull_17
+  null_17:
+    error("null pointer")
+  passNull_17:
+    w16 = [w17 + 0]
+    w16 = [w16 + 4]
+    w15 = call w16(w17)
+    print(w15)
+    w19 = [this + 8]
+    print(w19)
+    w20 = 0
+    return w20
+    

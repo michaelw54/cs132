@@ -1,8 +1,18 @@
 func Main()
     w4 = 4
     w2 = alloc(w4)
+    if0 w2 goto null_2
+    goto passNull_2
+  null_2:
+    error("null pointer")
+  passNull_2:
     w4 = 4
     w3 = alloc(w4)
+    if0 w3 goto null_3
+    goto passNull_3
+  null_3:
+    error("null pointer")
+  passNull_3:
     [w2 + 0] = w3
     w4 = @LL_Start
     [w3 + 0] = w4
@@ -43,11 +53,21 @@ func Element_Equal(this other)
     w16 = 1
     ret_val = w16
     w20 = other
+    if0 w20 goto null_20
+    goto passNull_20
+  null_20:
+    error("null pointer")
+  passNull_20:
     w19 = [w20 + 0]
     w19 = [w19 + 8]
     w18 = call w19(w20)
     aux01 = w18
     w27 = this
+    if0 w27 goto null_27
+    goto passNull_27
+  null_27:
+    error("null pointer")
+  passNull_27:
     w26 = [w27 + 0]
     w26 = [w26 + 20]
     w28 = aux01
@@ -61,11 +81,21 @@ func Element_Equal(this other)
     goto end_23
   else_23:
     w35 = other
+    if0 w35 goto null_35
+    goto passNull_35
+  null_35:
+    error("null pointer")
+  passNull_35:
     w34 = [w35 + 0]
     w34 = [w34 + 0]
     w33 = call w34(w35)
     aux02 = w33
     w42 = this
+    if0 w42 goto null_42
+    goto passNull_42
+  null_42:
+    error("null pointer")
+  passNull_42:
     w41 = [w42 + 0]
     w41 = [w41 + 20]
     w43 = aux02
@@ -81,6 +111,11 @@ func Element_Equal(this other)
     w48 = [this + 8]
     if0 w48 goto else_48
     w53 = other
+    if0 w53 goto null_53
+    goto passNull_53
+  null_53:
+    error("null pointer")
+  passNull_53:
     w52 = [w53 + 0]
     w52 = [w52 + 16]
     w51 = call w52(w53)
@@ -97,6 +132,11 @@ func Element_Equal(this other)
     goto end_48
   else_48:
     w61 = other
+    if0 w61 goto null_61
+    goto passNull_61
+  null_61:
+    error("null pointer")
+  passNull_61:
     w60 = [w61 + 0]
     w60 = [w60 + 16]
     w59 = call w60(w61)
@@ -172,8 +212,18 @@ func List_Insert(this new_elem)
     aux03 = w105
     w109 = 16
     w107 = alloc(w109)
+    if0 w107 goto null_107
+    goto passNull_107
+  null_107:
+    error("null pointer")
+  passNull_107:
     w109 = 40
     w108 = alloc(w109)
+    if0 w108 goto null_108
+    goto passNull_108
+  null_108:
+    error("null pointer")
+  passNull_108:
     [w107 + 0] = w108
     w109 = @List_Delete
     [w108 + 0] = w109
@@ -197,6 +247,11 @@ func List_Insert(this new_elem)
     [w108 + 36] = w109
     aux02 = w107
     w113 = aux02
+    if0 w113 goto null_113
+    goto passNull_113
+  null_113:
+    error("null pointer")
+  passNull_113:
     w112 = [w113 + 0]
     w112 = [w112 + 32]
     w114 = new_elem
@@ -243,12 +298,22 @@ func List_Delete(this e)
     w144 = var_end
     w143 = 1
     w142 = w144 < w143
+    if0 w142 goto shortCircuit_141
     w147 = ret_val
     w146 = 1
     w145 = w147 < w146
     w141 = w142 * w145
+    goto endCircuit_141
+  shortCircuit_141:
+    w141 = 0
+  endCircuit_141:
     if0 w141 goto endLoop_141
     w151 = e
+    if0 w151 goto null_151
+    goto passNull_151
+  null_151:
+    error("null pointer")
+  passNull_151:
     w150 = [w151 + 0]
     w150 = [w150 + 12]
     w152 = var_elem
@@ -261,6 +326,11 @@ func List_Delete(this e)
     w156 = w157 < w159
     if0 w156 goto else_156
     w163 = aux01
+    if0 w163 goto null_163
+    goto passNull_163
+  null_163:
+    error("null pointer")
+  passNull_163:
     w162 = [w163 + 0]
     w162 = [w162 + 16]
     w161 = call w162(w163)
@@ -272,9 +342,19 @@ func List_Delete(this e)
     w166 = w167 - w169
     print(w166)
     w173 = prev
+    if0 w173 goto null_173
+    goto passNull_173
+  null_173:
+    error("null pointer")
+  passNull_173:
     w172 = [w173 + 0]
     w172 = [w172 + 20]
     w176 = aux01
+    if0 w176 goto null_176
+    goto passNull_176
+  null_176:
+    error("null pointer")
+  passNull_176:
     w175 = [w176 + 0]
     w175 = [w175 + 16]
     w174 = call w175(w176)
@@ -297,16 +377,31 @@ func List_Delete(this e)
     w190 = aux01
     prev = w190
     w194 = aux01
+    if0 w194 goto null_194
+    goto passNull_194
+  null_194:
+    error("null pointer")
+  passNull_194:
     w193 = [w194 + 0]
     w193 = [w193 + 16]
     w192 = call w193(w194)
     aux01 = w192
     w199 = aux01
+    if0 w199 goto null_199
+    goto passNull_199
+  null_199:
+    error("null pointer")
+  passNull_199:
     w198 = [w199 + 0]
     w198 = [w198 + 28]
     w197 = call w198(w199)
     var_end = w197
     w204 = aux01
+    if0 w204 goto null_204
+    goto passNull_204
+  null_204:
+    error("null pointer")
+  passNull_204:
     w203 = [w204 + 0]
     w203 = [w203 + 12]
     w202 = call w203(w204)
@@ -343,6 +438,11 @@ func List_Search(this e)
     w220 = w222 < w221
     if0 w220 goto endLoop_220
     w225 = e
+    if0 w225 goto null_225
+    goto passNull_225
+  null_225:
+    error("null pointer")
+  passNull_225:
     w224 = [w225 + 0]
     w224 = [w224 + 12]
     w226 = var_elem
@@ -356,16 +456,31 @@ func List_Search(this e)
     nt = w230
   end_223:
     w234 = aux01
+    if0 w234 goto null_234
+    goto passNull_234
+  null_234:
+    error("null pointer")
+  passNull_234:
     w233 = [w234 + 0]
     w233 = [w233 + 16]
     w232 = call w233(w234)
     aux01 = w232
     w239 = aux01
+    if0 w239 goto null_239
+    goto passNull_239
+  null_239:
+    error("null pointer")
+  passNull_239:
     w238 = [w239 + 0]
     w238 = [w238 + 28]
     w237 = call w238(w239)
     var_end = w237
     w244 = aux01
+    if0 w244 goto null_244
+    goto passNull_244
+  null_244:
+    error("null pointer")
+  passNull_244:
     w243 = [w244 + 0]
     w243 = [w243 + 12]
     w242 = call w243(w244)
@@ -403,21 +518,41 @@ func List_Print(this)
     w257 = w259 < w258
     if0 w257 goto endLoop_257
     w262 = var_elem
+    if0 w262 goto null_262
+    goto passNull_262
+  null_262:
+    error("null pointer")
+  passNull_262:
     w261 = [w262 + 0]
     w261 = [w261 + 8]
     w260 = call w261(w262)
     print(w260)
     w266 = aux01
+    if0 w266 goto null_266
+    goto passNull_266
+  null_266:
+    error("null pointer")
+  passNull_266:
     w265 = [w266 + 0]
     w265 = [w265 + 16]
     w264 = call w265(w266)
     aux01 = w264
     w271 = aux01
+    if0 w271 goto null_271
+    goto passNull_271
+  null_271:
+    error("null pointer")
+  passNull_271:
     w270 = [w271 + 0]
     w270 = [w270 + 28]
     w269 = call w270(w271)
     var_end = w269
     w276 = aux01
+    if0 w276 goto null_276
+    goto passNull_276
+  null_276:
+    error("null pointer")
+  passNull_276:
     w275 = [w276 + 0]
     w275 = [w275 + 12]
     w274 = call w275(w276)
@@ -436,8 +571,18 @@ func LL_Start(this)
     el03 = 0
     w282 = 16
     w280 = alloc(w282)
+    if0 w280 goto null_280
+    goto passNull_280
+  null_280:
+    error("null pointer")
+  passNull_280:
     w282 = 40
     w281 = alloc(w282)
+    if0 w281 goto null_281
+    goto passNull_281
+  null_281:
+    error("null pointer")
+  passNull_281:
     [w280 + 0] = w281
     w282 = @List_Delete
     [w281 + 0] = w282
@@ -461,6 +606,11 @@ func LL_Start(this)
     [w281 + 36] = w282
     last_elem = w280
     w286 = last_elem
+    if0 w286 goto null_286
+    goto passNull_286
+  null_286:
+    error("null pointer")
+  passNull_286:
     w285 = [w286 + 0]
     w285 = [w285 + 8]
     w284 = call w285(w286)
@@ -468,19 +618,39 @@ func LL_Start(this)
     w289 = last_elem
     head = w289
     w293 = head
+    if0 w293 goto null_293
+    goto passNull_293
+  null_293:
+    error("null pointer")
+  passNull_293:
     w292 = [w293 + 0]
     w292 = [w292 + 8]
     w291 = call w292(w293)
     aux01 = w291
     w298 = head
+    if0 w298 goto null_298
+    goto passNull_298
+  null_298:
+    error("null pointer")
+  passNull_298:
     w297 = [w298 + 0]
     w297 = [w297 + 4]
     w296 = call w297(w298)
     aux01 = w296
     w303 = 16
     w301 = alloc(w303)
+    if0 w301 goto null_301
+    goto passNull_301
+  null_301:
+    error("null pointer")
+  passNull_301:
     w303 = 24
     w302 = alloc(w303)
+    if0 w302 goto null_302
+    goto passNull_302
+  null_302:
+    error("null pointer")
+  passNull_302:
     [w301 + 0] = w302
     w303 = @Element_GetSalary
     [w302 + 0] = w303
@@ -496,6 +666,11 @@ func LL_Start(this)
     [w302 + 20] = w303
     el01 = w301
     w307 = el01
+    if0 w307 goto null_307
+    goto passNull_307
+  null_307:
+    error("null pointer")
+  passNull_307:
     w306 = [w307 + 0]
     w306 = [w306 + 4]
     w308 = 25
@@ -504,12 +679,22 @@ func LL_Start(this)
     w305 = call w306(w307 w308 w309 w310)
     aux01 = w305
     w315 = head
+    if0 w315 goto null_315
+    goto passNull_315
+  null_315:
+    error("null pointer")
+  passNull_315:
     w314 = [w315 + 0]
     w314 = [w314 + 36]
     w316 = el01
     w313 = call w314(w315 w316)
     head = w313
     w321 = head
+    if0 w321 goto null_321
+    goto passNull_321
+  null_321:
+    error("null pointer")
+  passNull_321:
     w320 = [w321 + 0]
     w320 = [w320 + 4]
     w319 = call w320(w321)
@@ -518,8 +703,18 @@ func LL_Start(this)
     print(w324)
     w327 = 16
     w325 = alloc(w327)
+    if0 w325 goto null_325
+    goto passNull_325
+  null_325:
+    error("null pointer")
+  passNull_325:
     w327 = 24
     w326 = alloc(w327)
+    if0 w326 goto null_326
+    goto passNull_326
+  null_326:
+    error("null pointer")
+  passNull_326:
     [w325 + 0] = w326
     w327 = @Element_GetSalary
     [w326 + 0] = w327
@@ -535,6 +730,11 @@ func LL_Start(this)
     [w326 + 20] = w327
     el01 = w325
     w331 = el01
+    if0 w331 goto null_331
+    goto passNull_331
+  null_331:
+    error("null pointer")
+  passNull_331:
     w330 = [w331 + 0]
     w330 = [w330 + 4]
     w332 = 39
@@ -545,12 +745,22 @@ func LL_Start(this)
     w337 = el01
     el02 = w337
     w341 = head
+    if0 w341 goto null_341
+    goto passNull_341
+  null_341:
+    error("null pointer")
+  passNull_341:
     w340 = [w341 + 0]
     w340 = [w340 + 36]
     w342 = el01
     w339 = call w340(w341 w342)
     head = w339
     w347 = head
+    if0 w347 goto null_347
+    goto passNull_347
+  null_347:
+    error("null pointer")
+  passNull_347:
     w346 = [w347 + 0]
     w346 = [w346 + 4]
     w345 = call w346(w347)
@@ -559,8 +769,18 @@ func LL_Start(this)
     print(w350)
     w353 = 16
     w351 = alloc(w353)
+    if0 w351 goto null_351
+    goto passNull_351
+  null_351:
+    error("null pointer")
+  passNull_351:
     w353 = 24
     w352 = alloc(w353)
+    if0 w352 goto null_352
+    goto passNull_352
+  null_352:
+    error("null pointer")
+  passNull_352:
     [w351 + 0] = w352
     w353 = @Element_GetSalary
     [w352 + 0] = w353
@@ -576,6 +796,11 @@ func LL_Start(this)
     [w352 + 20] = w353
     el01 = w351
     w357 = el01
+    if0 w357 goto null_357
+    goto passNull_357
+  null_357:
+    error("null pointer")
+  passNull_357:
     w356 = [w357 + 0]
     w356 = [w356 + 4]
     w358 = 22
@@ -584,20 +809,40 @@ func LL_Start(this)
     w355 = call w356(w357 w358 w359 w360)
     aux01 = w355
     w365 = head
+    if0 w365 goto null_365
+    goto passNull_365
+  null_365:
+    error("null pointer")
+  passNull_365:
     w364 = [w365 + 0]
     w364 = [w364 + 36]
     w366 = el01
     w363 = call w364(w365 w366)
     head = w363
     w371 = head
+    if0 w371 goto null_371
+    goto passNull_371
+  null_371:
+    error("null pointer")
+  passNull_371:
     w370 = [w371 + 0]
     w370 = [w370 + 4]
     w369 = call w370(w371)
     aux01 = w369
     w376 = 16
     w374 = alloc(w376)
+    if0 w374 goto null_374
+    goto passNull_374
+  null_374:
+    error("null pointer")
+  passNull_374:
     w376 = 24
     w375 = alloc(w376)
+    if0 w375 goto null_375
+    goto passNull_375
+  null_375:
+    error("null pointer")
+  passNull_375:
     [w374 + 0] = w375
     w376 = @Element_GetSalary
     [w375 + 0] = w376
@@ -613,6 +858,11 @@ func LL_Start(this)
     [w375 + 20] = w376
     el03 = w374
     w380 = el03
+    if0 w380 goto null_380
+    goto passNull_380
+  null_380:
+    error("null pointer")
+  passNull_380:
     w379 = [w380 + 0]
     w379 = [w379 + 4]
     w381 = 27
@@ -621,12 +871,22 @@ func LL_Start(this)
     w378 = call w379(w380 w381 w382 w383)
     aux01 = w378
     w388 = head
+    if0 w388 goto null_388
+    goto passNull_388
+  null_388:
+    error("null pointer")
+  passNull_388:
     w387 = [w388 + 0]
     w387 = [w387 + 24]
     w389 = el02
     w386 = call w387(w388 w389)
     print(w386)
     w393 = head
+    if0 w393 goto null_393
+    goto passNull_393
+  null_393:
+    error("null pointer")
+  passNull_393:
     w392 = [w393 + 0]
     w392 = [w392 + 24]
     w394 = el03
@@ -636,8 +896,18 @@ func LL_Start(this)
     print(w396)
     w399 = 16
     w397 = alloc(w399)
+    if0 w397 goto null_397
+    goto passNull_397
+  null_397:
+    error("null pointer")
+  passNull_397:
     w399 = 24
     w398 = alloc(w399)
+    if0 w398 goto null_398
+    goto passNull_398
+  null_398:
+    error("null pointer")
+  passNull_398:
     [w397 + 0] = w398
     w399 = @Element_GetSalary
     [w398 + 0] = w399
@@ -653,6 +923,11 @@ func LL_Start(this)
     [w398 + 20] = w399
     el01 = w397
     w403 = el01
+    if0 w403 goto null_403
+    goto passNull_403
+  null_403:
+    error("null pointer")
+  passNull_403:
     w402 = [w403 + 0]
     w402 = [w402 + 4]
     w404 = 28
@@ -661,12 +936,22 @@ func LL_Start(this)
     w401 = call w402(w403 w404 w405 w406)
     aux01 = w401
     w411 = head
+    if0 w411 goto null_411
+    goto passNull_411
+  null_411:
+    error("null pointer")
+  passNull_411:
     w410 = [w411 + 0]
     w410 = [w410 + 36]
     w412 = el01
     w409 = call w410(w411 w412)
     head = w409
     w417 = head
+    if0 w417 goto null_417
+    goto passNull_417
+  null_417:
+    error("null pointer")
+  passNull_417:
     w416 = [w417 + 0]
     w416 = [w416 + 4]
     w415 = call w416(w417)
@@ -674,12 +959,22 @@ func LL_Start(this)
     w420 = 2220000
     print(w420)
     w423 = head
+    if0 w423 goto null_423
+    goto passNull_423
+  null_423:
+    error("null pointer")
+  passNull_423:
     w422 = [w423 + 0]
     w422 = [w422 + 0]
     w424 = el02
     w421 = call w422(w423 w424)
     head = w421
     w429 = head
+    if0 w429 goto null_429
+    goto passNull_429
+  null_429:
+    error("null pointer")
+  passNull_429:
     w428 = [w429 + 0]
     w428 = [w428 + 4]
     w427 = call w428(w429)
@@ -687,12 +982,22 @@ func LL_Start(this)
     w432 = 33300000
     print(w432)
     w435 = head
+    if0 w435 goto null_435
+    goto passNull_435
+  null_435:
+    error("null pointer")
+  passNull_435:
     w434 = [w435 + 0]
     w434 = [w434 + 0]
     w436 = el01
     w433 = call w434(w435 w436)
     head = w433
     w441 = head
+    if0 w441 goto null_441
+    goto passNull_441
+  null_441:
+    error("null pointer")
+  passNull_441:
     w440 = [w441 + 0]
     w440 = [w440 + 4]
     w439 = call w440(w441)
