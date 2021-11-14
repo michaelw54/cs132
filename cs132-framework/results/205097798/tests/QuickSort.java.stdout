@@ -104,6 +104,11 @@ func QS_Sort(this left right)
     w46 = [w49 + 0]
     w47 = w50 < w46
     if0 w47 goto outOfBounds_45
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w50
+    if0 negativeBoundsCheck goto outOfBounds_45
     w46 = 4
     w47 = 1
     w48 = w50 + w47
@@ -140,6 +145,11 @@ func QS_Sort(this left right)
     w74 = [w77 + 0]
     w75 = w78 < w74
     if0 w75 goto outOfBounds_73
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w78
+    if0 negativeBoundsCheck goto outOfBounds_73
     w74 = 4
     w75 = 1
     w76 = w78 + w75
@@ -180,6 +190,11 @@ func QS_Sort(this left right)
     w102 = [w105 + 0]
     w103 = w106 < w102
     if0 w103 goto outOfBounds_101
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w106
+    if0 negativeBoundsCheck goto outOfBounds_101
     w102 = 4
     w103 = 1
     w104 = w106 + w103
@@ -211,6 +226,11 @@ func QS_Sort(this left right)
     w121 = [w124 + 0]
     w122 = w125 < w121
     if0 w122 goto outOfBounds_120
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w125
+    if0 negativeBoundsCheck goto outOfBounds_120
     w121 = 4
     w122 = 1
     w123 = w125 + w122
@@ -228,6 +248,11 @@ func QS_Sort(this left right)
     w134 = [w137 + 0]
     w135 = w138 < w134
     if0 w135 goto outOfBounds_133
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w138
+    if0 negativeBoundsCheck goto outOfBounds_133
     w134 = 4
     w135 = 1
     w136 = w138 + w135
@@ -246,6 +271,11 @@ func QS_Sort(this left right)
     w129 = [w128 + 0]
     w131 = w132 < w129
     if0 w131 goto outOfBounds_128
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w132
+    if0 negativeBoundsCheck goto outOfBounds_128
     w129 = w128 + w130
     [w129 + 0] = w133
     goto pass_128
@@ -262,6 +292,11 @@ func QS_Sort(this left right)
     w142 = [w141 + 0]
     w144 = w145 < w142
     if0 w144 goto outOfBounds_141
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w145
+    if0 negativeBoundsCheck goto outOfBounds_141
     w142 = w141 + w143
     [w142 + 0] = w146
     goto pass_141
@@ -289,6 +324,11 @@ func QS_Sort(this left right)
     w167 = [w170 + 0]
     w168 = w171 < w167
     if0 w168 goto outOfBounds_166
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w171
+    if0 negativeBoundsCheck goto outOfBounds_166
     w167 = 4
     w168 = 1
     w169 = w171 + w168
@@ -307,6 +347,11 @@ func QS_Sort(this left right)
     w162 = [w161 + 0]
     w164 = w165 < w162
     if0 w164 goto outOfBounds_161
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w165
+    if0 negativeBoundsCheck goto outOfBounds_161
     w162 = w161 + w163
     [w162 + 0] = w166
     goto pass_161
@@ -319,6 +364,11 @@ func QS_Sort(this left right)
     w180 = [w183 + 0]
     w181 = w184 < w180
     if0 w181 goto outOfBounds_179
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w184
+    if0 negativeBoundsCheck goto outOfBounds_179
     w180 = 4
     w181 = 1
     w182 = w184 + w181
@@ -337,6 +387,11 @@ func QS_Sort(this left right)
     w175 = [w174 + 0]
     w177 = w178 < w175
     if0 w177 goto outOfBounds_174
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w178
+    if0 negativeBoundsCheck goto outOfBounds_174
     w175 = w174 + w176
     [w175 + 0] = w179
     goto pass_174
@@ -353,6 +408,11 @@ func QS_Sort(this left right)
     w188 = [w187 + 0]
     w190 = w191 < w188
     if0 w190 goto outOfBounds_187
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w191
+    if0 negativeBoundsCheck goto outOfBounds_187
     w188 = w187 + w189
     [w188 + 0] = w192
     goto pass_187
@@ -409,6 +469,11 @@ func QS_Print(this)
     w227 = [w230 + 0]
     w228 = w231 < w227
     if0 w228 goto outOfBounds_226
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w231
+    if0 negativeBoundsCheck goto outOfBounds_226
     w227 = 4
     w228 = 1
     w229 = w231 + w228
@@ -464,6 +529,11 @@ func QS_Init(this sz)
     w250 = [w249 + 0]
     w252 = w253 < w250
     if0 w252 goto outOfBounds_249
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w253
+    if0 negativeBoundsCheck goto outOfBounds_249
     w250 = w249 + w251
     [w250 + 0] = w254
     goto pass_249
@@ -480,6 +550,11 @@ func QS_Init(this sz)
     w257 = [w256 + 0]
     w259 = w260 < w257
     if0 w259 goto outOfBounds_256
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w260
+    if0 negativeBoundsCheck goto outOfBounds_256
     w257 = w256 + w258
     [w257 + 0] = w261
     goto pass_256
@@ -496,6 +571,11 @@ func QS_Init(this sz)
     w264 = [w263 + 0]
     w266 = w267 < w264
     if0 w266 goto outOfBounds_263
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w267
+    if0 negativeBoundsCheck goto outOfBounds_263
     w264 = w263 + w265
     [w264 + 0] = w268
     goto pass_263
@@ -512,6 +592,11 @@ func QS_Init(this sz)
     w271 = [w270 + 0]
     w273 = w274 < w271
     if0 w273 goto outOfBounds_270
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w274
+    if0 negativeBoundsCheck goto outOfBounds_270
     w271 = w270 + w272
     [w271 + 0] = w275
     goto pass_270
@@ -528,6 +613,11 @@ func QS_Init(this sz)
     w278 = [w277 + 0]
     w280 = w281 < w278
     if0 w280 goto outOfBounds_277
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w281
+    if0 negativeBoundsCheck goto outOfBounds_277
     w278 = w277 + w279
     [w278 + 0] = w282
     goto pass_277
@@ -544,6 +634,11 @@ func QS_Init(this sz)
     w285 = [w284 + 0]
     w287 = w288 < w285
     if0 w287 goto outOfBounds_284
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w288
+    if0 negativeBoundsCheck goto outOfBounds_284
     w285 = w284 + w286
     [w285 + 0] = w289
     goto pass_284
@@ -560,6 +655,11 @@ func QS_Init(this sz)
     w292 = [w291 + 0]
     w294 = w295 < w292
     if0 w294 goto outOfBounds_291
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w295
+    if0 negativeBoundsCheck goto outOfBounds_291
     w292 = w291 + w293
     [w292 + 0] = w296
     goto pass_291
@@ -576,6 +676,11 @@ func QS_Init(this sz)
     w299 = [w298 + 0]
     w301 = w302 < w299
     if0 w301 goto outOfBounds_298
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w302
+    if0 negativeBoundsCheck goto outOfBounds_298
     w299 = w298 + w300
     [w299 + 0] = w303
     goto pass_298
@@ -592,6 +697,11 @@ func QS_Init(this sz)
     w306 = [w305 + 0]
     w308 = w309 < w306
     if0 w308 goto outOfBounds_305
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w309
+    if0 negativeBoundsCheck goto outOfBounds_305
     w306 = w305 + w307
     [w306 + 0] = w310
     goto pass_305
@@ -608,6 +718,11 @@ func QS_Init(this sz)
     w313 = [w312 + 0]
     w315 = w316 < w313
     if0 w315 goto outOfBounds_312
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w316
+    if0 negativeBoundsCheck goto outOfBounds_312
     w313 = w312 + w314
     [w313 + 0] = w317
     goto pass_312

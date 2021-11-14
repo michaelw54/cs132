@@ -117,6 +117,11 @@ func LS_Print(this)
     w48 = [w51 + 0]
     w49 = w52 < w48
     if0 w49 goto outOfBounds_47
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w52
+    if0 negativeBoundsCheck goto outOfBounds_47
     w48 = 4
     w49 = 1
     w50 = w52 + w49
@@ -160,6 +165,11 @@ func LS_Search(this num)
     w73 = [w76 + 0]
     w74 = w77 < w73
     if0 w74 goto outOfBounds_72
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w77
+    if0 negativeBoundsCheck goto outOfBounds_72
     w73 = 4
     w74 = 1
     w75 = w77 + w74
@@ -270,6 +280,11 @@ func LS_Init(this sz)
     w150 = [w149 + 0]
     w152 = w153 < w150
     if0 w152 goto outOfBounds_149
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w153
+    if0 negativeBoundsCheck goto outOfBounds_149
     w150 = w149 + w151
     [w150 + 0] = w154
     goto pass_149

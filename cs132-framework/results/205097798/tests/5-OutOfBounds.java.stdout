@@ -52,6 +52,11 @@ func A_run(this)
     w14 = [w17 + 0]
     w15 = w18 < w14
     if0 w15 goto outOfBounds_13
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w18
+    if0 negativeBoundsCheck goto outOfBounds_13
     w14 = 4
     w15 = 1
     w16 = w18 + w15
@@ -68,6 +73,11 @@ func A_run(this)
     w21 = [w24 + 0]
     w22 = w25 < w21
     if0 w22 goto outOfBounds_20
+    negativeOne = 0
+    positiveOne = 1
+    negativeOne = negativeOne - positiveOne
+    negativeBoundsCheck = negativeOne < w25
+    if0 negativeBoundsCheck goto outOfBounds_20
     w21 = 4
     w22 = 1
     w23 = w25 + w22

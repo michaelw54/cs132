@@ -299,6 +299,11 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
             printWithIndents(id(i+1) + " = [" + arg0.f0.f0.tokenImage + " + 0]", arg1); // res+1 = [localVar + 0]
             printWithIndents(id(i+2) + " = " + id(i+4) + " < " + id(i+1), arg1); // res+2 = res+4 < res+1
             printWithIndents("if0 " + id(i+2) + " goto " + outOfBoundsLabel, arg1); // if0 res+2 goto outOfBoundsRes
+            printWithIndents("negativeOne = 0", arg1);
+            printWithIndents("positiveOne = 1", arg1);
+            printWithIndents("negativeOne = negativeOne - positiveOne", arg1);
+            printWithIndents("negativeBoundsCheck = negativeOne < " + id(i+4), arg1);
+            printWithIndents("if0 negativeBoundsCheck goto " + outOfBoundsLabel, arg1);
             // BOUNDS CHECK END
 
             printWithIndents(id(i+1) + " = 4", arg1); // wk+1 = 4
@@ -340,6 +345,11 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
             printWithIndents(id(i+1) + " = [" + id(i) + " + 0]", arg1); // res+1 = [field + 0]
             printWithIndents(id(i+3) + " = " + id(i+4) + " < " + id(i+1), arg1); // res+2 = res+4 < res+1
             printWithIndents("if0 " + id(i+3) + " goto " + outOfBoundsLabel, arg1); // if0 res+2 goto outOfBoundsRes
+            printWithIndents("negativeOne = 0", arg1);
+            printWithIndents("positiveOne = 1", arg1);
+            printWithIndents("negativeOne = negativeOne - positiveOne", arg1);
+            printWithIndents("negativeBoundsCheck = negativeOne < " + id(i+4), arg1);
+            printWithIndents("if0 negativeBoundsCheck goto " + outOfBoundsLabel, arg1);
             // BOUNDS CHECK END
             
             printWithIndents(id(i+1) + " = " + id(i) + " + " + id(i+2), arg1); // wk+1 = wk + wk+2
@@ -528,22 +538,32 @@ public class MainVisitor extends GJVoidDepthFirst<Scope> {
         arg0.f0.accept(this, arg1);
         int indexK = arg1.k;
         arg0.f2.accept(this, arg1);
-        // Out of bounds checking
+        // BOUNDS CHECK BEGIN
         String outOfBoundsLabel = "outOfBounds_" + Integer.toString(res);
         String passLabel = "pass_" + Integer.toString(res);
         printWithIndents(id(res+1) + " = [" + id(heapK) + " + 0]", arg1); // res+1 = [heapK + 0]
         printWithIndents(id(res+2) + " = " + id(indexK) + " < " + id(res+1), arg1); // res+2 = indexK < res+1
         printWithIndents("if0 " + id(res+2) + " goto " + outOfBoundsLabel, arg1); // if0 res+2 goto outOfBoundsRes
+        printWithIndents("negativeOne = 0", arg1);
+        printWithIndents("positiveOne = 1", arg1);
+        printWithIndents("negativeOne = negativeOne - positiveOne", arg1);
+        printWithIndents("negativeBoundsCheck = negativeOne < " + id(indexK), arg1);
+        printWithIndents("if0 negativeBoundsCheck goto " + outOfBoundsLabel, arg1);
+        // BOUNDS CHECK END
+
         printWithIndents(id(res+1) + " = 4", arg1);
         printWithIndents(id(res+2) + " = 1", arg1);
         printWithIndents(id(res+3) + " = " + id(indexK) + " + " + id(res+2), arg1);
         printWithIndents(id(res+2) + " = " + id(res+3) + " * " + id(res+1), arg1);
         printWithIndents(id(res+1) + " = " + id(heapK) + " + " + id(res+2), arg1);
         printWithIndents(id(res) + " = " + "[" + id(res+1) + " + 0]", arg1);
+
+        // BOUNDS CHECK LABEL BEGIN
         printWithIndents("goto " + passLabel, arg1);
         printLabel(outOfBoundsLabel); // outOfBoundsRes:
         printWithIndents("error(\"array index out of bounds\")", arg1);// error("array index out of bounds")
         printLabel(passLabel);
+        // BOUNDS CHECK LABEL END
         arg1.k += 1;
     }
 
