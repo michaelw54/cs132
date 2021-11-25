@@ -1,0 +1,200 @@
+func Main()
+s3 = @f
+s3 = call s3()
+print(s3)
+v1 = s3
+return v1
+
+func f()
+s3 = 10
+s4 = 20
+s5 = s3 + s4
+s6 = 30
+s7 = s3 < s6
+if0 s7 goto L8
+s7 = s3 + s5
+s8 = s3 + s4
+goto L10
+L8:
+s9 = s4 + s5
+goto L14
+L10:
+s10 = 50
+s4 = s7 + s10
+s11 = s5 + s7
+t0 = s11 + s8
+print(t0)
+s9 = s5 + s8
+t1 = 40
+s4 = s4 + t1
+goto L8
+L14:
+s10 = 10
+s8 = s3 + s10
+L22:
+s4 = 55
+t0 = 20
+s5 = s3 - t0
+t1 = s4 < s5
+if0 t1 goto L20
+s7 = s5 + s4
+s9 = s7 - s10
+t2 = s7 + s9
+print(t2)
+s4 = s5 + s9
+t3 = 2
+s8 = t3 - s4
+goto L22
+L20:
+s3 = 7
+s4 = s8 + s3
+s5 = s5 + s4
+t3 = 2
+s9 = t3 * s5
+s3 = s8 + s10
+s10 = 55
+s10 = s10
+t1 = @func_g
+s6 = s3 < s10
+if0 s6 goto L27
+s6 = s3 - t0
+save_reg_s3 = s3
+save_reg_s4 = s4
+save_reg_s5 = s5
+save_reg_s11 = s11
+save_reg_s6 = s6
+save_reg_s7 = s7
+save_reg_s8 = s8
+save_reg_s9 = s9
+save_reg_t0 = t0
+save_reg_t1 = t1
+save_reg_t3 = t3
+h = s10
+i = s6
+a2 = s4
+a3 = s5
+a4 = s7
+a5 = s9
+a6 = s8
+a7 = s3
+s10 = call t1(h i)
+s3 = save_reg_s3
+s4 = save_reg_s4
+s5 = save_reg_s5
+s11 = save_reg_s11
+s6 = save_reg_s6
+s7 = save_reg_s7
+s8 = save_reg_s8
+s9 = save_reg_s9
+t0 = save_reg_t0
+t1 = save_reg_t1
+t3 = save_reg_t3
+s4 = s6 + s10
+goto L29
+L27:
+s8 = 1
+s8 = s3 + s8
+s4 = t3 * s8
+L29:
+s9 = 5
+s9 = s4 - s9
+s8 = s3 + s9
+s10 = s4 - s8
+s9 = s10 + s9
+print(s9)
+s6 = s4 + s8
+s5 = s5 + s7
+s4 = s7 + t0
+s9 = s6 + s4
+s11 = s7 < s9
+L3:
+if0 s11 goto L12
+s10 = s7 + s4
+t0 = 30
+t1 = s10 + t0
+t1 = s6 - t1
+s9 = s10 - t1
+t2 = 0
+s11 = s9 * t2
+s4 = s5 + s3
+s9 = s10 + s9
+t3 = s4 - s9
+print(t3)
+goto L3
+L12:
+s3 = s8 - s9
+s3 = s10 + s3
+g = s3
+return g
+
+func func_g(x7 x8)
+s1 = a2 + a3
+a = s1
+s1 = a4 + a5
+b = s1
+s1 = a6 + a7
+c = s1
+s1 = x7
+s2 = x8
+s1 = s1 + s2
+d = s1
+s1 = 10
+ten = s1
+s1 = ten
+e = s1
+s1 = x8
+s3 = s1 < a2
+if0 s3 goto L42
+s4 = @func_g
+save_reg_s3 = s3
+save_reg_s4 = s4
+save_reg_a2 = a2
+save_reg_a3 = a3
+save_reg_a4 = a4
+save_reg_a5 = a5
+save_reg_a6 = a6
+save_reg_a7 = a7
+x2 = a3
+a2 = s3
+a3 = x7
+a4 = s3
+a5 = a6
+a6 = ten
+a7 = s3
+s2 = call s4(x2 ten)
+a = s2
+s3 = save_reg_s3
+s4 = save_reg_s4
+a2 = save_reg_a2
+a3 = save_reg_a3
+a4 = save_reg_a4
+a5 = save_reg_a5
+a6 = save_reg_a6
+a7 = save_reg_a7
+L42:
+s1 = d
+s2 = a
+s1 = s1 - s2
+e = s1
+s1 = b
+s2 = e
+s1 = s1 * s2
+f = s1
+s1 = c
+s2 = f
+s1 = s1 - s2
+g = s1
+s1 = d
+s2 = e
+s1 = s1 + s2
+h = s1
+s1 = e
+s2 = f
+s1 = s1 + s2
+i = s1
+s1 = g
+s2 = h
+s1 = s1 + s2
+j = s1
+return j
+

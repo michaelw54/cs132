@@ -1,0 +1,19 @@
+func Main()
+s3 = 4
+s4 = @Custom
+save_reg_s3 = s3
+a2 = s3
+s4 = call s4()
+s3 = save_reg_s3
+print(s4)
+v0 = s3
+return v0
+
+func Custom()
+s1 = 5
+v0 = s1
+s1 = v0
+s1 = s1 * a2
+v1 = s1
+return v1
+

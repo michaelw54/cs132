@@ -1,0 +1,63 @@
+func Main()
+s3 = 4
+s4 = alloc(s3)
+s5 = alloc(s3)
+s3 = @FacComputeFac
+[s5 + 0] = s3
+s3 = s5
+[s4 + 0] = s3
+if0 s4 goto null1
+s5 = [s4 + 0]
+s5 = [s5 + 0]
+s3 = 6
+save_reg_s3 = s3
+save_reg_s5 = s5
+a2 = s4
+a3 = s3
+s4 = call s5()
+s3 = save_reg_s3
+s5 = save_reg_s5
+print(s4)
+goto main_end
+null1:
+error("null pointer")
+main_end:
+v0 = s3
+return v0
+
+func FacComputeFac()
+s1 = 1
+v0 = s1
+s2 = v0
+s1 = a3 < s2
+w0 = s1
+s1 = w0
+if0 s1 goto if1_else
+s3 = 1
+goto if1_end
+if1_else:
+s1 = [a2 + 0]
+w1 = s1
+s1 = w1
+s1 = [s1 + 0]
+w1 = s1
+s1 = 1
+v0 = s1
+s2 = v0
+s1 = a3 - s2
+w2 = s1
+save_reg_s3 = s3
+save_reg_a2 = a2
+save_reg_a3 = a3
+a2 = a2
+a3 = w2
+s1 = w1
+s4 = call s1()
+s3 = save_reg_s3
+a2 = save_reg_a2
+a3 = save_reg_a3
+s3 = a3 * s4
+if1_end:
+num_aux = s3
+return num_aux
+

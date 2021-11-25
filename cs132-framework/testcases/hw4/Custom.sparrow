@@ -1,0 +1,11 @@
+func Main()
+    v0 = 4
+    v1 = @Custom
+    v2 = call v1(v0)
+    print(v2)
+    return v0
+
+func Custom(num)
+    v0 = 5
+    v1 = v0 * num
+    return v1

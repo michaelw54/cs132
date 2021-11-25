@@ -1,6 +1,0 @@
-func Main()
-    w0 = 12
-    print(w0)
-    ret_ = 0
-    return ret_
-    
