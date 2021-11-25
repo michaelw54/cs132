@@ -11,22 +11,9 @@ public class S2SV {
             SparrowConstructor sc = new SparrowConstructor();
             root.accept(sc);
             Program program = sc.getProgram();
-
-            // KEVIN LI VERSION
-            // KevinLivenessVisitor lv = new KevinLivenessVisitor();
-            // program.accept(lv);
-            // KevinTranslatorVisitor tv = new KevinTranslatorVisitor();
-            // program.accept(tv, lv);
-            // tv.addSaves();
-            // for (int i = 0; i < tv.result.size(); ++i) {
-            //     System.out.println(tv.result.get(i));
-            // }
-
-            // MY VERSION
             LivenessVisitor lv = new LivenessVisitor();
             program.accept(lv);
             program.accept(new MainVisitor(), lv);
-
             // System.out.println(lv.finalRegAssignments);
         } catch (ParseException e) {
             e.printStackTrace();

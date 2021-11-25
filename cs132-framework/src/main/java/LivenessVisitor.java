@@ -33,13 +33,15 @@ public class LivenessVisitor extends DepthFirst {
             visitedVars.add(var);
             orderedVars.add(var);
         }
-        if (params.contains(var)) {
-            return;
-        }
         HashMap<String, ArrayList<Integer>> varInterval = funcVarInterval.get(func);
         if (!varInterval.containsKey(var)) {
             ArrayList<Integer> interval = new ArrayList<>();
-            interval.add(line); interval.add(line);
+            if (params.contains(var)) {
+                interval.add(0);
+            } else {
+                interval.add(line);
+            }
+            interval.add(line);
             varInterval.put(var, interval);
         } else {
             ArrayList<Integer> interval = varInterval.get(var);
@@ -90,6 +92,48 @@ public class LivenessVisitor extends DepthFirst {
         }
         // System.out.println(funcVarInterval.toString());
 
+        // V2 register assignment
+        HashMap<String, String> funcRegAssignments = new HashMap<>();
+        HashMap<String, String> regToVar = new HashMap<>();
+        List<Map.Entry<String, ArrayList<Integer>>> varStartsSorted = new ArrayList<>(funcVarInterval.get(currFunc).entrySet());
+        Collections.sort(varStartsSorted, (Map.Entry<String, ArrayList<Integer>> a, Map.Entry<String, ArrayList<Integer>> b) -> a.getValue().get(0) - b.getValue().get(0));
+        List<Map.Entry<String, ArrayList<Integer>>> varEndsSorted = new ArrayList<>();
+        ArrayList<String> availableRegs = new ArrayList<>(Arrays.asList(registers));
+
+        for (Map.Entry<String, ArrayList<Integer>> e : varStartsSorted) {
+            if (params.contains(e.getKey())) {
+                continue;
+            }
+            String varName = e.getKey();
+            Integer varStart = e.getValue().get(0);
+            Integer varEnd = e.getValue().get(1);
+            while (varEndsSorted.size() > 0 && varEndsSorted.get(0).getValue().get(1) <= varStart) {
+                Map.Entry<String, ArrayList<Integer>> v = varEndsSorted.remove(0);
+                String freedReg = funcRegAssignments.get(v.getKey());
+                regToVar.remove(freedReg);
+                availableRegs.add(freedReg);
+            }
+            if (availableRegs.size() == 0) {
+                Map.Entry<String, ArrayList<Integer>> v = varEndsSorted.remove(0);
+                String freedReg = funcRegAssignments.remove(v.getKey());
+                regToVar.remove(freedReg);
+                availableRegs.add(freedReg);
+            }
+            if (availableRegs.size() > 0) {
+                String reg = availableRegs.remove(0);
+                funcRegAssignments.put(varName, reg);
+                regToVar.put(reg, varName);
+                ArrayList<Integer> temp = new ArrayList<>();
+                temp.add(varEnd); temp.add(varEnd);
+                varEndsSorted.add(new AbstractMap.SimpleEntry<String, ArrayList<Integer>>(varName, temp));
+                Collections.sort(varEndsSorted, (Map.Entry<String, ArrayList<Integer>> a, Map.Entry<String, ArrayList<Integer>> b) -> a.getValue().get(1) - b.getValue().get(1));
+            }
+        }
+
+        finalRegAssignments.get(currFunc).putAll(funcRegAssignments);
+
+        // V1
+        /*
         // Assign registers
         HashSet<String> usedRegs = new HashSet<>();
         HashMap<String, String> tentativeAssignments = new HashMap<>();
@@ -105,7 +149,6 @@ public class LivenessVisitor extends DepthFirst {
                     finalRegAssignments.get(currFunc).put(tentativeVar, tentativeAssignments.get(tentativeVar));
                     usedRegs.remove(tentativeAssignments.get(tentativeVar));
                     finalized.add(tentativeVar);
-                    
                 }
             }
             for (String v : finalized) {
@@ -136,6 +179,7 @@ public class LivenessVisitor extends DepthFirst {
         }
 
         finalRegAssignments.get(currFunc).putAll(tentativeAssignments);
+        */
     }
 
     @Override

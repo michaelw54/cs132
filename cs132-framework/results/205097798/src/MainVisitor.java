@@ -326,22 +326,22 @@ public class MainVisitor implements ArgVisitor<LivenessVisitor> {
         HashSet<String> regsToSave = new HashSet<>();
         for (String var : arg1.funcVarInterval.get(currFunc).keySet()) {
             ArrayList<Integer> interval = arg1.funcVarInterval.get(currFunc).get(var);
-            if (currLine >= interval.get(0) && currLine <= interval.get(1)) {
+            if (currLine < interval.get(1)) {
                 if (arg1.finalRegAssignments.get(currFunc).containsKey(var)) {
                     regsToSave.add(arg1.finalRegAssignments.get(currFunc).get(var));
                 }
             }
         }
         for (String reg : regsToSave) {
-            if (!reg.startsWith("a") && !reg.equals(lhs)) {
+            if (!reg.equals(lhs)) {
                 System.out.println("save_reg_" + reg + " = " + reg);
             }
         }
-        for (String reg : arg1.getRegistersUsedByFunc(currFunc)) {
-            if (reg.startsWith("a") && !reg.equals(lhs)) {
-                System.out.println("save_reg_" + reg + " = " + reg);
-            }
-        }
+        // for (String reg : arg1.getRegistersUsedByFunc(currFunc)) {
+        //     if (reg.startsWith("a") && !reg.equals(lhs)) {
+        //         System.out.println("save_reg_" + reg + " = " + reg);
+        //     }
+        // }
 
         // V2
         // for (String reg : arg1.getRegistersUsedByFunc(currFunc)) {
@@ -400,15 +400,15 @@ public class MainVisitor implements ArgVisitor<LivenessVisitor> {
 
         // V3
         for (String reg : regsToSave) {
-            if (!reg.startsWith("a") && !reg.equals(lhs)) {
+            if (!reg.equals(lhs)) {
                 System.out.println(reg + " = save_reg_" + reg);
            }
         }
-        for (String reg : arg1.getRegistersUsedByFunc(currFunc)) {
-            if (reg.startsWith("a") && !reg.equals(lhs)) {
-                System.out.println(reg + " = save_reg_" + reg);
-            }
-        }
+        // for (String reg : arg1.getRegistersUsedByFunc(currFunc)) {
+        //     if (reg.startsWith("a") && !reg.equals(lhs)) {
+        //         System.out.println(reg + " = save_reg_" + reg);
+        //     }
+        // }
 
         // V2
         // for (String reg : arg1.getRegistersUsedByFunc(currFunc)) {
